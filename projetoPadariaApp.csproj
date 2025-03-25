@@ -9,8 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Forms Functions\EmployeeManagement\" />
-    <Folder Include="Forms Functions\Orders\" />
+    <Folder Include="Forms Functions\SupplierManagement\" />
+    <Folder Include="Forms Functions\StockManagement\" />
+    <Folder Include="Forms Functions\OrdersManagement\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 

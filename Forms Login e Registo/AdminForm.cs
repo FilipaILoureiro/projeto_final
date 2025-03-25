@@ -31,8 +31,7 @@ namespace projetoPadariaApp.Forms
 
         private void btnManageEmployees_Click(object sender, EventArgs e)
         {
-            DataGridViewEmployeeForm dataGridViewEmployeeForm = new DataGridViewEmployeeForm();
-            dataGridViewEmployeeForm.Show();
+        
         }
     }
 
