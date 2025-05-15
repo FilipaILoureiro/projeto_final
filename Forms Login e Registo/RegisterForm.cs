@@ -111,5 +111,10 @@ namespace projetoPadariaApp.Forms
                 MessageBox.Show("Erro ao registar utilizador.");
             }
         }
+
+        private void cbFuncao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

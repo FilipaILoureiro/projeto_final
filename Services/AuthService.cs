@@ -13,7 +13,7 @@ namespace projetoPadariaApp.Services
 {
     public class AuthService
     {
-        // para o login 
+        // Função para autenticar o usuário (login)
         public static bool AuthenticateUser(string username, string password)
         {
             using (var conn = DatabaseManage.GetInstance().GetConnection())
@@ -35,13 +35,13 @@ namespace projetoPadariaApp.Services
             return false;
         }
 
-        //Registro de novo utilizador (incluindo se o utilizador é admin)
+        // Função para registrar um novo usuário
         public static bool RegisterUser(string nome, string contacto, string username, string password, int id_funcao, bool isAdmin = false)
         {
             if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(password))
                 return false;
 
-            // Criptografar a password
+            // Criptografar a senha
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
 
             var dbManager = DatabaseManage.GetInstance();
@@ -54,7 +54,7 @@ namespace projetoPadariaApp.Services
                 {
                     try
                     {
-                        // Inserir o novo utilizador na tabela 'funcionario'
+                        // Inserir novo usuário na tabela 'funcionario'
                         string query = "INSERT INTO funcionario (nome, contacto, username, pass, id_funcao) VALUES (@nome, @contacto, @username, @pass, @id_funcao)";
 
                         using (var cmd = new SQLiteCommand(query, conn))
@@ -67,12 +67,12 @@ namespace projetoPadariaApp.Services
 
                             int rows = cmd.ExecuteNonQuery();
 
-                            // Se a inserção for bem-sucedida, adicionar o tipo de utilizador à tabela 'tipo_de_func'
+                            // Se a inserção for bem-sucedida, adicionar o tipo de usuário à tabela 'tipo_de_func'
                             if (rows > 0)
                             {
-                                int userId = (int)conn.LastInsertRowId; // Pegar o ID do novo utilizador
+                                int userId = (int)conn.LastInsertRowId; // Pega o ID do novo usuário
 
-                                string adminValue = isAdmin ? "S" : "N"; // Se for Admin, "S"; se não, "N"
+                                string adminValue = isAdmin ? "S" : "N"; // Se for Admin, "S"; caso contrário, "N"
                                 string adminQuery = "INSERT INTO tipo_de_func (id_funcionario, admin) VALUES (@userId, @admin)";
 
                                 using (var adminCmd = new SQLiteCommand(adminQuery, conn))
@@ -113,9 +113,8 @@ namespace projetoPadariaApp.Services
                 }
             }
         }
-        
 
-        // para verificar se o utilizador é admin
+        // Função para verificar se o usuário é admin
         public static bool IsAdmin(string username)
         {
             using (var conn = DatabaseManage.GetInstance().GetConnection())
@@ -136,10 +135,10 @@ namespace projetoPadariaApp.Services
             }
         }
 
-        // Promover utilizador a admin
+        // Função para promover um usuário a admin
         public static bool PromoteToAdmin(string loggedUsername, string username)
         {
-            if (AuthService.IsAdmin(loggedUsername)) // Verificar se o utilizador logado é admin
+            if (IsAdmin(loggedUsername)) // Verifica se o usuário logado é admin
             {
                 using (var conn = DatabaseManage.GetInstance().GetConnection())
                 {
@@ -155,14 +154,14 @@ namespace projetoPadariaApp.Services
                         {
                             int userId = Convert.ToInt32(result);
 
-                            // Atualizar o tipo de utilizador para admin
+                            // Atualiza o tipo de usuário para admin
                             string updateQuery = "UPDATE tipo_de_func SET admin = 'S' WHERE id_funcionario = @userId";
                             using (var updateCmd = new SQLiteCommand(updateQuery, conn))
                             {
                                 updateCmd.Parameters.AddWithValue("@userId", userId);
                                 int rows = updateCmd.ExecuteNonQuery();
 
-                                return rows > 0; 
+                                return rows > 0; // Retorna true se a atualização foi bem-sucedida
                             }
                         }
                     }
@@ -176,8 +175,7 @@ namespace projetoPadariaApp.Services
             return false;
         }
 
-
-        // funções para redinição de senha
+        // Função para redefinir a senha do usuário
         public static bool ResetPassword(string username)
         {
             using (var conn = DatabaseManage.GetInstance().GetConnection())
@@ -210,7 +208,7 @@ namespace projetoPadariaApp.Services
             return false;
         }
 
-        // gerar uma password temporária para o utilizador depois redefinir a senha
+        // Função para gerar uma senha temporária
         private static string GenerateTemporaryPassword()
         {
             Random random = new Random();
@@ -218,5 +216,66 @@ namespace projetoPadariaApp.Services
             return new string(Enumerable.Repeat(chars, 8)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+        // Função para manter a sessão do usuário (retorna o ID do funcionário)
+        public static int GetFuncionarioId(string username)
+        {
+            using (var conn = DatabaseManage.GetInstance().GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT id FROM funcionario WHERE username = @username";
+
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@username", username);
+                    var result = cmd.ExecuteScalar();
+
+                    if (result != null && int.TryParse(result.ToString(), out int id))
+                    {
+                        return id; // Retorna o ID do funcionário
+                    }
+
+                    return null; // Retorna null se não encontrar o usuário
+                }
+            }
+        }
+        public static string GetFuncionarioNome(string username)
+        {
+            using (var conn = DatabaseManage.GetInstance().GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT nome FROM funcionario WHERE username = @username";
+
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@username", username);
+                    var result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return result.ToString(); // Retorna o nome do funcionário
+                    }
+
+                    return null; // Retorna null se não encontrar o usuário
+                }
+            }
+        }
+        public void Login(string nomeFuncionario)
+        {
+            // Após validar as credenciais
+            int funcionarioId = AuthService.GetFuncionarioId(nomeFuncionario); // Retorna o ID do funcionário
+
+            if (funcionarioId > 0)
+            {
+                // Atribui o ID e o nome na sessão
+                Session.FuncionarioId = funcionarioId;
+                Session.FuncionarioNome = nomeFuncionario;
+            }
+            else
+            {
+                MessageBox.Show("Credenciais inválidas.");
+            }
+        }
+
     }
 }

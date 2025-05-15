@@ -65,9 +65,9 @@ namespace PadariaApp
 
         private void CreateTables(SQLiteConnection conn)
         {
-            string schema = @"
+                string schema = @"
         PRAGMA foreign_keys = ON;
-        
+
         CREATE TABLE funcionario (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nome TEXT NOT NULL,
@@ -102,9 +102,7 @@ namespace PadariaApp
             id_fornecedor INTEGER NOT NULL,
             preco REAL NOT NULL,
             quantidade INTEGER,
-            quantidade_emergencial INTEGER NOT NULL,
-            iva INTEGER CHECK(iva IN (6, 13, 23)) DEFAULT 23,
-            FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id) ON DELETE CASCADE
+            iva INTEGER CHECK(iva IN (6, 13, 23)) DEFAULT 23
         );
 
         CREATE TABLE encomenda (
@@ -123,7 +121,8 @@ namespace PadariaApp
             nome TEXT NOT NULL,
             quantidade INTEGER NOT NULL,
             preco REAL NOT NULL,
-            iva INTEGER CHECK(iva IN (6, 13, 23)) DEFAULT 23
+            iva INTEGER CHECK(iva IN (6, 13, 23)) DEFAULT 23,
+            imagem TEXT
         );
 
         CREATE TABLE enc (
@@ -182,7 +181,6 @@ namespace PadariaApp
                 cmd.ExecuteNonQuery();
             }
         }
-
         private void CreateFuncaoTableAndInsertData(SQLiteConnection conn)
         {
             // Funções predefinidas a serem inseridas

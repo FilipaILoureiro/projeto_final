@@ -61,11 +61,13 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvEmployees.DefaultCellStyle = dataGridViewCellStyle3;
             dgvEmployees.GridColor = Color.FromArgb(231, 229, 255);
-            dgvEmployees.Location = new Point(27, 72);
+            dgvEmployees.Location = new Point(24, 54);
+            dgvEmployees.Margin = new Padding(3, 2, 3, 2);
             dgvEmployees.Name = "dgvEmployees";
             dgvEmployees.RowHeadersVisible = false;
             dgvEmployees.RowHeadersWidth = 51;
-            dgvEmployees.Size = new Size(1130, 469);
+            dgvEmployees.RowTemplate.Height = 29;
+            dgvEmployees.Size = new Size(989, 352);
             dgvEmployees.TabIndex = 0;
             dgvEmployees.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvEmployees.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -88,6 +90,7 @@
             dgvEmployees.ThemeStyle.RowsStyle.Height = 29;
             dgvEmployees.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvEmployees.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvEmployees.CellContentClick += dgvEmployees_CellContentClick;
             // 
             // btnNewOrder
             // 
@@ -98,20 +101,22 @@
             btnNewOrder.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnNewOrder.Font = new Font("Segoe UI", 9F);
             btnNewOrder.ForeColor = Color.White;
-            btnNewOrder.Location = new Point(959, 12);
+            btnNewOrder.Location = new Point(839, 9);
+            btnNewOrder.Margin = new Padding(3, 2, 3, 2);
             btnNewOrder.Name = "btnNewOrder";
             btnNewOrder.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnNewOrder.Size = new Size(198, 45);
+            btnNewOrder.Size = new Size(173, 34);
             btnNewOrder.TabIndex = 1;
             btnNewOrder.Text = "Nova encomenda";
             // 
             // EmployeeManagementForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1261, 568);
+            ClientSize = new Size(1103, 426);
             Controls.Add(btnNewOrder);
             Controls.Add(dgvEmployees);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "EmployeeManagementForm";
             Text = "EmployeeManagementForm";
             ((System.ComponentModel.ISupportInitialize)dgvEmployees).EndInit();

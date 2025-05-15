@@ -45,6 +45,15 @@ namespace projetoPadariaApp.Forms
             {
                 MessageBox.Show("Login bem-sucedido!");
 
+                // Obter o ID e nome do funcionário após autenticação bem-sucedida
+                int funcionarioId = AuthService.GetFuncionarioId(Session.FuncionarioNome);
+                // Supondo que o método GetFuncionarioId existe
+                string funcionarioNome = AuthService.GetFuncionarioNome(username);  // E o método GetFuncionarioNome também
+
+                // Armazenar as informações do usuário na sessão
+                Session.FuncionarioId = funcionarioId;
+                Session.FuncionarioNome = funcionarioNome;
+
                 bool isAdmin = AuthService.IsAdmin(username);
 
                 if (isAdmin)

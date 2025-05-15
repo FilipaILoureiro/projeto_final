@@ -127,6 +127,10 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             }
         }
 
+        private void dgvEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 

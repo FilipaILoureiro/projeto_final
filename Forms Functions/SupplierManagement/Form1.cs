@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
+namespace projetoPadariaApp.Forms_Functions.SupplierManagement
 {
-    public partial class EmployeeManagement: Form
+    public partial class Form1: Form
     {
-        public EmployeeManagement()
+        public Form1()
         {
             InitializeComponent();
         }

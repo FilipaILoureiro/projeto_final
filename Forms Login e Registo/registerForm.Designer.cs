@@ -51,7 +51,8 @@
             txtNome.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtNome.HideSelection = true;
             txtNome.LeadingIcon = null;
-            txtNome.Location = new Point(208, 56);
+            txtNome.Location = new Point(182, 42);
+            txtNome.Margin = new Padding(3, 2, 3, 2);
             txtNome.MaxLength = 32767;
             txtNome.MouseState = MaterialSkin.MouseState.OUT;
             txtNome.Name = "txtNome";
@@ -63,7 +64,7 @@
             txtNome.SelectionLength = 0;
             txtNome.SelectionStart = 0;
             txtNome.ShortcutsEnabled = true;
-            txtNome.Size = new Size(501, 48);
+            txtNome.Size = new Size(438, 48);
             txtNome.TabIndex = 0;
             txtNome.TabStop = false;
             txtNome.TextAlign = HorizontalAlignment.Left;
@@ -79,7 +80,8 @@
             txtContacto.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtContacto.HideSelection = true;
             txtContacto.LeadingIcon = null;
-            txtContacto.Location = new Point(208, 143);
+            txtContacto.Location = new Point(182, 107);
+            txtContacto.Margin = new Padding(3, 2, 3, 2);
             txtContacto.MaxLength = 32767;
             txtContacto.MouseState = MaterialSkin.MouseState.OUT;
             txtContacto.Name = "txtContacto";
@@ -91,7 +93,7 @@
             txtContacto.SelectionLength = 0;
             txtContacto.SelectionStart = 0;
             txtContacto.ShortcutsEnabled = true;
-            txtContacto.Size = new Size(501, 48);
+            txtContacto.Size = new Size(438, 48);
             txtContacto.TabIndex = 1;
             txtContacto.TabStop = false;
             txtContacto.TextAlign = HorizontalAlignment.Left;
@@ -107,7 +109,8 @@
             txtPass.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPass.HideSelection = true;
             txtPass.LeadingIcon = null;
-            txtPass.Location = new Point(208, 310);
+            txtPass.Location = new Point(182, 232);
+            txtPass.Margin = new Padding(3, 2, 3, 2);
             txtPass.MaxLength = 32767;
             txtPass.MouseState = MaterialSkin.MouseState.OUT;
             txtPass.Name = "txtPass";
@@ -119,7 +122,7 @@
             txtPass.SelectionLength = 0;
             txtPass.SelectionStart = 0;
             txtPass.ShortcutsEnabled = true;
-            txtPass.Size = new Size(501, 48);
+            txtPass.Size = new Size(438, 48);
             txtPass.TabIndex = 2;
             txtPass.TabStop = false;
             txtPass.TextAlign = HorizontalAlignment.Left;
@@ -140,20 +143,22 @@
             cbFuncao.FormattingEnabled = true;
             cbFuncao.IntegralHeight = false;
             cbFuncao.ItemHeight = 43;
-            cbFuncao.Location = new Point(208, 389);
+            cbFuncao.Location = new Point(182, 292);
+            cbFuncao.Margin = new Padding(3, 2, 3, 2);
             cbFuncao.MaxDropDownItems = 4;
             cbFuncao.MouseState = MaterialSkin.MouseState.OUT;
             cbFuncao.Name = "cbFuncao";
-            cbFuncao.Size = new Size(501, 49);
+            cbFuncao.Size = new Size(439, 49);
             cbFuncao.StartIndex = 0;
             cbFuncao.TabIndex = 3;
+            cbFuncao.SelectedIndexChanged += cbFuncao_SelectedIndexChanged;
             // 
             // lblNome
             // 
             lblNome.AutoSize = true;
             lblNome.Depth = 0;
             lblNome.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblNome.Location = new Point(131, 73);
+            lblNome.Location = new Point(115, 55);
             lblNome.MouseState = MaterialSkin.MouseState.HOVER;
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(43, 19);
@@ -165,7 +170,7 @@
             lblContacto.AutoSize = true;
             lblContacto.Depth = 0;
             lblContacto.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblContacto.Location = new Point(109, 161);
+            lblContacto.Location = new Point(95, 121);
             lblContacto.MouseState = MaterialSkin.MouseState.HOVER;
             lblContacto.Name = "lblContacto";
             lblContacto.Size = new Size(65, 19);
@@ -177,7 +182,7 @@
             lblPass.AutoSize = true;
             lblPass.Depth = 0;
             lblPass.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblPass.Location = new Point(73, 327);
+            lblPass.Location = new Point(64, 245);
             lblPass.MouseState = MaterialSkin.MouseState.HOVER;
             lblPass.Name = "lblPass";
             lblPass.Size = new Size(101, 19);
@@ -191,8 +196,8 @@
             btnRegister.Depth = 0;
             btnRegister.HighEmphasis = true;
             btnRegister.Icon = null;
-            btnRegister.Location = new Point(330, 532);
-            btnRegister.Margin = new Padding(4, 6, 4, 6);
+            btnRegister.Location = new Point(289, 399);
+            btnRegister.Margin = new Padding(4, 4, 4, 4);
             btnRegister.MouseState = MaterialSkin.MouseState.HOVER;
             btnRegister.Name = "btnRegister";
             btnRegister.NoAccentTextColor = Color.Empty;
@@ -209,7 +214,7 @@
             lblFuncao.AutoSize = true;
             lblFuncao.Depth = 0;
             lblFuncao.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblFuncao.Location = new Point(120, 407);
+            lblFuncao.Location = new Point(105, 305);
             lblFuncao.MouseState = MaterialSkin.MouseState.HOVER;
             lblFuncao.Name = "lblFuncao";
             lblFuncao.Size = new Size(54, 19);
@@ -221,7 +226,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Depth = 0;
             lblUsername.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUsername.Location = new Point(40, 236);
+            lblUsername.Location = new Point(35, 177);
             lblUsername.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(134, 19);
@@ -237,7 +242,8 @@
             txtUsername.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtUsername.HideSelection = true;
             txtUsername.LeadingIcon = null;
-            txtUsername.Location = new Point(208, 224);
+            txtUsername.Location = new Point(182, 168);
+            txtUsername.Margin = new Padding(3, 2, 3, 2);
             txtUsername.MaxLength = 32767;
             txtUsername.MouseState = MaterialSkin.MouseState.OUT;
             txtUsername.Name = "txtUsername";
@@ -249,7 +255,7 @@
             txtUsername.SelectionLength = 0;
             txtUsername.SelectionStart = 0;
             txtUsername.ShortcutsEnabled = true;
-            txtUsername.Size = new Size(501, 48);
+            txtUsername.Size = new Size(438, 48);
             txtUsername.TabIndex = 10;
             txtUsername.TabStop = false;
             txtUsername.TextAlign = HorizontalAlignment.Left;
@@ -260,7 +266,7 @@
             // 
             chkIsAdmin.AutoSize = true;
             chkIsAdmin.Depth = 0;
-            chkIsAdmin.Location = new Point(538, 477);
+            chkIsAdmin.Location = new Point(471, 358);
             chkIsAdmin.Margin = new Padding(0);
             chkIsAdmin.MouseLocation = new Point(-1, -1);
             chkIsAdmin.MouseState = MaterialSkin.MouseState.HOVER;
@@ -274,9 +280,9 @@
             // 
             // registerForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(795, 597);
+            ClientSize = new Size(696, 448);
             Controls.Add(chkIsAdmin);
             Controls.Add(txtUsername);
             Controls.Add(lblUsername);
@@ -289,6 +295,7 @@
             Controls.Add(txtPass);
             Controls.Add(txtContacto);
             Controls.Add(txtNome);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "registerForm";
             Text = "registerForm";
             Load += registerForm_Load;
