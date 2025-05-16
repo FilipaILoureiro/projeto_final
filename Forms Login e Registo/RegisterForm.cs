@@ -29,11 +29,7 @@ namespace projetoPadariaApp.Forms
 
         private void RegisterForm_Load(object sender, EventArgs e)
         {
-            // Tudo já preparado no Designer com TableLayoutPanel e Dock = Fill
         }
-
-        
-
 
         //para adicionar o caminho para o ficheiro database
         private static readonly string connectionString = "Data Source=projetoPadariaApp.db;Version=3;";
@@ -113,7 +109,6 @@ namespace projetoPadariaApp.Forms
             if (success)
             {
                 MessageBox.Show("Utilizador registado com sucesso!");
-                // Limpar campos após registro bem-sucedido
                 txtNome.Clear();
                 txtContacto.Clear();
                 txtUsername.Clear();
