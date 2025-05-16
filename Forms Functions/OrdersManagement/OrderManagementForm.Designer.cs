@@ -28,41 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dgvOrders = new Guna.UI2.WinForms.Guna2DataGridView();
+            databaseManageBindingSource1 = new BindingSource(components);
+            databaseManageBindingSource = new BindingSource(components);
+            btnAddOrder = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)dgvOrders).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource).BeginInit();
             SuspendLayout();
             // 
             // dgvOrders
             // 
-            dataGridViewCellStyle4.BackColor = Color.White;
-            dgvOrders.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvOrders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dgvOrders.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvOrders.AutoGenerateColumns = false;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvOrders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvOrders.ColumnHeadersHeight = 4;
             dgvOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.White;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvOrders.DefaultCellStyle = dataGridViewCellStyle6;
+            dgvOrders.DataSource = databaseManageBindingSource1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvOrders.DefaultCellStyle = dataGridViewCellStyle3;
             dgvOrders.GridColor = Color.FromArgb(231, 229, 255);
-            dgvOrders.Location = new Point(31, 15);
+            dgvOrders.Location = new Point(40, 81);
             dgvOrders.Name = "dgvOrders";
             dgvOrders.RowHeadersVisible = false;
             dgvOrders.RowHeadersWidth = 51;
-            dgvOrders.Size = new Size(1103, 483);
+            dgvOrders.Size = new Size(1101, 466);
             dgvOrders.TabIndex = 0;
             dgvOrders.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvOrders.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -86,20 +96,51 @@
             dgvOrders.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvOrders.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
+            // databaseManageBindingSource1
+            // 
+            databaseManageBindingSource1.DataSource = typeof(PadariaApp.DatabaseManage);
+            // 
+            // databaseManageBindingSource
+            // 
+            databaseManageBindingSource.DataSource = typeof(PadariaApp.DatabaseManage);
+            // 
+            // btnAddOrder
+            // 
+            btnAddOrder.CustomizableEdges = customizableEdges1;
+            btnAddOrder.DisabledState.BorderColor = Color.DarkGray;
+            btnAddOrder.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnAddOrder.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnAddOrder.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAddOrder.Font = new Font("Segoe UI", 9F);
+            btnAddOrder.ForeColor = Color.White;
+            btnAddOrder.Location = new Point(916, 12);
+            btnAddOrder.Name = "btnAddOrder";
+            btnAddOrder.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnAddOrder.Size = new Size(225, 56);
+            btnAddOrder.TabIndex = 1;
+            btnAddOrder.Text = "Nova Encomenda";
+            btnAddOrder.Click += btnAddOrder_Click;
+            // 
             // OrderManagementForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1168, 559);
+            Controls.Add(btnAddOrder);
             Controls.Add(dgvOrders);
             Name = "OrderManagementForm";
             Text = "OrderManagementForm";
             ((System.ComponentModel.ISupportInitialize)dgvOrders).EndInit();
+            ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Guna.UI2.WinForms.Guna2DataGridView dgvOrders;
+        private Guna.UI2.WinForms.Guna2Button btnAddOrder;
+        private BindingSource databaseManageBindingSource;
+        private BindingSource databaseManageBindingSource1;
     }
 }

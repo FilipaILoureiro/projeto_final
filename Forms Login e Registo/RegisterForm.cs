@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Guna.UI2.WinForms;
 using PadariaApp;
 using projetoPadariaApp.Services;
 
@@ -15,10 +16,24 @@ namespace projetoPadariaApp.Forms
 {
     public partial class registerForm : Form
     {
+        private Dictionary<Control, ControlInfo> controlInfo = new Dictionary<Control, ControlInfo>();
+        private Size originalFormSize;
+        private bool isPrimeiraVez = true;
+
         public registerForm()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            this.Load += RegisterForm_Load;
         }
+
+        private void RegisterForm_Load(object sender, EventArgs e)
+        {
+            // Tudo já preparado no Designer com TableLayoutPanel e Dock = Fill
+        }
+
+        
+
 
         //para adicionar o caminho para o ficheiro database
         private static readonly string connectionString = "Data Source=projetoPadariaApp.db;Version=3;";
@@ -74,7 +89,7 @@ namespace projetoPadariaApp.Forms
             LoadFuncoes();
         }
 
-        private void btnRegister_Click(object sender, EventArgs e)
+        private void btnRegister_Click_1(object sender, EventArgs e)
         {
             string nome = txtNome.Text;
             string contacto = txtContacto.Text;
@@ -112,9 +127,10 @@ namespace projetoPadariaApp.Forms
             }
         }
 
-        private void cbFuncao_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnVoltar_Click(object sender, EventArgs e)
         {
-
+            loginForm loginForm = new loginForm();
+            loginForm.Show();
         }
     }
 }

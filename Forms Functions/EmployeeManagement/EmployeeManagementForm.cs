@@ -29,19 +29,28 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             dgvEmployees.Columns.Add("Funcao", "Função");
 
             // Colunas de Ações
-            var btnEditar = new DataGridViewButtonColumn { Text = "✏ Editar", UseColumnTextForButtonValue = true, Name = "Editar" };
-            var btnRemover = new DataGridViewButtonColumn { Text = "❌ Remover", UseColumnTextForButtonValue = true, Name = "Remover" };
-            var btnPromover = new DataGridViewButtonColumn { Text = "⭐ Admin", UseColumnTextForButtonValue = true, Name = "Admin" };
+            var btnEditar = new DataGridViewButtonColumn { Text = "Editar", UseColumnTextForButtonValue = true, Name = "Editar" };
+            var btnRemover = new DataGridViewButtonColumn { Text = "Remover", UseColumnTextForButtonValue = true, Name = "Remover" };
+            var btnPromover = new DataGridViewButtonColumn { Text = "Admin", UseColumnTextForButtonValue = true, Name = "Admin" };
 
             dgvEmployees.Columns.Add(btnEditar);
             dgvEmployees.Columns.Add(btnRemover);
             dgvEmployees.Columns.Add(btnPromover);
 
             dgvEmployees.CellClick += dgvEmployees_CellClick;
+
+            dgvEmployees.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvEmployees.ColumnHeadersHeight = 40;
+            dgvEmployees.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvEmployees.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+            dgvEmployees.EnableHeadersVisualStyles = false;
+            dgvEmployees.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
         }
 
         private void LoadFuncionarios()
         {
+            dgvEmployees.DataSource = null;
             dgvEmployees.Rows.Clear();
             using (var conn = DatabaseManage.GetInstance().GetConnection())
             {
@@ -127,8 +136,83 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             }
         }
 
-        private void dgvEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            dgvEmployees = new Guna.UI2.WinForms.Guna2DataGridView();
+            databaseManageBindingSource = new BindingSource(components);
+            ((System.ComponentModel.ISupportInitialize)dgvEmployees).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource).BeginInit();
+            SuspendLayout();
+            // 
+            // dgvEmployees
+            // 
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dgvEmployees.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvEmployees.AutoGenerateColumns = false;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dgvEmployees.ColumnHeadersHeight = 4;
+            dgvEmployees.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvEmployees.DataSource = databaseManageBindingSource;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.White;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvEmployees.DefaultCellStyle = dataGridViewCellStyle6;
+            dgvEmployees.GridColor = Color.FromArgb(231, 229, 255);
+            dgvEmployees.Location = new Point(33, 34);
+            dgvEmployees.Name = "dgvEmployees";
+            dgvEmployees.RowHeadersVisible = false;
+            dgvEmployees.RowHeadersWidth = 51;
+            dgvEmployees.Size = new Size(949, 518);
+            dgvEmployees.TabIndex = 0;
+            dgvEmployees.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgvEmployees.ThemeStyle.AlternatingRowsStyle.Font = null;
+            dgvEmployees.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
+            dgvEmployees.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
+            dgvEmployees.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
+            dgvEmployees.ThemeStyle.BackColor = Color.White;
+            dgvEmployees.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            dgvEmployees.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            dgvEmployees.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvEmployees.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+            dgvEmployees.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            dgvEmployees.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvEmployees.ThemeStyle.HeaderStyle.Height = 4;
+            dgvEmployees.ThemeStyle.ReadOnly = false;
+            dgvEmployees.ThemeStyle.RowsStyle.BackColor = Color.White;
+            dgvEmployees.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvEmployees.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+            dgvEmployees.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            dgvEmployees.ThemeStyle.RowsStyle.Height = 29;
+            dgvEmployees.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dgvEmployees.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            // 
+            // databaseManageBindingSource
+            // 
+            databaseManageBindingSource.DataSource = typeof(DatabaseManage);
+            // 
+            // EmployeeManagementForm
+            // 
+            ClientSize = new Size(1019, 585);
+            Controls.Add(dgvEmployees);
+            Name = "EmployeeManagementForm";
+            ((System.ComponentModel.ISupportInitialize)dgvEmployees).EndInit();
+            ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource).EndInit();
+            ResumeLayout(false);
 
         }
     }

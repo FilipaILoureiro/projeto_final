@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace projetoPadariaApp.Models
 {
-    class Product
+    public class Product
     {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public int Quantidade { get; set; }
+        public double Preco { get; set; }
+        public int Iva { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Nome} ({Quantidade} unidades)";
+        }
     }
 }

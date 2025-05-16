@@ -28,256 +28,125 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtUsername = new MaterialSkin.Controls.MaterialTextBox2();
-            lblUsername = new MaterialSkin.Controls.MaterialLabel();
-            lblFuncao = new MaterialSkin.Controls.MaterialLabel();
-            btnAlterar = new MaterialSkin.Controls.MaterialButton();
-            lblPass = new MaterialSkin.Controls.MaterialLabel();
-            lblContacto = new MaterialSkin.Controls.MaterialLabel();
-            lblNome = new MaterialSkin.Controls.MaterialLabel();
-            cbFuncao = new MaterialSkin.Controls.MaterialComboBox();
-            txtPass = new MaterialSkin.Controls.MaterialTextBox2();
-            txtContacto = new MaterialSkin.Controls.MaterialTextBox2();
-            txtNome = new MaterialSkin.Controls.MaterialTextBox2();
+            btnAlterar = new Button();
+            txtNome = new TextBox();
+            txtContacto = new TextBox();
+            txtUsername = new TextBox();
+            txtPass = new TextBox();
+            cbFuncao = new ComboBox();
+            lblNome = new Label();
+            lblContacto = new Label();
+            lblUsername = new Label();
+            lblPass = new Label();
+            lblFuncao = new Label();
             SuspendLayout();
-            // 
-            // txtUsername
-            // 
-            txtUsername.AnimateReadOnly = false;
-            txtUsername.BackgroundImageLayout = ImageLayout.None;
-            txtUsername.CharacterCasing = CharacterCasing.Normal;
-            txtUsername.Depth = 0;
-            txtUsername.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtUsername.HideSelection = true;
-            txtUsername.LeadingIcon = null;
-            txtUsername.Location = new Point(200, 166);
-            txtUsername.Margin = new Padding(3, 2, 3, 2);
-            txtUsername.MaxLength = 32767;
-            txtUsername.MouseState = MaterialSkin.MouseState.OUT;
-            txtUsername.Name = "txtUsername";
-            txtUsername.PasswordChar = '\0';
-            txtUsername.PrefixSuffixText = null;
-            txtUsername.ReadOnly = false;
-            txtUsername.RightToLeft = RightToLeft.No;
-            txtUsername.SelectedText = "";
-            txtUsername.SelectionLength = 0;
-            txtUsername.SelectionStart = 0;
-            txtUsername.ShortcutsEnabled = true;
-            txtUsername.Size = new Size(438, 48);
-            txtUsername.TabIndex = 23;
-            txtUsername.TabStop = false;
-            txtUsername.TextAlign = HorizontalAlignment.Left;
-            txtUsername.TrailingIcon = null;
-            txtUsername.UseSystemPasswordChar = false;
-            // 
-            // lblUsername
-            // 
-            lblUsername.AutoSize = true;
-            lblUsername.Depth = 0;
-            lblUsername.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUsername.Location = new Point(52, 175);
-            lblUsername.MouseState = MaterialSkin.MouseState.HOVER;
-            lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(134, 19);
-            lblUsername.TabIndex = 22;
-            lblUsername.Text = "Nome de utilizador";
-            // 
-            // lblFuncao
-            // 
-            lblFuncao.AutoSize = true;
-            lblFuncao.Depth = 0;
-            lblFuncao.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblFuncao.Location = new Point(122, 303);
-            lblFuncao.MouseState = MaterialSkin.MouseState.HOVER;
-            lblFuncao.Name = "lblFuncao";
-            lblFuncao.Size = new Size(54, 19);
-            lblFuncao.TabIndex = 21;
-            lblFuncao.Text = "Função";
             // 
             // btnAlterar
             // 
-            btnAlterar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnAlterar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnAlterar.Depth = 0;
-            btnAlterar.HighEmphasis = true;
-            btnAlterar.Icon = null;
-            btnAlterar.Location = new Point(306, 368);
-            btnAlterar.Margin = new Padding(4, 4, 4, 4);
-            btnAlterar.MouseState = MaterialSkin.MouseState.HOVER;
+            btnAlterar.Location = new Point(380, 501);
             btnAlterar.Name = "btnAlterar";
-            btnAlterar.NoAccentTextColor = Color.Empty;
-            btnAlterar.Size = new Size(84, 36);
-            btnAlterar.TabIndex = 20;
+            btnAlterar.Size = new Size(94, 29);
+            btnAlterar.TabIndex = 24;
             btnAlterar.Text = "Alterar";
-            btnAlterar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnAlterar.UseAccentColor = false;
             btnAlterar.UseVisualStyleBackColor = true;
-            btnAlterar.Click += btnAlterar_Click_1;
             // 
-            // lblPass
+            // txtNome
             // 
-            lblPass.AutoSize = true;
-            lblPass.Depth = 0;
-            lblPass.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblPass.Location = new Point(81, 243);
-            lblPass.MouseState = MaterialSkin.MouseState.HOVER;
-            lblPass.Name = "lblPass";
-            lblPass.Size = new Size(101, 19);
-            lblPass.TabIndex = 19;
-            lblPass.Text = "Palavra-passe";
+            txtNome.Location = new Point(219, 62);
+            txtNome.Name = "txtNome";
+            txtNome.Size = new Size(487, 27);
+            txtNome.TabIndex = 25;
             // 
-            // lblContacto
+            // txtContacto
             // 
-            lblContacto.AutoSize = true;
-            lblContacto.Depth = 0;
-            lblContacto.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblContacto.Location = new Point(134, 119);
-            lblContacto.MouseState = MaterialSkin.MouseState.HOVER;
-            lblContacto.Name = "lblContacto";
-            lblContacto.Size = new Size(41, 19);
-            lblContacto.TabIndex = 18;
-            lblContacto.Text = "Email";
+            txtContacto.Location = new Point(219, 151);
+            txtContacto.Name = "txtContacto";
+            txtContacto.Size = new Size(494, 27);
+            txtContacto.TabIndex = 26;
+            // 
+            // txtUsername
+            // 
+            txtUsername.Location = new Point(226, 227);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(503, 27);
+            txtUsername.TabIndex = 27;
+            // 
+            // txtPass
+            // 
+            txtPass.Location = new Point(219, 316);
+            txtPass.Name = "txtPass";
+            txtPass.Size = new Size(523, 27);
+            txtPass.TabIndex = 28;
+            // 
+            // cbFuncao
+            // 
+            cbFuncao.FormattingEnabled = true;
+            cbFuncao.Location = new Point(231, 389);
+            cbFuncao.Name = "cbFuncao";
+            cbFuncao.Size = new Size(391, 28);
+            cbFuncao.TabIndex = 29;
             // 
             // lblNome
             // 
             lblNome.AutoSize = true;
-            lblNome.Depth = 0;
-            lblNome.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblNome.Location = new Point(132, 52);
-            lblNome.MouseState = MaterialSkin.MouseState.HOVER;
+            lblNome.Location = new Point(128, 69);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(43, 19);
-            lblNome.TabIndex = 17;
+            lblNome.Size = new Size(50, 20);
+            lblNome.TabIndex = 30;
             lblNome.Text = "Nome";
             // 
-            // cbFuncao
+            // lblContacto
             // 
-            cbFuncao.AutoResize = false;
-            cbFuncao.BackColor = Color.FromArgb(255, 255, 255);
-            cbFuncao.Depth = 0;
-            cbFuncao.DrawMode = DrawMode.OwnerDrawVariable;
-            cbFuncao.DropDownHeight = 174;
-            cbFuncao.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbFuncao.DropDownWidth = 121;
-            cbFuncao.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            cbFuncao.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cbFuncao.FormattingEnabled = true;
-            cbFuncao.IntegralHeight = false;
-            cbFuncao.ItemHeight = 43;
-            cbFuncao.Location = new Point(200, 290);
-            cbFuncao.Margin = new Padding(3, 2, 3, 2);
-            cbFuncao.MaxDropDownItems = 4;
-            cbFuncao.MouseState = MaterialSkin.MouseState.OUT;
-            cbFuncao.Name = "cbFuncao";
-            cbFuncao.Size = new Size(439, 49);
-            cbFuncao.StartIndex = 0;
-            cbFuncao.TabIndex = 16;
+            lblContacto.AutoSize = true;
+            lblContacto.Location = new Point(140, 158);
+            lblContacto.Name = "lblContacto";
+            lblContacto.Size = new Size(46, 20);
+            lblContacto.TabIndex = 31;
+            lblContacto.Text = "Email";
             // 
-            // txtPass
+            // lblUsername
             // 
-            txtPass.AnimateReadOnly = false;
-            txtPass.BackgroundImageLayout = ImageLayout.None;
-            txtPass.CharacterCasing = CharacterCasing.Normal;
-            txtPass.Depth = 0;
-            txtPass.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtPass.HideSelection = true;
-            txtPass.LeadingIcon = null;
-            txtPass.Location = new Point(200, 230);
-            txtPass.Margin = new Padding(3, 2, 3, 2);
-            txtPass.MaxLength = 32767;
-            txtPass.MouseState = MaterialSkin.MouseState.OUT;
-            txtPass.Name = "txtPass";
-            txtPass.PasswordChar = '*';
-            txtPass.PrefixSuffixText = null;
-            txtPass.ReadOnly = false;
-            txtPass.RightToLeft = RightToLeft.No;
-            txtPass.SelectedText = "";
-            txtPass.SelectionLength = 0;
-            txtPass.SelectionStart = 0;
-            txtPass.ShortcutsEnabled = true;
-            txtPass.Size = new Size(438, 48);
-            txtPass.TabIndex = 15;
-            txtPass.TabStop = false;
-            txtPass.TextAlign = HorizontalAlignment.Left;
-            txtPass.TrailingIcon = null;
-            txtPass.UseSystemPasswordChar = false;
+            lblUsername.AutoSize = true;
+            lblUsername.Location = new Point(56, 234);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(138, 20);
+            lblUsername.TabIndex = 32;
+            lblUsername.Text = "Nome de utilziador";
             // 
-            // txtContacto
+            // lblPass
             // 
-            txtContacto.AnimateReadOnly = false;
-            txtContacto.BackgroundImageLayout = ImageLayout.None;
-            txtContacto.CharacterCasing = CharacterCasing.Normal;
-            txtContacto.Depth = 0;
-            txtContacto.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtContacto.HideSelection = true;
-            txtContacto.LeadingIcon = null;
-            txtContacto.Location = new Point(200, 105);
-            txtContacto.Margin = new Padding(3, 2, 3, 2);
-            txtContacto.MaxLength = 32767;
-            txtContacto.MouseState = MaterialSkin.MouseState.OUT;
-            txtContacto.Name = "txtContacto";
-            txtContacto.PasswordChar = '\0';
-            txtContacto.PrefixSuffixText = null;
-            txtContacto.ReadOnly = false;
-            txtContacto.RightToLeft = RightToLeft.No;
-            txtContacto.SelectedText = "";
-            txtContacto.SelectionLength = 0;
-            txtContacto.SelectionStart = 0;
-            txtContacto.ShortcutsEnabled = true;
-            txtContacto.Size = new Size(438, 48);
-            txtContacto.TabIndex = 14;
-            txtContacto.TabStop = false;
-            txtContacto.TextAlign = HorizontalAlignment.Left;
-            txtContacto.TrailingIcon = null;
-            txtContacto.UseSystemPasswordChar = false;
+            lblPass.AutoSize = true;
+            lblPass.Location = new Point(95, 316);
+            lblPass.Name = "lblPass";
+            lblPass.Size = new Size(99, 20);
+            lblPass.TabIndex = 33;
+            lblPass.Text = "Palavra-passe";
             // 
-            // txtNome
+            // lblFuncao
             // 
-            txtNome.AnimateReadOnly = false;
-            txtNome.BackgroundImageLayout = ImageLayout.None;
-            txtNome.CharacterCasing = CharacterCasing.Normal;
-            txtNome.Depth = 0;
-            txtNome.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtNome.HideSelection = true;
-            txtNome.LeadingIcon = null;
-            txtNome.Location = new Point(200, 40);
-            txtNome.Margin = new Padding(3, 2, 3, 2);
-            txtNome.MaxLength = 32767;
-            txtNome.MouseState = MaterialSkin.MouseState.OUT;
-            txtNome.Name = "txtNome";
-            txtNome.PasswordChar = '\0';
-            txtNome.PrefixSuffixText = null;
-            txtNome.ReadOnly = false;
-            txtNome.RightToLeft = RightToLeft.No;
-            txtNome.SelectedText = "";
-            txtNome.SelectionLength = 0;
-            txtNome.SelectionStart = 0;
-            txtNome.ShortcutsEnabled = true;
-            txtNome.Size = new Size(438, 48);
-            txtNome.TabIndex = 13;
-            txtNome.TabStop = false;
-            txtNome.TextAlign = HorizontalAlignment.Left;
-            txtNome.TrailingIcon = null;
-            txtNome.UseSystemPasswordChar = false;
-            txtNome.Click += txtNome_Click;
+            lblFuncao.AutoSize = true;
+            lblFuncao.Location = new Point(138, 392);
+            lblFuncao.Name = "lblFuncao";
+            lblFuncao.Size = new Size(56, 20);
+            lblFuncao.TabIndex = 34;
+            lblFuncao.Text = "Função";
             // 
             // EditEmployeeForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(757, 428);
-            Controls.Add(txtUsername);
-            Controls.Add(lblUsername);
+            ClientSize = new Size(865, 570);
             Controls.Add(lblFuncao);
-            Controls.Add(btnAlterar);
             Controls.Add(lblPass);
+            Controls.Add(lblUsername);
             Controls.Add(lblContacto);
             Controls.Add(lblNome);
             Controls.Add(cbFuncao);
             Controls.Add(txtPass);
+            Controls.Add(txtUsername);
             Controls.Add(txtContacto);
             Controls.Add(txtNome);
-            Margin = new Padding(3, 2, 3, 2);
+            Controls.Add(btnAlterar);
             Name = "EditEmployeeForm";
             Text = "EditEmployeeForm";
             ResumeLayout(false);
@@ -285,17 +154,16 @@
         }
 
         #endregion
-
-        private MaterialSkin.Controls.MaterialTextBox2 txtUsername;
-        private MaterialSkin.Controls.MaterialLabel lblUsername;
-        private MaterialSkin.Controls.MaterialLabel lblFuncao;
-        private MaterialSkin.Controls.MaterialButton btnAlterar;
-        private MaterialSkin.Controls.MaterialLabel lblPass;
-        private MaterialSkin.Controls.MaterialLabel lblContacto;
-        private MaterialSkin.Controls.MaterialLabel lblNome;
-        private MaterialSkin.Controls.MaterialComboBox cbFuncao;
-        private MaterialSkin.Controls.MaterialTextBox2 txtPass;
-        private MaterialSkin.Controls.MaterialTextBox2 txtContacto;
-        private MaterialSkin.Controls.MaterialTextBox2 txtNome;
+        private Button btnAlterar;
+        private TextBox txtNome;
+        private TextBox txtContacto;
+        private TextBox txtUsername;
+        private TextBox txtPass;
+        private ComboBox cbFuncao;
+        private Label lblNome;
+        private Label lblContacto;
+        private Label lblUsername;
+        private Label lblPass;
+        private Label lblFuncao;
     }
 }
