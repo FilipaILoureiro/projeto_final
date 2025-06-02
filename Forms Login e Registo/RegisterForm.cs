@@ -10,26 +10,41 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using PadariaApp;
+using projetoPadariaApp.Models;
 using projetoPadariaApp.Services;
 
 namespace projetoPadariaApp.Forms
 {
     public partial class registerForm : Form
     {
-        private Dictionary<Control, ControlInfo> controlInfo = new Dictionary<Control, ControlInfo>();
-        private Size originalFormSize;
-        private bool isPrimeiraVez = true;
+        private Resizer resizer = new Resizer();
 
         public registerForm()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
-            this.Load += RegisterForm_Load;
         }
 
-        private void RegisterForm_Load(object sender, EventArgs e)
+        private void registerForm_Load(object sender, EventArgs e)
         {
+            LoadFuncoes();
         }
+
+        private void registerForm_Shown(object sender, EventArgs e)
+        {
+            // Inicializa o resizer apenas quando o form está completamente visível
+            resizer.InitializeResize(this);
+        }
+
+        private void registerForm_Resize(object sender, EventArgs e)
+        {
+            // Só redimensiona se não estiver minimizado
+            if (this.WindowState != FormWindowState.Minimized)
+            {
+                resizer.PerformResize(this);
+            }
+        }
+
+
 
         //para adicionar o caminho para o ficheiro database
         private static readonly string connectionString = "Data Source=projetoPadariaApp.db;Version=3;";
@@ -80,11 +95,6 @@ namespace projetoPadariaApp.Forms
             }
         }
 
-        private void registerForm_Load(object sender, EventArgs e)
-        {
-            LoadFuncoes();
-        }
-
         private void btnRegister_Click_1(object sender, EventArgs e)
         {
             string nome = txtNome.Text;
@@ -126,6 +136,7 @@ namespace projetoPadariaApp.Forms
         {
             loginForm loginForm = new loginForm();
             loginForm.Show();
+            this.Close(); // Fechar o formulário atual
         }
     }
 }
