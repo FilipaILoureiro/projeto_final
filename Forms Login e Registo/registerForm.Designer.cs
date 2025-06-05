@@ -40,8 +40,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblContacto = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblUsername = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblPass = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -53,9 +51,10 @@
             cbFuncao = new Guna.UI2.WinForms.Guna2ComboBox();
             txtPass = new Guna.UI2.WinForms.Guna2TextBox();
             chkIsAdmin = new Guna.UI2.WinForms.Guna2CheckBox();
-            btnVoltar = new Guna.UI2.WinForms.Guna2Button();
             btnRegister = new Guna.UI2.WinForms.Guna2Button();
             lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            header = new Panel();
+            header.SuspendLayout();
             SuspendLayout();
             // 
             // lblContacto
@@ -64,7 +63,7 @@
             lblContacto.AutoSize = false;
             lblContacto.BackColor = Color.Transparent;
             lblContacto.Font = new Font("Segoe UI", 10.2F);
-            lblContacto.Location = new Point(88, 199);
+            lblContacto.Location = new Point(74, 213);
             lblContacto.Margin = new Padding(3, 12, 3, 3);
             lblContacto.Name = "lblContacto";
             lblContacto.Size = new Size(157, 20);
@@ -78,7 +77,7 @@
             lblUsername.AutoSize = false;
             lblUsername.BackColor = Color.Transparent;
             lblUsername.Font = new Font("Segoe UI", 10.2F);
-            lblUsername.Location = new Point(88, 234);
+            lblUsername.Location = new Point(74, 248);
             lblUsername.Margin = new Padding(3, 12, 3, 3);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(157, 20);
@@ -92,7 +91,7 @@
             lblPass.AutoSize = false;
             lblPass.BackColor = Color.Transparent;
             lblPass.Font = new Font("Segoe UI", 10.2F);
-            lblPass.Location = new Point(88, 269);
+            lblPass.Location = new Point(74, 283);
             lblPass.Margin = new Padding(3, 12, 3, 3);
             lblPass.Name = "lblPass";
             lblPass.Size = new Size(157, 20);
@@ -106,7 +105,7 @@
             lblFuncao.AutoSize = false;
             lblFuncao.BackColor = Color.Transparent;
             lblFuncao.Font = new Font("Segoe UI", 10.2F);
-            lblFuncao.Location = new Point(88, 304);
+            lblFuncao.Location = new Point(74, 318);
             lblFuncao.Margin = new Padding(3, 12, 3, 3);
             lblFuncao.Name = "lblFuncao";
             lblFuncao.Size = new Size(157, 20);
@@ -126,7 +125,7 @@
             txtUsername.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtUsername.Font = new Font("Segoe UI", 9F);
             txtUsername.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtUsername.Location = new Point(293, 228);
+            txtUsername.Location = new Point(279, 242);
             txtUsername.Margin = new Padding(10, 6, 0, 0);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "";
@@ -147,7 +146,7 @@
             txtContacto.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtContacto.Font = new Font("Segoe UI", 9F);
             txtContacto.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtContacto.Location = new Point(293, 193);
+            txtContacto.Location = new Point(279, 207);
             txtContacto.Margin = new Padding(10, 6, 0, 0);
             txtContacto.Name = "txtContacto";
             txtContacto.PlaceholderText = "";
@@ -162,7 +161,7 @@
             lblNome.AutoSize = false;
             lblNome.BackColor = Color.Transparent;
             lblNome.Font = new Font("Segoe UI", 10.2F);
-            lblNome.Location = new Point(88, 164);
+            lblNome.Location = new Point(74, 178);
             lblNome.Margin = new Padding(3, 12, 3, 3);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(157, 20);
@@ -182,7 +181,7 @@
             txtNome.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNome.Font = new Font("Segoe UI", 9F);
             txtNome.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNome.Location = new Point(293, 158);
+            txtNome.Location = new Point(279, 172);
             txtNome.Margin = new Padding(10, 6, 0, 0);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "";
@@ -203,7 +202,7 @@
             cbFuncao.Font = new Font("Segoe UI", 10F);
             cbFuncao.ForeColor = Color.FromArgb(68, 88, 112);
             cbFuncao.ItemHeight = 30;
-            cbFuncao.Location = new Point(293, 298);
+            cbFuncao.Location = new Point(279, 312);
             cbFuncao.Margin = new Padding(10, 6, 0, 0);
             cbFuncao.Name = "cbFuncao";
             cbFuncao.ShadowDecoration.CustomizableEdges = customizableEdges8;
@@ -222,7 +221,7 @@
             txtPass.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPass.Font = new Font("Segoe UI", 9F);
             txtPass.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPass.Location = new Point(293, 263);
+            txtPass.Location = new Point(279, 277);
             txtPass.Margin = new Padding(10, 6, 0, 0);
             txtPass.Name = "txtPass";
             txtPass.PasswordChar = '*';
@@ -240,7 +239,7 @@
             chkIsAdmin.CheckedState.BorderThickness = 0;
             chkIsAdmin.CheckedState.FillColor = Color.RosyBrown;
             chkIsAdmin.Font = new Font("Segoe UI", 10.2F);
-            chkIsAdmin.Location = new Point(530, 364);
+            chkIsAdmin.Location = new Point(516, 378);
             chkIsAdmin.Margin = new Padding(250, 20, 3, 3);
             chkIsAdmin.Name = "chkIsAdmin";
             chkIsAdmin.Size = new Size(143, 33);
@@ -251,33 +250,11 @@
             chkIsAdmin.UncheckedState.BorderThickness = 0;
             chkIsAdmin.UncheckedState.FillColor = Color.LightCoral;
             // 
-            // btnVoltar
-            // 
-            btnVoltar.Anchor = AnchorStyles.None;
-            btnVoltar.BorderRadius = 10;
-            btnVoltar.CustomizableEdges = customizableEdges11;
-            btnVoltar.DisabledState.BorderColor = Color.DarkGray;
-            btnVoltar.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnVoltar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnVoltar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnVoltar.FillColor = Color.Chocolate;
-            btnVoltar.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnVoltar.ForeColor = Color.White;
-            btnVoltar.HoverState.FillColor = Color.SaddleBrown;
-            btnVoltar.Location = new Point(88, 458);
-            btnVoltar.Margin = new Padding(20, 38, 3, 3);
-            btnVoltar.Name = "btnVoltar";
-            btnVoltar.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnVoltar.Size = new Size(145, 50);
-            btnVoltar.TabIndex = 12;
-            btnVoltar.Text = "Voltar";
-            btnVoltar.Click += btnVoltar_Click;
-            // 
             // btnRegister
             // 
             btnRegister.Anchor = AnchorStyles.None;
             btnRegister.BorderRadius = 10;
-            btnRegister.CustomizableEdges = customizableEdges13;
+            btnRegister.CustomizableEdges = customizableEdges11;
             btnRegister.DisabledState.BorderColor = Color.DarkGray;
             btnRegister.DisabledState.CustomBorderColor = Color.DarkGray;
             btnRegister.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -286,27 +263,36 @@
             btnRegister.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnRegister.ForeColor = Color.White;
             btnRegister.HoverState.FillColor = Color.FromArgb(191, 94, 97);
-            btnRegister.Location = new Point(448, 458);
+            btnRegister.Location = new Point(217, 452);
             btnRegister.Margin = new Padding(330, 38, 3, 3);
             btnRegister.Name = "btnRegister";
-            btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            btnRegister.Size = new Size(225, 50);
+            btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnRegister.Size = new Size(348, 69);
             btnRegister.TabIndex = 13;
             btnRegister.Text = "Registar";
             btnRegister.Click += btnRegister_Click_1;
             // 
             // lblTitle
             // 
-            lblTitle.Anchor = AnchorStyles.None;
+            lblTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 36F, FontStyle.Bold);
-            lblTitle.Location = new Point(279, 34);
+            lblTitle.Location = new Point(279, 17);
             lblTitle.Margin = new Padding(270, 8, 3, 3);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(214, 83);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Registo";
             lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // header
+            // 
+            header.AutoSize = true;
+            header.Controls.Add(lblTitle);
+            header.Location = new Point(0, 0);
+            header.Name = "header";
+            header.Size = new Size(755, 126);
+            header.TabIndex = 14;
             // 
             // registerForm
             // 
@@ -315,12 +301,11 @@
             AutoSize = true;
             BackColor = Color.White;
             ClientSize = new Size(755, 563);
+            Controls.Add(header);
             Controls.Add(lblContacto);
             Controls.Add(btnRegister);
             Controls.Add(lblUsername);
-            Controls.Add(lblTitle);
             Controls.Add(lblPass);
-            Controls.Add(btnVoltar);
             Controls.Add(lblFuncao);
             Controls.Add(txtUsername);
             Controls.Add(chkIsAdmin);
@@ -333,6 +318,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "registerForm";
             Load += registerForm_Load;
+            header.ResumeLayout(false);
+            header.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -349,8 +336,8 @@
         private Guna.UI2.WinForms.Guna2TextBox txtPass;
         private Guna.UI2.WinForms.Guna2ComboBox cbFuncao;
         private Guna.UI2.WinForms.Guna2CheckBox chkIsAdmin;
-        private Guna.UI2.WinForms.Guna2Button btnVoltar;
         private Guna.UI2.WinForms.Guna2Button btnRegister;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
+        private Panel header;
     }
 }

@@ -17,8 +17,6 @@ namespace projetoPadariaApp.Forms
 {
     public partial class registerForm : Form
     {
-        private Resizer resizer = new Resizer();
-
         public registerForm()
         {
             InitializeComponent();
@@ -28,22 +26,6 @@ namespace projetoPadariaApp.Forms
         {
             LoadFuncoes();
         }
-
-        private void registerForm_Shown(object sender, EventArgs e)
-        {
-            // Inicializa o resizer apenas quando o form está completamente visível
-            resizer.InitializeResize(this);
-        }
-
-        private void registerForm_Resize(object sender, EventArgs e)
-        {
-            // Só redimensiona se não estiver minimizado
-            if (this.WindowState != FormWindowState.Minimized)
-            {
-                resizer.PerformResize(this);
-            }
-        }
-
 
 
         //para adicionar o caminho para o ficheiro database
@@ -130,13 +112,6 @@ namespace projetoPadariaApp.Forms
             {
                 MessageBox.Show("Erro ao registar utilizador.");
             }
-        }
-
-        private void btnVoltar_Click(object sender, EventArgs e)
-        {
-            loginForm loginForm = new loginForm();
-            loginForm.Show();
-            this.Close(); // Fechar o formulário atual
         }
     }
 }
