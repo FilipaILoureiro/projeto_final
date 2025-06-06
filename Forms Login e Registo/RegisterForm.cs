@@ -98,7 +98,10 @@ namespace projetoPadariaApp.Forms
             // Use o nome como username para simplificar
             bool success = AuthService.RegisterUser(nome, contacto, username, password, funcaoID, isAdmin);
 
-            if (success)
+            bool checkNull;
+            checkNull = string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(contacto) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password);
+
+            if (success && checkNull == false)
             {
                 MessageBox.Show("Utilizador registado com sucesso!");
                 txtNome.Clear();
@@ -107,6 +110,10 @@ namespace projetoPadariaApp.Forms
                 txtPass.Clear();
                 cbFuncao.SelectedIndex = -1;
                 chkIsAdmin.Checked = false;
+            }
+            else if (checkNull == true)
+            {
+                MessageBox.Show("Por favor, preencha todos os campos.");
             }
             else
             {

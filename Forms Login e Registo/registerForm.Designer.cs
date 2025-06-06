@@ -40,6 +40,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblContacto = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblUsername = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblPass = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -51,19 +55,20 @@
             cbFuncao = new Guna.UI2.WinForms.Guna2ComboBox();
             txtPass = new Guna.UI2.WinForms.Guna2TextBox();
             chkIsAdmin = new Guna.UI2.WinForms.Guna2CheckBox();
-            btnRegister = new Guna.UI2.WinForms.Guna2Button();
             lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            header = new Panel();
+            header = new Guna.UI2.WinForms.Guna2Panel();
+            footer = new Guna.UI2.WinForms.Guna2GradientPanel();
+            btnRegister = new Guna.UI2.WinForms.Guna2Button();
             header.SuspendLayout();
+            footer.SuspendLayout();
             SuspendLayout();
             // 
             // lblContacto
             // 
-            lblContacto.Anchor = AnchorStyles.None;
             lblContacto.AutoSize = false;
             lblContacto.BackColor = Color.Transparent;
             lblContacto.Font = new Font("Segoe UI", 10.2F);
-            lblContacto.Location = new Point(74, 213);
+            lblContacto.Location = new Point(74, 207);
             lblContacto.Margin = new Padding(3, 12, 3, 3);
             lblContacto.Name = "lblContacto";
             lblContacto.Size = new Size(157, 20);
@@ -73,7 +78,6 @@
             // 
             // lblUsername
             // 
-            lblUsername.Anchor = AnchorStyles.None;
             lblUsername.AutoSize = false;
             lblUsername.BackColor = Color.Transparent;
             lblUsername.Font = new Font("Segoe UI", 10.2F);
@@ -87,11 +91,10 @@
             // 
             // lblPass
             // 
-            lblPass.Anchor = AnchorStyles.None;
             lblPass.AutoSize = false;
             lblPass.BackColor = Color.Transparent;
             lblPass.Font = new Font("Segoe UI", 10.2F);
-            lblPass.Location = new Point(74, 283);
+            lblPass.Location = new Point(74, 289);
             lblPass.Margin = new Padding(3, 12, 3, 3);
             lblPass.Name = "lblPass";
             lblPass.Size = new Size(157, 20);
@@ -101,11 +104,10 @@
             // 
             // lblFuncao
             // 
-            lblFuncao.Anchor = AnchorStyles.None;
             lblFuncao.AutoSize = false;
             lblFuncao.BackColor = Color.Transparent;
             lblFuncao.Font = new Font("Segoe UI", 10.2F);
-            lblFuncao.Location = new Point(74, 318);
+            lblFuncao.Location = new Point(74, 331);
             lblFuncao.Margin = new Padding(3, 12, 3, 3);
             lblFuncao.Name = "lblFuncao";
             lblFuncao.Size = new Size(157, 20);
@@ -115,7 +117,7 @@
             // 
             // txtUsername
             // 
-            txtUsername.Anchor = AnchorStyles.None;
+            txtUsername.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtUsername.CustomizableEdges = customizableEdges1;
             txtUsername.DefaultText = "";
             txtUsername.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -136,7 +138,7 @@
             // 
             // txtContacto
             // 
-            txtContacto.Anchor = AnchorStyles.None;
+            txtContacto.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtContacto.CustomizableEdges = customizableEdges3;
             txtContacto.DefaultText = "";
             txtContacto.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -146,7 +148,7 @@
             txtContacto.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtContacto.Font = new Font("Segoe UI", 9F);
             txtContacto.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtContacto.Location = new Point(279, 207);
+            txtContacto.Location = new Point(279, 201);
             txtContacto.Margin = new Padding(10, 6, 0, 0);
             txtContacto.Name = "txtContacto";
             txtContacto.PlaceholderText = "";
@@ -157,11 +159,10 @@
             // 
             // lblNome
             // 
-            lblNome.Anchor = AnchorStyles.None;
             lblNome.AutoSize = false;
             lblNome.BackColor = Color.Transparent;
             lblNome.Font = new Font("Segoe UI", 10.2F);
-            lblNome.Location = new Point(74, 178);
+            lblNome.Location = new Point(74, 162);
             lblNome.Margin = new Padding(3, 12, 3, 3);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(157, 20);
@@ -171,7 +172,7 @@
             // 
             // txtNome
             // 
-            txtNome.Anchor = AnchorStyles.None;
+            txtNome.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtNome.CustomizableEdges = customizableEdges5;
             txtNome.DefaultText = "";
             txtNome.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -181,7 +182,7 @@
             txtNome.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNome.Font = new Font("Segoe UI", 9F);
             txtNome.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNome.Location = new Point(279, 172);
+            txtNome.Location = new Point(279, 156);
             txtNome.Margin = new Padding(10, 6, 0, 0);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "";
@@ -192,7 +193,7 @@
             // 
             // cbFuncao
             // 
-            cbFuncao.Anchor = AnchorStyles.None;
+            cbFuncao.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cbFuncao.BackColor = Color.Transparent;
             cbFuncao.CustomizableEdges = customizableEdges7;
             cbFuncao.DrawMode = DrawMode.OwnerDrawFixed;
@@ -202,7 +203,7 @@
             cbFuncao.Font = new Font("Segoe UI", 10F);
             cbFuncao.ForeColor = Color.FromArgb(68, 88, 112);
             cbFuncao.ItemHeight = 30;
-            cbFuncao.Location = new Point(279, 312);
+            cbFuncao.Location = new Point(279, 325);
             cbFuncao.Margin = new Padding(10, 6, 0, 0);
             cbFuncao.Name = "cbFuncao";
             cbFuncao.ShadowDecoration.CustomizableEdges = customizableEdges8;
@@ -211,7 +212,7 @@
             // 
             // txtPass
             // 
-            txtPass.Anchor = AnchorStyles.None;
+            txtPass.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtPass.CustomizableEdges = customizableEdges9;
             txtPass.DefaultText = "";
             txtPass.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -221,7 +222,7 @@
             txtPass.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPass.Font = new Font("Segoe UI", 9F);
             txtPass.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPass.Location = new Point(279, 277);
+            txtPass.Location = new Point(279, 283);
             txtPass.Margin = new Padding(10, 6, 0, 0);
             txtPass.Name = "txtPass";
             txtPass.PasswordChar = '*';
@@ -233,13 +234,13 @@
             // 
             // chkIsAdmin
             // 
-            chkIsAdmin.Anchor = AnchorStyles.None;
+            chkIsAdmin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             chkIsAdmin.CheckedState.BorderColor = Color.RosyBrown;
             chkIsAdmin.CheckedState.BorderRadius = 0;
             chkIsAdmin.CheckedState.BorderThickness = 0;
             chkIsAdmin.CheckedState.FillColor = Color.RosyBrown;
             chkIsAdmin.Font = new Font("Segoe UI", 10.2F);
-            chkIsAdmin.Location = new Point(516, 378);
+            chkIsAdmin.Location = new Point(516, 381);
             chkIsAdmin.Margin = new Padding(250, 20, 3, 3);
             chkIsAdmin.Name = "chkIsAdmin";
             chkIsAdmin.Size = new Size(143, 33);
@@ -250,35 +251,12 @@
             chkIsAdmin.UncheckedState.BorderThickness = 0;
             chkIsAdmin.UncheckedState.FillColor = Color.LightCoral;
             // 
-            // btnRegister
-            // 
-            btnRegister.Anchor = AnchorStyles.None;
-            btnRegister.BorderRadius = 10;
-            btnRegister.CustomizableEdges = customizableEdges11;
-            btnRegister.DisabledState.BorderColor = Color.DarkGray;
-            btnRegister.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnRegister.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnRegister.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnRegister.FillColor = Color.FromArgb(216, 108, 112);
-            btnRegister.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnRegister.ForeColor = Color.White;
-            btnRegister.HoverState.FillColor = Color.FromArgb(191, 94, 97);
-            btnRegister.Location = new Point(217, 452);
-            btnRegister.Margin = new Padding(330, 38, 3, 3);
-            btnRegister.Name = "btnRegister";
-            btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnRegister.Size = new Size(348, 69);
-            btnRegister.TabIndex = 13;
-            btnRegister.Text = "Registar";
-            btnRegister.Click += btnRegister_Click_1;
-            // 
             // lblTitle
             // 
-            lblTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 36F, FontStyle.Bold);
-            lblTitle.Location = new Point(279, 17);
-            lblTitle.Margin = new Padding(270, 8, 3, 3);
+            lblTitle.Location = new Point(270, 21);
+            lblTitle.Margin = new Padding(8, 8, 3, 3);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(214, 83);
             lblTitle.TabIndex = 0;
@@ -287,12 +265,46 @@
             // 
             // header
             // 
-            header.AutoSize = true;
+            header.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             header.Controls.Add(lblTitle);
-            header.Location = new Point(0, 0);
+            header.CustomizableEdges = customizableEdges11;
+            header.Location = new Point(1, 3);
             header.Name = "header";
-            header.Size = new Size(755, 126);
-            header.TabIndex = 14;
+            header.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            header.Size = new Size(755, 116);
+            header.TabIndex = 15;
+            // 
+            // footer
+            // 
+            footer.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            footer.Controls.Add(btnRegister);
+            footer.CustomizableEdges = customizableEdges15;
+            footer.Location = new Point(1, 458);
+            footer.Name = "footer";
+            footer.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            footer.Size = new Size(757, 107);
+            footer.TabIndex = 16;
+            // 
+            // btnRegister
+            // 
+            btnRegister.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnRegister.BorderRadius = 10;
+            btnRegister.CustomizableEdges = customizableEdges13;
+            btnRegister.DisabledState.BorderColor = Color.DarkGray;
+            btnRegister.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnRegister.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnRegister.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnRegister.FillColor = Color.FromArgb(216, 108, 112);
+            btnRegister.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnRegister.ForeColor = Color.White;
+            btnRegister.HoverState.FillColor = Color.FromArgb(191, 94, 97);
+            btnRegister.Location = new Point(224, 14);
+            btnRegister.Margin = new Padding(330, 38, 3, 3);
+            btnRegister.Name = "btnRegister";
+            btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnRegister.Size = new Size(348, 69);
+            btnRegister.TabIndex = 14;
+            btnRegister.Text = "Registar";
             // 
             // registerForm
             // 
@@ -301,9 +313,9 @@
             AutoSize = true;
             BackColor = Color.White;
             ClientSize = new Size(755, 563);
+            Controls.Add(footer);
             Controls.Add(header);
             Controls.Add(lblContacto);
-            Controls.Add(btnRegister);
             Controls.Add(lblUsername);
             Controls.Add(lblPass);
             Controls.Add(lblFuncao);
@@ -320,8 +332,8 @@
             Load += registerForm_Load;
             header.ResumeLayout(false);
             header.PerformLayout();
+            footer.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -336,8 +348,9 @@
         private Guna.UI2.WinForms.Guna2TextBox txtPass;
         private Guna.UI2.WinForms.Guna2ComboBox cbFuncao;
         private Guna.UI2.WinForms.Guna2CheckBox chkIsAdmin;
-        private Guna.UI2.WinForms.Guna2Button btnRegister;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
-        private Panel header;
+        private Guna.UI2.WinForms.Guna2Panel header;
+        private Guna.UI2.WinForms.Guna2GradientPanel footer;
+        private Guna.UI2.WinForms.Guna2Button btnRegister;
     }
 }
