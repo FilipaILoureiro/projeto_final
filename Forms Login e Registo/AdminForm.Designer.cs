@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             btnManageEmployees = new MaterialSkin.Controls.MaterialButton();
@@ -151,7 +151,7 @@
             // 
             // btnGallery
             // 
-            btnGallery.CustomizableEdges = customizableEdges1;
+            btnGallery.CustomizableEdges = customizableEdges7;
             btnGallery.DisabledState.BorderColor = Color.DarkGray;
             btnGallery.DisabledState.CustomBorderColor = Color.DarkGray;
             btnGallery.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -160,7 +160,7 @@
             btnGallery.ForeColor = Color.White;
             btnGallery.Location = new Point(545, 119);
             btnGallery.Name = "btnGallery";
-            btnGallery.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnGallery.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnGallery.Size = new Size(225, 56);
             btnGallery.TabIndex = 7;
             btnGallery.Text = "Galeria";
@@ -168,7 +168,7 @@
             // 
             // btnEncomendas
             // 
-            btnEncomendas.CustomizableEdges = customizableEdges3;
+            btnEncomendas.CustomizableEdges = customizableEdges9;
             btnEncomendas.DisabledState.BorderColor = Color.DarkGray;
             btnEncomendas.DisabledState.CustomBorderColor = Color.DarkGray;
             btnEncomendas.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -177,7 +177,7 @@
             btnEncomendas.ForeColor = Color.White;
             btnEncomendas.Location = new Point(512, 353);
             btnEncomendas.Name = "btnEncomendas";
-            btnEncomendas.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnEncomendas.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnEncomendas.Size = new Size(225, 56);
             btnEncomendas.TabIndex = 8;
             btnEncomendas.Text = "Gerir Encomendas";
@@ -185,7 +185,7 @@
             // 
             // btnProdutos
             // 
-            btnProdutos.CustomizableEdges = customizableEdges5;
+            btnProdutos.CustomizableEdges = customizableEdges11;
             btnProdutos.DisabledState.BorderColor = Color.DarkGray;
             btnProdutos.DisabledState.CustomBorderColor = Color.DarkGray;
             btnProdutos.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -194,7 +194,7 @@
             btnProdutos.ForeColor = Color.White;
             btnProdutos.Location = new Point(268, 295);
             btnProdutos.Name = "btnProdutos";
-            btnProdutos.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnProdutos.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnProdutos.Size = new Size(225, 56);
             btnProdutos.TabIndex = 9;
             btnProdutos.Text = "Gerir Produtos";
@@ -204,7 +204,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 451);
+            ClientSize = new Size(917, 543);
             Controls.Add(btnProdutos);
             Controls.Add(btnEncomendas);
             Controls.Add(btnGallery);
