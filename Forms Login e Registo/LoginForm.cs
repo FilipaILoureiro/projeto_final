@@ -156,7 +156,7 @@ namespace projetoPadariaApp.Forms
             }
         }
 
-        private void btnRegistro_Click_1(object sender, EventArgs e)
+        private void lnkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             registerForm registerForm = new registerForm();
             registerForm.Show();
