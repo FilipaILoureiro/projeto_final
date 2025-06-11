@@ -22,7 +22,7 @@ namespace projetoPadariaApp.Forms
         {
             InitializeComponent();
             this.AutoScaleMode = AutoScaleMode.None;
-
+            this.Text = "Formulário de Login";
             this.Load += loginForm_Load;
             this.Resize += (s, e) => RedimensionarControlos(this.Controls);
         }
