@@ -107,7 +107,7 @@
             btnAddProduct.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnAddProduct.Font = new Font("Segoe UI", 9F);
             btnAddProduct.ForeColor = Color.White;
-            btnAddProduct.Location = new Point(31, 12);
+            btnAddProduct.Location = new Point(790, 12);
             btnAddProduct.Name = "btnAddProduct";
             btnAddProduct.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnAddProduct.Size = new Size(171, 35);
