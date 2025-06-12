@@ -34,13 +34,17 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dgvOrders = new Guna.UI2.WinForms.Guna2DataGridView();
             databaseManageBindingSource1 = new BindingSource(components);
             databaseManageBindingSource = new BindingSource(components);
             btnAddOrder = new Guna.UI2.WinForms.Guna2Button();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             ((System.ComponentModel.ISupportInitialize)dgvOrders).BeginInit();
             ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource).BeginInit();
+            guna2Panel1.SuspendLayout();
             SuspendLayout();
             // 
             // dgvOrders
@@ -68,11 +72,11 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvOrders.DefaultCellStyle = dataGridViewCellStyle3;
             dgvOrders.GridColor = Color.FromArgb(231, 229, 255);
-            dgvOrders.Location = new Point(40, 81);
+            dgvOrders.Location = new Point(0, 116);
             dgvOrders.Name = "dgvOrders";
             dgvOrders.RowHeadersVisible = false;
             dgvOrders.RowHeadersWidth = 51;
-            dgvOrders.Size = new Size(1101, 466);
+            dgvOrders.Size = new Size(1003, 443);
             dgvOrders.TabIndex = 0;
             dgvOrders.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvOrders.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -113,7 +117,7 @@
             btnAddOrder.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnAddOrder.Font = new Font("Segoe UI", 9F);
             btnAddOrder.ForeColor = Color.White;
-            btnAddOrder.Location = new Point(916, 12);
+            btnAddOrder.Location = new Point(872, 31);
             btnAddOrder.Name = "btnAddOrder";
             btnAddOrder.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnAddOrder.Size = new Size(225, 56);
@@ -121,18 +125,30 @@
             btnAddOrder.Text = "Nova Encomenda";
             btnAddOrder.Click += btnAddOrder_Click;
             // 
+            // guna2Panel1
+            // 
+            guna2Panel1.Controls.Add(btnAddOrder);
+            guna2Panel1.CustomizableEdges = customizableEdges3;
+            guna2Panel1.Dock = DockStyle.Top;
+            guna2Panel1.Location = new Point(0, 0);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2Panel1.Size = new Size(1168, 90);
+            guna2Panel1.TabIndex = 2;
+            // 
             // OrderManagementForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1168, 559);
-            Controls.Add(btnAddOrder);
+            Controls.Add(guna2Panel1);
             Controls.Add(dgvOrders);
             Name = "OrderManagementForm";
             Text = "OrderManagementForm";
             ((System.ComponentModel.ISupportInitialize)dgvOrders).EndInit();
             ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource).EndInit();
+            guna2Panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -142,5 +158,6 @@
         private Guna.UI2.WinForms.Guna2Button btnAddOrder;
         private BindingSource databaseManageBindingSource;
         private BindingSource databaseManageBindingSource1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
     }
 }
