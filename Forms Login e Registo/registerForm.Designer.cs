@@ -39,9 +39,9 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(registerForm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(registerForm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -60,7 +60,17 @@
             btnRegister = new Guna.UI2.WinForms.Guna2Button();
             btnClose = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox5 = new PictureBox();
             guna2Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
             // lblContacto
@@ -69,7 +79,7 @@
             lblContacto.BackColor = Color.Transparent;
             lblContacto.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold);
             lblContacto.ForeColor = Color.Gainsboro;
-            lblContacto.Location = new Point(410, 159);
+            lblContacto.Location = new Point(459, 185);
             lblContacto.Margin = new Padding(3, 12, 3, 3);
             lblContacto.Name = "lblContacto";
             lblContacto.Size = new Size(69, 43);
@@ -83,7 +93,7 @@
             lblUsername.BackColor = Color.Transparent;
             lblUsername.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold);
             lblUsername.ForeColor = Color.Gainsboro;
-            lblUsername.Location = new Point(410, 274);
+            lblUsername.Location = new Point(459, 305);
             lblUsername.Margin = new Padding(3, 12, 3, 3);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(256, 43);
@@ -97,7 +107,7 @@
             lblPass.BackColor = Color.Transparent;
             lblPass.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold);
             lblPass.ForeColor = Color.Gainsboro;
-            lblPass.Location = new Point(410, 384);
+            lblPass.Location = new Point(459, 413);
             lblPass.Margin = new Padding(3, 12, 3, 3);
             lblPass.Name = "lblPass";
             lblPass.Size = new Size(250, 43);
@@ -111,7 +121,7 @@
             lblFuncao.BackColor = Color.Transparent;
             lblFuncao.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold);
             lblFuncao.ForeColor = Color.Gainsboro;
-            lblFuncao.Location = new Point(410, 493);
+            lblFuncao.Location = new Point(459, 525);
             lblFuncao.Margin = new Padding(3, 12, 3, 3);
             lblFuncao.Name = "lblFuncao";
             lblFuncao.Size = new Size(113, 43);
@@ -135,7 +145,7 @@
             txtUsername.FocusedState.BorderColor = Color.Teal;
             txtUsername.Font = new Font("Segoe UI", 9F);
             txtUsername.HoverState.BorderColor = Color.DarkCyan;
-            txtUsername.Location = new Point(410, 320);
+            txtUsername.Location = new Point(410, 347);
             txtUsername.Margin = new Padding(10, 6, 0, 0);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "";
@@ -160,7 +170,7 @@
             txtContacto.FocusedState.BorderColor = Color.Teal;
             txtContacto.Font = new Font("Segoe UI", 9F);
             txtContacto.HoverState.BorderColor = Color.DarkCyan;
-            txtContacto.Location = new Point(410, 201);
+            txtContacto.Location = new Point(410, 228);
             txtContacto.Margin = new Padding(10, 6, 0, 0);
             txtContacto.Name = "txtContacto";
             txtContacto.PlaceholderText = "";
@@ -175,10 +185,10 @@
             lblNome.BackColor = Color.Transparent;
             lblNome.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold);
             lblNome.ForeColor = Color.Gainsboro;
-            lblNome.Location = new Point(410, 45);
+            lblNome.Location = new Point(459, 72);
             lblNome.Margin = new Padding(3, 12, 3, 3);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(112, 43);
+            lblNome.Size = new Size(91, 43);
             lblNome.TabIndex = 1;
             lblNome.Text = "Nome";
             lblNome.TextAlignment = ContentAlignment.MiddleLeft;
@@ -200,7 +210,7 @@
             txtNome.FocusedState.BorderColor = Color.Teal;
             txtNome.Font = new Font("Segoe UI", 9F);
             txtNome.HoverState.BorderColor = Color.DarkCyan;
-            txtNome.Location = new Point(410, 90);
+            txtNome.Location = new Point(410, 117);
             txtNome.Margin = new Padding(10, 6, 0, 0);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "";
@@ -227,7 +237,7 @@
             cbFuncao.ForeColor = Color.White;
             cbFuncao.IntegralHeight = false;
             cbFuncao.ItemHeight = 30;
-            cbFuncao.Location = new Point(410, 540);
+            cbFuncao.Location = new Point(410, 567);
             cbFuncao.Margin = new Padding(10, 6, 0, 0);
             cbFuncao.Name = "cbFuncao";
             cbFuncao.ShadowDecoration.CustomizableEdges = customizableEdges8;
@@ -250,7 +260,7 @@
             txtPass.FocusedState.BorderColor = Color.Teal;
             txtPass.Font = new Font("Segoe UI", 9F);
             txtPass.HoverState.BorderColor = Color.DarkCyan;
-            txtPass.Location = new Point(410, 427);
+            txtPass.Location = new Point(410, 454);
             txtPass.Margin = new Padding(10, 6, 0, 0);
             txtPass.Name = "txtPass";
             txtPass.PasswordChar = '*';
@@ -270,7 +280,7 @@
             chkIsAdmin.CheckMarkColor = Color.Black;
             chkIsAdmin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             chkIsAdmin.ForeColor = Color.White;
-            chkIsAdmin.Location = new Point(786, 540);
+            chkIsAdmin.Location = new Point(786, 567);
             chkIsAdmin.Margin = new Padding(250, 20, 3, 3);
             chkIsAdmin.Name = "chkIsAdmin";
             chkIsAdmin.Size = new Size(186, 43);
@@ -288,7 +298,7 @@
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(17, 243);
+            lblTitle.Location = new Point(17, 270);
             lblTitle.Margin = new Padding(8, 8, 3, 3);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(313, 163);
@@ -310,7 +320,9 @@
             btnRegister.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnRegister.ForeColor = Color.White;
             btnRegister.HoverState.FillColor = Color.DarkCyan;
-            btnRegister.Location = new Point(575, 629);
+            btnRegister.Image = (Image)resources.GetObject("btnRegister.Image");
+            btnRegister.ImageSize = new Size(40, 40);
+            btnRegister.Location = new Point(575, 651);
             btnRegister.Margin = new Padding(330, 38, 3, 3);
             btnRegister.Name = "btnRegister";
             btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges12;
@@ -350,6 +362,56 @@
             guna2Panel1.Size = new Size(349, 739);
             guna2Panel1.TabIndex = 18;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(417, 78);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(41, 32);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 20;
+            pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(415, 194);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(41, 29);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 21;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(415, 310);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(41, 32);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 22;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(417, 419);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(41, 32);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 23;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(414, 531);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(41, 32);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 24;
+            pictureBox5.TabStop = false;
+            // 
             // registerForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -358,6 +420,11 @@
             BackColor = Color.FromArgb(50, 52, 76);
             ClientSize = new Size(1002, 739);
             ControlBox = false;
+            Controls.Add(pictureBox5);
+            Controls.Add(pictureBox4);
+            Controls.Add(pictureBox3);
+            Controls.Add(pictureBox2);
+            Controls.Add(pictureBox1);
             Controls.Add(guna2Panel1);
             Controls.Add(txtPass);
             Controls.Add(btnClose);
@@ -378,6 +445,11 @@
             Text = "registerForm";
             Load += registerForm_Load;
             guna2Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
         }
 
@@ -397,5 +469,10 @@
         private Guna.UI2.WinForms.Guna2Button btnRegister;
         private Guna.UI2.WinForms.Guna2Button btnClose;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox5;
     }
 }

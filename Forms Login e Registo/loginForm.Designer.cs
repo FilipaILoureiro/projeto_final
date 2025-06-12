@@ -82,7 +82,7 @@
             labelTitle.BackColor = Color.Transparent;
             labelTitle.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelTitle.ForeColor = Color.White;
-            labelTitle.Location = new Point(640, 40);
+            labelTitle.Location = new Point(646, 40);
             labelTitle.Margin = new Padding(300, 0, 0, 0);
             labelTitle.Name = "labelTitle";
             labelTitle.Size = new Size(213, 83);
@@ -233,7 +233,7 @@
             btnRegister.FillColor = Color.White;
             btnRegister.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRegister.ForeColor = Color.Black;
-            btnRegister.Location = new Point(133, 532);
+            btnRegister.Location = new Point(141, 532);
             btnRegister.Name = "btnRegister";
             btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnRegister.Size = new Size(163, 56);
