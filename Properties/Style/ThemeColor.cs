@@ -8,7 +8,7 @@ namespace projetoPadariaApp.Properties.Style
 {
     public static class ThemeColor
     {
-        public static List<string> ColorList = new List<string>() {"#3F51B5",
+        public static List<string> ColorList = new List<string>() { "#3F51B5",
                                                                     "#009688",
                                                                     "#FF5722",
                                                                     "#607D8B",
