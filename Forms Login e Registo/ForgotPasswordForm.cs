@@ -24,12 +24,12 @@ namespace projetoPadariaApp.Forms
 
             if (AuthService.ResetPassword(username))
             {
-                MessageBox.Show("Uma nova senha foi gerada. Verifique com o administrador.");
+                MessageBox.Show("Uma nova palavra passe foi criada. Verifique com o administrador.");
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Usuário não encontrado.");
+                MessageBox.Show("Utilizador não encontrado.");
             }
         }
 
