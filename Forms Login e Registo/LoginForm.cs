@@ -55,12 +55,14 @@ namespace projetoPadariaApp.Forms
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            this.Close();
             registerForm registerForm = new registerForm();
             registerForm.Show();
         }
 
         private void linkEsqueceu_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            this.Close();
             ForgotPasswordForm forgotPasswordForm = new ForgotPasswordForm();
             forgotPasswordForm.ShowDialog();
         }

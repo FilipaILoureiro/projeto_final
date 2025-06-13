@@ -386,6 +386,8 @@ namespace projetoPadariaApp.Forms
             }
             else
             {
+                loginForm loginForm = new loginForm();
+                loginForm.Show();
                 this.Close();
             }
         }

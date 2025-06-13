@@ -183,10 +183,10 @@ namespace projetoPadariaApp.Services
             using (var conn = DatabaseManage.GetInstance().GetConnection())
             {
                 conn.Open();
-                string query = "SELECT id FROM funcionario WHERE nome = @nome";
+                string query = "SELECT id FROM funcionario WHERE username = @username";
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@nome", username);
+                    cmd.Parameters.AddWithValue("@username", username);
                     var result = cmd.ExecuteScalar();
 
                     if (result != null)
@@ -194,11 +194,11 @@ namespace projetoPadariaApp.Services
                         string newPassword = GenerateTemporaryPassword();
                         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
 
-                        string updateQuery = "UPDATE funcionario SET pass = @newPass WHERE nome = @nome";
+                        string updateQuery = "UPDATE funcionario SET pass = @newPass WHERE username = @username";
                         using (var updateCmd = new SQLiteCommand(updateQuery, conn))
                         {
                             updateCmd.Parameters.AddWithValue("@newPass", hashedPassword);
-                            updateCmd.Parameters.AddWithValue("@nome", username);
+                            updateCmd.Parameters.AddWithValue("@username", username);
                             updateCmd.ExecuteNonQuery();
                         }
 

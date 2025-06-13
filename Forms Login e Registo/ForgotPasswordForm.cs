@@ -11,14 +11,14 @@ using projetoPadariaApp.Services;
 
 namespace projetoPadariaApp.Forms
 {
-    public partial class ForgotPasswordForm: Form
+    public partial class ForgotPasswordForm : Form
     {
         public ForgotPasswordForm()
         {
             InitializeComponent();
         }
 
-        private void btnResetPassword_Click(object sender, EventArgs e)
+        private void btnResetPass_Click_1(object sender, EventArgs e)
         {
             string username = txtUsername.Text;
 
@@ -31,6 +31,13 @@ namespace projetoPadariaApp.Forms
             {
                 MessageBox.Show("Usuário não encontrado.");
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            loginForm loginForm = new loginForm();
+            loginForm.Show();
+            this.Close();
         }
     }
 }
