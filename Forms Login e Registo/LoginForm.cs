@@ -23,7 +23,28 @@ namespace projetoPadariaApp.Forms
             InitializeComponent();
         }
 
-        private void btnLogin_Click_1(object sender, EventArgs e)
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            registerForm registerForm = new registerForm();
+            registerForm.Show();
+        }
+
+        private void linkEsqueceu_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Close();
+            ForgotPasswordForm forgotPasswordForm = new ForgotPasswordForm();
+            forgotPasswordForm.ShowDialog();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Application.Exit();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text;
             string password = txtPassword.Text;
@@ -51,26 +72,6 @@ namespace projetoPadariaApp.Forms
             {
                 MessageBox.Show("Nome de utilizador ou senha incorretos!");
             }
-        }
-
-        private void btnRegister_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            registerForm registerForm = new registerForm();
-            registerForm.Show();
-        }
-
-        private void linkEsqueceu_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.Close();
-            ForgotPasswordForm forgotPasswordForm = new ForgotPasswordForm();
-            forgotPasswordForm.ShowDialog();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Application.Exit();
         }
     }
 }

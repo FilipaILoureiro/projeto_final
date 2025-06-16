@@ -34,7 +34,6 @@ namespace projetoPadariaApp.Forms
 
         private void SetupValidation()
         {
-            // Adicionar validação em tempo real
             txtNome.Leave += ValidateNome;
             txtContacto.Leave += ValidateContacto;
             txtUsername.Leave += ValidateUsername;
@@ -60,7 +59,6 @@ namespace projetoPadariaApp.Forms
                         {
                             while (reader.Read())
                             {
-                                // Criar um objeto para armazenar ID e nome da função
                                 var funcaoItem = new FuncaoItem
                                 {
                                     Id = reader.GetInt32(0),
@@ -72,7 +70,6 @@ namespace projetoPadariaApp.Forms
                     }
                 }
 
-                // Configurar o ComboBox para mostrar apenas o nome
                 cbFuncao.DisplayMember = "Name";
                 cbFuncao.ValueMember = "Id";
             }
@@ -361,7 +358,6 @@ namespace projetoPadariaApp.Forms
             cbFuncao.SelectedIndex = -1;
             chkIsAdmin.Checked = false;
 
-            // Limpar erros visuais
             ClearFieldError(txtNome);
             ClearFieldError(txtContacto);
             ClearFieldError(txtUsername);
@@ -437,12 +433,10 @@ namespace projetoPadariaApp.Forms
                 string username = txtUsername.Text.Trim();
                 string password = txtPass.Text;
 
-                // Obter a função selecionada do ComboBox
                 FuncaoItem selectedItem = cbFuncao.SelectedItem as FuncaoItem;
                 int funcaoID = selectedItem.Id;
                 bool isAdmin = chkIsAdmin.Checked;
 
-                // Confirmar registo
                 DialogResult result = MessageBox.Show(
                     $"Confirma o registo do utilizador '{nome}'?",
                     "Confirmar Registo",

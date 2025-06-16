@@ -96,6 +96,21 @@ namespace projetoPadariaApp.Forms
             childForm.Show();
         }
 
+        private void picLogo_Click(object sender, EventArgs e)
+        {
+            if (panelMenu.Width == 210)
+            {
+                panelMenu.Width = 70;
+                lblTitle.Visible = false;
+            }
+            else
+            {
+                panelMenu.Width = 210;
+                picLogo.Visible = true;
+                lblTitle.Visible = true;
+            }
+        }
+
         private void btnHome_Click(object sender, EventArgs e)
         {
             if (activeForm != null)
@@ -128,6 +143,13 @@ namespace projetoPadariaApp.Forms
         {
             lblTitle.Text = "GESTÃO DE FORNECEDORES";
             OpenChildForm(new SupplierList(), sender);
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            loginForm loginForm = new loginForm();
+            loginForm.Show();
+            this.Close();
         }
     }
 }

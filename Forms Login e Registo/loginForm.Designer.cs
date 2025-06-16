@@ -190,6 +190,7 @@
             btnLogin.Size = new Size(246, 56);
             btnLogin.TabIndex = 24;
             btnLogin.Text = "Entrar";
+            btnLogin.Click += btnLogin_Click;
             // 
             // lbl2
             // 

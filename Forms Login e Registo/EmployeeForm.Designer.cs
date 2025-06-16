@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeForm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -43,12 +43,14 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panelMenu = new Guna.UI2.WinForms.Guna2Panel();
             btnFornecedores = new Guna.UI2.WinForms.Guna2Button();
             btnStock = new Guna.UI2.WinForms.Guna2Button();
@@ -57,12 +59,15 @@
             btnHome = new Guna.UI2.WinForms.Guna2Button();
             btnSair = new Guna.UI2.WinForms.Guna2Button();
             panelLogo = new Guna.UI2.WinForms.Guna2Panel();
+            picLogo = new Guna.UI2.WinForms.Guna2PictureBox();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblLogo = new Guna.UI2.WinForms.Guna2HtmlLabel();
             panelTitle = new Guna.UI2.WinForms.Guna2Panel();
             lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             panelDesktop = new Guna.UI2.WinForms.Guna2Panel();
             panelMenu.SuspendLayout();
             panelLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panelTitle.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,13 +82,13 @@
             panelMenu.Controls.Add(btnHome);
             panelMenu.Controls.Add(btnSair);
             panelMenu.Controls.Add(panelLogo);
-            panelMenu.CustomizableEdges = customizableEdges15;
+            panelMenu.CustomizableEdges = customizableEdges17;
             panelMenu.Dock = DockStyle.Left;
             panelMenu.FillColor = Color.FromArgb(49, 51, 74);
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
-            panelMenu.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            panelMenu.Size = new Size(206, 750);
+            panelMenu.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            panelMenu.Size = new Size(210, 750);
             panelMenu.TabIndex = 4;
             // 
             // btnFornecedores
@@ -103,11 +108,11 @@
             btnFornecedores.ImageSize = new Size(40, 40);
             btnFornecedores.Location = new Point(0, 414);
             btnFornecedores.Name = "btnFornecedores";
-            btnFornecedores.Padding = new Padding(2, 0, 0, 0);
+            btnFornecedores.Padding = new Padding(10, 0, 0, 0);
             btnFornecedores.PressedColor = Color.FromArgb(38, 38, 58);
             btnFornecedores.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnFornecedores.Size = new Size(206, 80);
-            btnFornecedores.TabIndex = 10;
+            btnFornecedores.Size = new Size(210, 80);
+            btnFornecedores.TabIndex = 15;
             btnFornecedores.Text = "Fornecedores";
             btnFornecedores.TextAlign = HorizontalAlignment.Left;
             btnFornecedores.Click += btnFornecedores_Click;
@@ -129,11 +134,11 @@
             btnStock.ImageSize = new Size(40, 40);
             btnStock.Location = new Point(0, 334);
             btnStock.Name = "btnStock";
-            btnStock.Padding = new Padding(2, 0, 0, 0);
+            btnStock.Padding = new Padding(10, 0, 0, 0);
             btnStock.PressedColor = Color.FromArgb(38, 38, 58);
             btnStock.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnStock.Size = new Size(206, 80);
-            btnStock.TabIndex = 9;
+            btnStock.Size = new Size(210, 80);
+            btnStock.TabIndex = 14;
             btnStock.Text = "Stock";
             btnStock.TextAlign = HorizontalAlignment.Left;
             btnStock.Click += btnStock_Click;
@@ -155,11 +160,11 @@
             btnProdutos.ImageSize = new Size(40, 40);
             btnProdutos.Location = new Point(0, 254);
             btnProdutos.Name = "btnProdutos";
-            btnProdutos.Padding = new Padding(2, 0, 0, 0);
+            btnProdutos.Padding = new Padding(10, 0, 0, 0);
             btnProdutos.PressedColor = Color.FromArgb(38, 38, 58);
             btnProdutos.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnProdutos.Size = new Size(206, 80);
-            btnProdutos.TabIndex = 8;
+            btnProdutos.Size = new Size(210, 80);
+            btnProdutos.TabIndex = 13;
             btnProdutos.Text = "Produtos";
             btnProdutos.TextAlign = HorizontalAlignment.Left;
             btnProdutos.Click += btnProdutos_Click;
@@ -181,11 +186,11 @@
             btnEncomendas.ImageSize = new Size(40, 40);
             btnEncomendas.Location = new Point(0, 174);
             btnEncomendas.Name = "btnEncomendas";
-            btnEncomendas.Padding = new Padding(2, 0, 0, 0);
+            btnEncomendas.Padding = new Padding(10, 0, 0, 0);
             btnEncomendas.PressedColor = Color.FromArgb(38, 38, 58);
             btnEncomendas.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnEncomendas.Size = new Size(206, 80);
-            btnEncomendas.TabIndex = 7;
+            btnEncomendas.Size = new Size(210, 80);
+            btnEncomendas.TabIndex = 12;
             btnEncomendas.Text = "Encomendas";
             btnEncomendas.TextAlign = HorizontalAlignment.Left;
             btnEncomendas.Click += btnEncomendas_Click;
@@ -207,10 +212,10 @@
             btnHome.ImageSize = new Size(40, 40);
             btnHome.Location = new Point(0, 94);
             btnHome.Name = "btnHome";
-            btnHome.Padding = new Padding(2, 0, 0, 0);
+            btnHome.Padding = new Padding(10, 0, 0, 0);
             btnHome.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnHome.Size = new Size(206, 80);
-            btnHome.TabIndex = 6;
+            btnHome.Size = new Size(210, 80);
+            btnHome.TabIndex = 11;
             btnHome.Text = "Home";
             btnHome.TextAlign = HorizontalAlignment.Left;
             btnHome.Click += btnHome_Click;
@@ -227,27 +232,56 @@
             btnSair.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSair.ForeColor = Color.White;
             btnSair.Image = (Image)resources.GetObject("btnSair.Image");
-            btnSair.ImageAlign = HorizontalAlignment.Right;
+            btnSair.ImageAlign = HorizontalAlignment.Left;
             btnSair.ImageSize = new Size(40, 40);
             btnSair.Location = new Point(0, 694);
             btnSair.Name = "btnSair";
+            btnSair.Padding = new Padding(10, 0, 0, 0);
             btnSair.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnSair.Size = new Size(206, 56);
+            btnSair.Size = new Size(210, 56);
             btnSair.TabIndex = 5;
             btnSair.Text = "Sair";
-            btnSair.TextAlign = HorizontalAlignment.Right;
+            btnSair.TextAlign = HorizontalAlignment.Left;
+            btnSair.Click += btnSair_Click;
             // 
             // panelLogo
             // 
             panelLogo.BackColor = Color.FromArgb(38, 38, 58);
+            panelLogo.Controls.Add(picLogo);
+            panelLogo.Controls.Add(guna2HtmlLabel1);
             panelLogo.Controls.Add(lblLogo);
-            panelLogo.CustomizableEdges = customizableEdges13;
+            panelLogo.CustomizableEdges = customizableEdges15;
             panelLogo.Dock = DockStyle.Top;
             panelLogo.Location = new Point(0, 0);
             panelLogo.Name = "panelLogo";
-            panelLogo.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            panelLogo.Size = new Size(206, 94);
+            panelLogo.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            panelLogo.Size = new Size(210, 94);
             panelLogo.TabIndex = 0;
+            // 
+            // picLogo
+            // 
+            picLogo.CustomizableEdges = customizableEdges13;
+            picLogo.Image = (Image)resources.GetObject("picLogo.Image");
+            picLogo.ImageRotate = 0F;
+            picLogo.Location = new Point(5, 17);
+            picLogo.Name = "picLogo";
+            picLogo.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            picLogo.Size = new Size(67, 55);
+            picLogo.TabIndex = 2;
+            picLogo.TabStop = false;
+            picLogo.Click += picLogo_Click;
+            // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.Anchor = AnchorStyles.None;
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Bold);
+            guna2HtmlLabel1.ForeColor = Color.LightGray;
+            guna2HtmlLabel1.Location = new Point(82, 48);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(114, 28);
+            guna2HtmlLabel1.TabIndex = 1;
+            guna2HtmlLabel1.Text = "PÃO-BOM";
             // 
             // lblLogo
             // 
@@ -255,22 +289,22 @@
             lblLogo.BackColor = Color.Transparent;
             lblLogo.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLogo.ForeColor = Color.LightGray;
-            lblLogo.Location = new Point(15, 36);
+            lblLogo.Location = new Point(98, 23);
             lblLogo.Name = "lblLogo";
-            lblLogo.Size = new Size(170, 27);
+            lblLogo.Size = new Size(79, 27);
             lblLogo.TabIndex = 0;
-            lblLogo.Text = "PADARIA PÃO-BOM";
+            lblLogo.Text = "PADARIA";
             // 
             // panelTitle
             // 
             panelTitle.BackColor = Color.FromArgb(50, 52, 76);
             panelTitle.Controls.Add(lblTitle);
-            panelTitle.CustomizableEdges = customizableEdges17;
+            panelTitle.CustomizableEdges = customizableEdges19;
             panelTitle.Dock = DockStyle.Top;
-            panelTitle.Location = new Point(206, 0);
+            panelTitle.Location = new Point(210, 0);
             panelTitle.Name = "panelTitle";
-            panelTitle.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            panelTitle.Size = new Size(1007, 94);
+            panelTitle.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            panelTitle.Size = new Size(1003, 94);
             panelTitle.TabIndex = 5;
             // 
             // lblTitle
@@ -279,7 +313,7 @@
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(460, 25);
+            lblTitle.Location = new Point(458, 25);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(94, 43);
             lblTitle.TabIndex = 0;
@@ -287,12 +321,12 @@
             // 
             // panelDesktop
             // 
-            panelDesktop.CustomizableEdges = customizableEdges19;
+            panelDesktop.CustomizableEdges = customizableEdges21;
             panelDesktop.Dock = DockStyle.Fill;
-            panelDesktop.Location = new Point(206, 94);
+            panelDesktop.Location = new Point(210, 94);
             panelDesktop.Name = "panelDesktop";
-            panelDesktop.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            panelDesktop.Size = new Size(1007, 656);
+            panelDesktop.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            panelDesktop.Size = new Size(1003, 656);
             panelDesktop.TabIndex = 6;
             // 
             // EmployeeForm
@@ -309,6 +343,7 @@
             panelMenu.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
             panelLogo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             panelTitle.ResumeLayout(false);
             panelTitle.PerformLayout();
             ResumeLayout(false);
@@ -318,14 +353,16 @@
         private Guna.UI2.WinForms.Guna2Panel panelMenu;
         private Guna.UI2.WinForms.Guna2Panel panelLogo;
         private Guna.UI2.WinForms.Guna2Button btnSair;
+        private Guna.UI2.WinForms.Guna2Panel panelTitle;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblLogo;
+        private Guna.UI2.WinForms.Guna2Panel panelDesktop;
         private Guna.UI2.WinForms.Guna2Button btnFornecedores;
         private Guna.UI2.WinForms.Guna2Button btnStock;
         private Guna.UI2.WinForms.Guna2Button btnProdutos;
         private Guna.UI2.WinForms.Guna2Button btnEncomendas;
         private Guna.UI2.WinForms.Guna2Button btnHome;
-        private Guna.UI2.WinForms.Guna2Panel panelTitle;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblLogo;
-        private Guna.UI2.WinForms.Guna2Panel panelDesktop;
+        private Guna.UI2.WinForms.Guna2PictureBox picLogo;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
     }
 }
