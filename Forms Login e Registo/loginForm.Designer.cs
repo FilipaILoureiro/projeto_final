@@ -35,21 +35,17 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(loginForm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             labelTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             linkEsqueceu = new LinkLabel();
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
             btnLogin = new Guna.UI2.WinForms.Guna2Button();
-            lbl2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            btnRegister = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblLogo = new Guna.UI2.WinForms.Guna2HtmlLabel();
             pictureBox1 = new PictureBox();
@@ -92,22 +88,10 @@
             // 
             // linkEsqueceu
             // 
-            linkEsqueceu.ActiveLinkColor = Color.White;
-            linkEsqueceu.AutoSize = true;
-            linkEsqueceu.BackColor = Color.Transparent;
-            linkEsqueceu.DisabledLinkColor = Color.PowderBlue;
-            linkEsqueceu.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            linkEsqueceu.ForeColor = Color.SteelBlue;
-            linkEsqueceu.LinkColor = Color.White;
-            linkEsqueceu.Location = new Point(513, 451);
-            linkEsqueceu.Margin = new Padding(0);
+            linkEsqueceu.Location = new Point(0, 0);
             linkEsqueceu.Name = "linkEsqueceu";
-            linkEsqueceu.Size = new Size(245, 23);
-            linkEsqueceu.TabIndex = 21;
-            linkEsqueceu.TabStop = true;
-            linkEsqueceu.Text = "Esqueceu-se da palavra passe?";
-            linkEsqueceu.VisitedLinkColor = Color.SkyBlue;
-            linkEsqueceu.LinkClicked += linkEsqueceu_LinkClicked;
+            linkEsqueceu.Size = new Size(100, 23);
+            linkEsqueceu.TabIndex = 34;
             // 
             // txtPassword
             // 
@@ -192,62 +176,26 @@
             btnLogin.Text = "Entrar";
             btnLogin.Click += btnLogin_Click;
             // 
-            // lbl2
-            // 
-            lbl2.AutoSize = false;
-            lbl2.BackColor = Color.Transparent;
-            lbl2.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl2.ForeColor = Color.White;
-            lbl2.Location = new Point(95, 470);
-            lbl2.Name = "lbl2";
-            lbl2.Size = new Size(251, 70);
-            lbl2.TabIndex = 25;
-            lbl2.Text = "Ainda não tem conta?";
-            lbl2.TextAlignment = ContentAlignment.MiddleCenter;
-            lbl2.UseGdiPlusTextRendering = true;
-            // 
             // guna2Panel1
             // 
             guna2Panel1.BackColor = Color.Black;
-            guna2Panel1.Controls.Add(btnRegister);
             guna2Panel1.Controls.Add(guna2HtmlLabel1);
             guna2Panel1.Controls.Add(lblLogo);
             guna2Panel1.Controls.Add(pictureBox1);
-            guna2Panel1.Controls.Add(lbl2);
-            guna2Panel1.CustomizableEdges = customizableEdges9;
+            guna2Panel1.CustomizableEdges = customizableEdges7;
             guna2Panel1.Dock = DockStyle.Left;
             guna2Panel1.Location = new Point(0, 0);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2Panel1.Size = new Size(434, 699);
             guna2Panel1.TabIndex = 28;
-            // 
-            // btnRegister
-            // 
-            btnRegister.BackColor = Color.Black;
-            btnRegister.BorderRadius = 20;
-            btnRegister.CustomizableEdges = customizableEdges7;
-            btnRegister.DisabledState.BorderColor = Color.DarkGray;
-            btnRegister.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnRegister.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnRegister.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnRegister.FillColor = Color.White;
-            btnRegister.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRegister.ForeColor = Color.Black;
-            btnRegister.Location = new Point(141, 532);
-            btnRegister.Name = "btnRegister";
-            btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnRegister.Size = new Size(163, 56);
-            btnRegister.TabIndex = 26;
-            btnRegister.Text = "Registe-se!";
-            btnRegister.Click += btnRegister_Click;
             // 
             // guna2HtmlLabel1
             // 
             guna2HtmlLabel1.BackColor = Color.Transparent;
             guna2HtmlLabel1.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2HtmlLabel1.ForeColor = Color.White;
-            guna2HtmlLabel1.Location = new Point(149, 248);
+            guna2HtmlLabel1.Location = new Point(153, 334);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             guna2HtmlLabel1.Size = new Size(175, 33);
             guna2HtmlLabel1.TabIndex = 2;
@@ -258,7 +206,7 @@
             lblLogo.BackColor = Color.Transparent;
             lblLogo.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLogo.ForeColor = Color.White;
-            lblLogo.Location = new Point(149, 199);
+            lblLogo.Location = new Point(153, 285);
             lblLogo.Name = "lblLogo";
             lblLogo.Size = new Size(245, 43);
             lblLogo.TabIndex = 1;
@@ -267,7 +215,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(33, 187);
+            pictureBox1.Location = new Point(37, 273);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(110, 99);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -319,7 +267,7 @@
             // btnClose
             // 
             btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnClose.CustomizableEdges = customizableEdges11;
+            btnClose.CustomizableEdges = customizableEdges9;
             btnClose.DisabledState.BorderColor = Color.DarkGray;
             btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
             btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -331,7 +279,7 @@
             btnClose.ImageSize = new Size(30, 30);
             btnClose.Location = new Point(999, 0);
             btnClose.Name = "btnClose";
-            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnClose.Size = new Size(47, 40);
             btnClose.TabIndex = 33;
             btnClose.Click += btnClose_Click;
@@ -378,12 +326,10 @@
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private Guna.UI2.WinForms.Guna2Button btnLogin;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lbl2;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblLogo;
         private PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2Button btnRegister;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblUsername;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPass;
         private PictureBox pictureBox2;

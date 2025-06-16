@@ -151,5 +151,12 @@ namespace projetoPadariaApp.Forms
             loginForm.Show();
             this.Close();
         }
+
+        // data e hora
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
+            lblData.Text = DateTime.Now.ToLongDateString();
+        }
     }
 }
