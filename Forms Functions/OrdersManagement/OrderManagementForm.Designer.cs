@@ -47,6 +47,7 @@
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
             dgvOrders.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvOrders.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvOrders.AutoGenerateColumns = false;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
@@ -68,11 +69,11 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvOrders.DefaultCellStyle = dataGridViewCellStyle3;
             dgvOrders.GridColor = Color.FromArgb(231, 229, 255);
-            dgvOrders.Location = new Point(0, 116);
+            dgvOrders.Location = new Point(38, 27);
             dgvOrders.Name = "dgvOrders";
             dgvOrders.RowHeadersVisible = false;
             dgvOrders.RowHeadersWidth = 51;
-            dgvOrders.Size = new Size(1003, 443);
+            dgvOrders.Size = new Size(810, 582);
             dgvOrders.TabIndex = 0;
             dgvOrders.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvOrders.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -106,6 +107,7 @@
             // 
             // btnAddOrder
             // 
+            btnAddOrder.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAddOrder.CustomizableEdges = customizableEdges1;
             btnAddOrder.DisabledState.BorderColor = Color.DarkGray;
             btnAddOrder.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -113,7 +115,7 @@
             btnAddOrder.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnAddOrder.Font = new Font("Segoe UI", 9F);
             btnAddOrder.ForeColor = Color.White;
-            btnAddOrder.Location = new Point(905, 27);
+            btnAddOrder.Location = new Point(907, 78);
             btnAddOrder.Name = "btnAddOrder";
             btnAddOrder.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnAddOrder.Size = new Size(225, 56);
@@ -125,11 +127,11 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1168, 559);
+            ClientSize = new Size(1167, 652);
             Controls.Add(btnAddOrder);
             Controls.Add(dgvOrders);
             Name = "OrderManagementForm";
-            Text = "OrderManagementForm";
+            Text = "Gerir Encomendas";
             ((System.ComponentModel.ISupportInitialize)dgvOrders).EndInit();
             ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)databaseManageBindingSource).EndInit();

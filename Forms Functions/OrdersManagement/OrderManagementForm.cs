@@ -51,7 +51,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 
             if (dgvOrders.Rows.Count > 0)
             {
-                dgvOrders.ClearSelection(); // remove a seleção automática
+                dgvOrders.ClearSelection();
             }
         }
 
@@ -114,7 +114,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     DataTable table = new DataTable();
                     adapter.Fill(table);
 
-                    // Converter datas para o formato desejado
                     foreach (DataRow row in table.Rows)
                     {
                         if (row["data_encomenda"] != DBNull.Value)
@@ -129,7 +128,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                             row["data_recolha"] = dataRecolha.ToString("yyyy-MM-dd");
                         }
 
-                        // 🪄 Aqui faz-se a magia do "Sim" e "Não"
                         if (row["entregue"] != DBNull.Value)
                         {
                             string entregue = row["entregue"].ToString();
@@ -182,7 +180,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             }
             else if (colName == "Remover")
             {
-                if (MessageBox.Show("Tens a certeza que queres apagar esta encomenda?", "Confirmação", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Tem a certeza que quer apagar esta encomenda?", "Confirmação", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     DeleteOrder(id);
                     LoadOrders();
@@ -200,7 +198,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             {
                 connection.Open();
 
-                // Primeiro apagar da tabela associativa
                 string deleteAssoc = "DELETE FROM enc_prod WHERE id_enc = @id";
                 using (var cmd = new SQLiteCommand(deleteAssoc, connection))
                 {
@@ -208,7 +205,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     cmd.ExecuteNonQuery();
                 }
 
-                // Depois apagar a encomenda
                 string deleteEnc = "DELETE FROM enc WHERE id = @id";
                 using (var cmd = new SQLiteCommand(deleteEnc, connection))
                 {
@@ -217,7 +213,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                 }
             }
 
-            // Recarregar os dados após a exclusão
             LoadOrders();
         }
 
