@@ -160,8 +160,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     row.DefaultCellStyle.BackColor = Color.Khaki; 
                 }
             }
-
-
         }
 
         private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
