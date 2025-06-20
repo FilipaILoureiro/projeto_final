@@ -315,14 +315,16 @@
             // lblTitle
             // 
             lblTitle.Anchor = AnchorStyles.None;
+            lblTitle.AutoSize = false;
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(458, 25);
+            lblTitle.Location = new Point(0, 25);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(94, 43);
+            lblTitle.Size = new Size(1003, 43);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "HOME";
+            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // panelDesktop
             // 
@@ -379,7 +381,6 @@
             panelLogo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             panelTitle.ResumeLayout(false);
-            panelTitle.PerformLayout();
             panelDesktop.ResumeLayout(false);
             panelDesktop.PerformLayout();
             ResumeLayout(false);

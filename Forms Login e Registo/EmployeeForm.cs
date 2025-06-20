@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using Org.BouncyCastle.Asn1.Ocsp;
 using Org.BouncyCastle.Asn1.X509.Qualified;
 using projetoPadariaApp.Forms_Functions.OrdersManagement;
 using projetoPadariaApp.Forms_Functions.ProductManagement;
@@ -47,24 +48,27 @@ namespace projetoPadariaApp.Forms
             return ColorTranslator.FromHtml(color);
         }
 
-        private void ActivateButton(object btnSender)
+        private void ActivateButton(object btnSender, string secao)
         {
             if (btnSender != null)
             {
                 if (currentButton != (Guna2Button)btnSender)
                 {
                     DisableButton();
-                    Color color = SelectThemeColor();
+                    string hexColor = ThemeColor.ColorList.ContainsKey(secao) ? ThemeColor.ColorMap[secao] : "#607D8B";
+                    Color color = ColorTranslator.FromHtml(hexColor);
+
                     currentButton = (Guna2Button)btnSender;
                     currentButton.FillColor = color;
                     currentButton.ForeColor = Color.White;
                     currentButton.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold);
+
                     panelTitle.BackColor = color;
                     panelLogo.BackColor = ThemeColor.ChangeColorBrightness(color, -0.3);
                 }
-
             }
         }
+
 
         private void DisableButton()
         {
@@ -123,25 +127,29 @@ namespace projetoPadariaApp.Forms
 
         private void btnEncomendas_Click(object sender, EventArgs e)
         {
-            lblTitle.Text = "GESTÃO DE ENCOMENDAS";
+            lblTitle.Text = "Gestão de Encomendas";
+            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
             OpenChildForm(new OrderManagementForm(), sender);
         }
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
-            lblTitle.Text = "GESTÃO DE PRODUTOS";
+            lblTitle.Text = "Gestão de Produtos";
+            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
             OpenChildForm(new ProductManagementForm(), sender);
         }
 
         private void btnStock_Click(object sender, EventArgs e)
         {
-            lblTitle.Text = "GESTÃO DE STOCK";
+            lblTitle.Text = "Gestão de Stock";
+            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
             OpenChildForm(new StockList(), sender);
         }
 
         private void btnFornecedores_Click(object sender, EventArgs e)
         {
-            lblTitle.Text = "GESTÃO DE FORNECEDORES";
+            lblTitle.Text = "Gestão de Fornecedores";
+            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
             OpenChildForm(new SupplierList(), sender);
         }
 
