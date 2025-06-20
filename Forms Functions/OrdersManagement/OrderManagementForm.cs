@@ -54,6 +54,33 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             cbPago.SelectedIndexChanged += cbPago_SelectedIndexChanged;
             cbEntregue.SelectedIndexChanged += cbEntregue_SelectedIndexChanged;
             dgvOrders.DataBindingComplete += dgvOrders_DataBindingComplete;
+            dgvOrders.Resize += dgvOrders_Resize;
+        }
+
+        private void dgvOrders_Resize(object sender, EventArgs e)
+        {
+            AjustarLarguraColunas();
+        }
+
+        private void AjustarLarguraColunas()
+        {
+            if (dgvOrders.Columns.Count == 0) return;
+
+            try
+            {
+                int larguraTotal = dgvOrders.ClientSize.Width; 
+
+                dgvOrders.Columns["Cliente"].Width = (int)(larguraTotal * 0.12); 
+                dgvOrders.Columns["Data"].Width = (int)(larguraTotal * 0.22);    
+                dgvOrders.Columns["Recolha"].Width = (int)(larguraTotal * 0.22); 
+                dgvOrders.Columns["Total"].Width = (int)(larguraTotal * 0.15);   
+                dgvOrders.Columns["Pago"].Width = (int)(larguraTotal * 0.14);    
+                dgvOrders.Columns["Entregue"].Width = (int)(larguraTotal * 0.15); 
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Erro ao ajustar largura das colunas: {ex.Message}");
+            }
         }
 
         private void AplicarFiltros()
@@ -64,48 +91,45 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             {
                 List<string> filtros = new List<string>();
 
+                // Filtro por NIF
                 if (!string.IsNullOrWhiteSpace(txtNIF.Text))
                 {
-                    string nif = txtNIF.Text.Trim().Replace("'", "''"); // Escape aspas simples
+                    string nif = txtNIF.Text.Trim().Replace("'", "''");
                     filtros.Add($"nif_clientes LIKE '{nif}%'");
                 }
 
+                // Filtro por data de encomenda
                 if (datePickerEnc.Checked)
                 {
                     string dataEnc = datePickerEnc.Value.ToString("yyyy-MM-dd");
                     filtros.Add($"data_encomenda = '{dataEnc}'");
                 }
 
+                // Filtro por data de recolha
                 if (datePickerRecolha.Checked)
                 {
                     string dataRecolha = datePickerRecolha.Value.ToString("yyyy-MM-dd");
                     filtros.Add($"data_recolha = '{dataRecolha}'");
                 }
 
+                // Filtro por status de pagamento
                 string pagoSelecionado = cbPago.SelectedItem?.ToString();
                 if (!string.IsNullOrEmpty(pagoSelecionado) && pagoSelecionado != "Todos")
                 {
                     if (pagoSelecionado == "Pago")
-                    {
                         filtros.Add("pago = 'pago'");
-                    }
                     else if (pagoSelecionado == "Não Pago")
-                    {
                         filtros.Add("pago <> 'pago'");
-                    }
                 }
 
+                // Filtro por status de entrega
                 string entregueSelecionado = cbEntregue.SelectedItem?.ToString();
                 if (!string.IsNullOrEmpty(entregueSelecionado) && entregueSelecionado != "Todos")
                 {
                     if (entregueSelecionado == "Sim")
-                    {
                         filtros.Add("entregue = 'Sim'");
-                    }
                     else if (entregueSelecionado == "Não")
-                    {
                         filtros.Add("entregue = 'Não'");
-                    }
                 }
 
                 string filtroFinal = filtros.Count > 0 ? string.Join(" AND ", filtros) : "";
@@ -127,9 +151,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 if (ordersView != null)
-                {
                     ordersView.RowFilter = "";
-                }
             }
         }
 
@@ -163,6 +185,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
         private void dgvOrders_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             AplicarCoresLinhas();
+            AjustarLarguraColunas();
         }
 
         private void AplicarCoresLinhas()
@@ -181,17 +204,17 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 
                     if (pago && entregue)
                     {
-                        row.DefaultCellStyle.BackColor = Color.LightGreen;
+                        row.DefaultCellStyle.BackColor = Color.FromArgb(155, 214, 156);
                         row.DefaultCellStyle.ForeColor = Color.Black;
                     }
                     else if (!pago && !entregue)
                     {
-                        row.DefaultCellStyle.BackColor = Color.LightCoral;
+                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 121, 136); 
                         row.DefaultCellStyle.ForeColor = Color.Black;
                     }
                     else
                     {
-                        row.DefaultCellStyle.BackColor = Color.Khaki;
+                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 242, 157); 
                         row.DefaultCellStyle.ForeColor = Color.Black;
                     }
                 }
@@ -202,9 +225,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             }
 
             if (dgvOrders.Rows.Count > 0)
-            {
                 dgvOrders.ClearSelection();
-            }
         }
 
         private void ConfigurarDataGridViewOrder()
@@ -213,45 +234,66 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             dgvOrders.AutoGenerateColumns = false;
             dgvOrders.ColumnHeadersVisible = true;
             dgvOrders.AllowUserToAddRows = false;
+            dgvOrders.AllowUserToDeleteRows = false;
 
+            // Configurar colunas
             dgvOrders.Columns.Add("ID", "ID");
             dgvOrders.Columns["ID"].DataPropertyName = "id";
             dgvOrders.Columns["ID"].Visible = false;
 
             dgvOrders.Columns.Add("Cliente", "NIF Cliente");
             dgvOrders.Columns["Cliente"].DataPropertyName = "nif_clientes";
-            dgvOrders.Columns["Cliente"].Width = 120;
+            dgvOrders.Columns["Cliente"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvOrders.Columns.Add("Data", "Data Encomenda");
             dgvOrders.Columns["Data"].DataPropertyName = "data_encomenda";
-            dgvOrders.Columns["Data"].Width = 120;
+            dgvOrders.Columns["Data"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvOrders.Columns.Add("Recolha", "Data Recolha");
             dgvOrders.Columns["Recolha"].DataPropertyName = "data_recolha";
-            dgvOrders.Columns["Recolha"].Width = 120;
+            dgvOrders.Columns["Recolha"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvOrders.Columns.Add("Total", "Total (€)");
             dgvOrders.Columns["Total"].DataPropertyName = "preco";
-            dgvOrders.Columns["Total"].Width = 100;
             dgvOrders.Columns["Total"].DefaultCellStyle.Format = "C2";
             dgvOrders.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             dgvOrders.Columns.Add("Pago", "Pago");
             dgvOrders.Columns["Pago"].DataPropertyName = "pago";
-            dgvOrders.Columns["Pago"].Width = 80;
+            dgvOrders.Columns["Pago"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvOrders.Columns.Add("Entregue", "Entregue");
             dgvOrders.Columns["Entregue"].DataPropertyName = "entregue";
-            dgvOrders.Columns["Entregue"].Width = 80;
+            dgvOrders.Columns["Entregue"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+            // Configurações visuais do cabeçalho
             dgvOrders.EnableHeadersVisualStyles = false;
-            dgvOrders.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10, FontStyle.Bold);
+            dgvOrders.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 128, 128); 
+            dgvOrders.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvOrders.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 11, FontStyle.Bold);
+            dgvOrders.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvOrders.ColumnHeadersHeight = 50;
+            dgvOrders.ColumnHeadersHeight = 45;
 
+            // Configurações gerais da grid
+            dgvOrders.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
+            dgvOrders.DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 232, 231);
+            dgvOrders.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgvOrders.RowTemplate.Height = 35;
+            dgvOrders.GridColor = Color.LightGray;
+            dgvOrders.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            dgvOrders.BorderStyle = BorderStyle.Fixed3D;
+
+            // Configurações de seleção e comportamento
             dgvOrders.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvOrders.MultiSelect = false;
             dgvOrders.ReadOnly = true;
+            dgvOrders.ScrollBars = ScrollBars.Both;
+            dgvOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+
+            dgvOrders.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 248, 248);
+
+            AjustarLarguraColunas();
         }
 
         private void LoadOrders()
@@ -273,17 +315,32 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                         foreach (DataRow row in ordersTable.Rows)
                         {
                             if (row["data_encomenda"] != DBNull.Value)
-                                row["data_encomenda"] = Convert.ToDateTime(row["data_encomenda"]).ToString("yyyy-MM-dd");
+                            {
+                                DateTime dataEnc = Convert.ToDateTime(row["data_encomenda"]);
+                                row["data_encomenda"] = dataEnc.ToString("dd/MM/yyyy");
+                            }
+
                             if (row["data_recolha"] != DBNull.Value)
-                                row["data_recolha"] = Convert.ToDateTime(row["data_recolha"]).ToString("yyyy-MM-dd");
+                            {
+                                DateTime dataRecolha = Convert.ToDateTime(row["data_recolha"]);
+                                row["data_recolha"] = dataRecolha.ToString("dd/MM/yyyy");
+                            }
+
                             if (row["entregue"] != DBNull.Value)
-                                row["entregue"] = row["entregue"].ToString().ToUpper() == "S" ? "Sim" : "Não";
+                            {
+                                string entregue = row["entregue"].ToString().ToUpper();
+                                row["entregue"] = entregue == "S" ? "Sim" : "Não";
+                            }
+
+                            if (row["pago"] != DBNull.Value)
+                            {
+                                string pago = row["pago"].ToString().ToLower();
+                                row["pago"] = pago == "pago" ? "Pago" : "Pendente";
+                            }
                         }
 
                         ordersView = new DataView(ordersTable);
-
                         dgvOrders.DataSource = ordersView;
-
                         dgvOrders.Refresh();
 
                         System.Diagnostics.Debug.WriteLine($"DataView count: {ordersView.Count}");
@@ -293,6 +350,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                 if (dgvOrders.Rows.Count > 0)
                 {
                     AplicarCoresLinhas();
+                    AjustarLarguraColunas();
                     dgvOrders.ClearSelection();
                 }
             }
@@ -339,6 +397,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void DeleteOrder(int id)
         {
@@ -501,6 +560,105 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             {
                 MessageBox.Show($"Erro ao limpar filtros: {ex.Message}", "Erro",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCheckPago_Click(object sender, EventArgs e)
+        {
+            if (dgvOrders.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    int id = Convert.ToInt32(dgvOrders.SelectedRows[0].Cells["ID"].Value);
+
+                    using (var connection = new SQLiteConnection("Data Source=projetoPadariaApp.db"))
+                    {
+                        connection.Open();
+
+                        using (var transaction = connection.BeginTransaction())
+                        {
+                            try
+                            {
+                                string query = "UPDATE enc SET pago = 'pago' WHERE id = @id";
+                                using (var cmd = new SQLiteCommand(query, connection, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@id", id);
+                                    int rowsAffected = cmd.ExecuteNonQuery();
+                                    transaction.Commit();
+                                    MessageBox.Show("Encomenda marcada como paga!", "Sucesso",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    LoadOrders();
+                                }
+                            }
+                            catch
+                            {
+                                transaction.Rollback();
+                                throw;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao confirmar pagamento: {ex.Message}", "Erro",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma encomenda para confirmar pagamento.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnCheckEntrega_Click(object sender, EventArgs e)
+        {
+            if (dgvOrders.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    int id = Convert.ToInt32(dgvOrders.SelectedRows[0].Cells["ID"].Value);
+
+                    using (var connection = new SQLiteConnection("Data Source=projetoPadariaApp.db"))
+                    {
+                        connection.Open();
+
+                        using (var transaction = connection.BeginTransaction())
+                        {
+                            try
+                            {
+                                string query = "UPDATE enc SET entregue = 'S' WHERE id = @id";
+                                using (var cmd = new SQLiteCommand(query, connection, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@id", id);
+                                    int rowsAffected = cmd.ExecuteNonQuery();
+                                    transaction.Commit();
+                                    MessageBox.Show("Encomenda marcada como entregue!", "Sucesso",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    LoadOrders();
+                                }
+                            }
+                            catch
+                            {
+                                transaction.Rollback();
+                                throw;
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao confirmar entrega: {ex.Message}", "Erro",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma encomenda para confirmar entrega.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         #endregion

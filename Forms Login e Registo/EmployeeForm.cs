@@ -36,18 +36,6 @@ namespace projetoPadariaApp.Forms
         }
 
         // MÉTODOS
-        private Color SelectThemeColor()
-        {
-            int index = random.Next(ThemeColor.ColorList.Count);
-            while (tempIndex == index)
-            {
-                index = random.Next(ThemeColor.ColorList.Count);
-            }
-            tempIndex = index;
-            string color = ThemeColor.ColorList[index];
-            return ColorTranslator.FromHtml(color);
-        }
-
         private void ActivateButton(object btnSender, string secao)
         {
             if (btnSender != null)
@@ -55,7 +43,7 @@ namespace projetoPadariaApp.Forms
                 if (currentButton != (Guna2Button)btnSender)
                 {
                     DisableButton();
-                    string hexColor = ThemeColor.ColorList.ContainsKey(secao) ? ThemeColor.ColorMap[secao] : "#607D8B";
+                    string hexColor = ThemeColor.ColorList.ContainsKey(secao) ? ThemeColor.ColorList[secao] : "#607D8B";
                     Color color = ColorTranslator.FromHtml(hexColor);
 
                     currentButton = (Guna2Button)btnSender;
@@ -83,13 +71,13 @@ namespace projetoPadariaApp.Forms
             }
         }
 
-        private void OpenChildForm(Form childForm, object btnSender)
+        private void OpenChildForm(Form childForm, object btnSender, string secçao)
         {
             if (activeForm != null)
             {
                 activeForm.Close();
             }
-            ActivateButton(btnSender);
+            ActivateButton(btnSender, secçao);
             activeForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -105,7 +93,6 @@ namespace projetoPadariaApp.Forms
             if (panelMenu.Width == 210)
             {
                 panelMenu.Width = 70;
-                lblTitle.Visible = false;
             }
             else
             {
@@ -129,28 +116,28 @@ namespace projetoPadariaApp.Forms
         {
             lblTitle.Text = "Gestão de Encomendas";
             lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
-            OpenChildForm(new OrderManagementForm(), sender);
+            OpenChildForm(new OrderManagementForm(), sender, "Encomendas");
         }
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
             lblTitle.Text = "Gestão de Produtos";
             lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
-            OpenChildForm(new ProductManagementForm(), sender);
+            OpenChildForm(new ProductManagementForm(), sender, "Produtos");
         }
 
         private void btnStock_Click(object sender, EventArgs e)
         {
             lblTitle.Text = "Gestão de Stock";
             lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
-            OpenChildForm(new StockList(), sender);
+            OpenChildForm(new StockList(), sender, "Stock");
         }
 
         private void btnFornecedores_Click(object sender, EventArgs e)
         {
             lblTitle.Text = "Gestão de Fornecedores";
             lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
-            OpenChildForm(new SupplierList(), sender);
+            OpenChildForm(new SupplierList(), sender, "Fornecedores");
         }
 
         private void btnSair_Click(object sender, EventArgs e)

@@ -53,14 +53,18 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dgvOrders = new Guna.UI2.WinForms.Guna2DataGridView();
             databaseManageBindingSource1 = new BindingSource(components);
             databaseManageBindingSource = new BindingSource(components);
@@ -79,6 +83,8 @@
             txtNIF = new Guna.UI2.WinForms.Guna2TextBox();
             btnAddOrder = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            btnCheckPago = new Guna.UI2.WinForms.Guna2Button();
+            btnCheckEntrega = new Guna.UI2.WinForms.Guna2Button();
             btnPDF = new Guna.UI2.WinForms.Guna2Button();
             btnApagar = new Guna.UI2.WinForms.Guna2Button();
             btnEditar = new Guna.UI2.WinForms.Guna2Button();
@@ -191,7 +197,8 @@
             // 
             // panelFiltrosTitle
             // 
-            panelFiltrosTitle.BackColor = Color.Teal;
+            panelFiltrosTitle.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panelFiltrosTitle.BackColor = Color.FromArgb(0, 89, 89);
             panelFiltrosTitle.BorderColor = Color.FromArgb(50, 52, 76);
             panelFiltrosTitle.BorderRadius = 10;
             panelFiltrosTitle.Controls.Add(pictureBox1);
@@ -236,9 +243,10 @@
             btnLimpar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnLimpar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnLimpar.FillColor = Color.Teal;
-            btnLimpar.Font = new Font("Segoe UI", 9F);
+            btnLimpar.FocusedColor = Color.FromArgb(0, 89, 89);
+            btnLimpar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLimpar.ForeColor = Color.White;
-            btnLimpar.HoverState.FillColor = Color.DarkCyan;
+            btnLimpar.HoverState.FillColor = Color.FromArgb(0, 89, 89);
             btnLimpar.Image = (Image)resources.GetObject("btnLimpar.Image");
             btnLimpar.Location = new Point(733, 116);
             btnLimpar.Name = "btnLimpar";
@@ -276,7 +284,7 @@
             // 
             cbEntregue.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             cbEntregue.BackColor = Color.Transparent;
-            cbEntregue.BorderColor = Color.FromArgb(50, 52, 76);
+            cbEntregue.BorderColor = Color.FromArgb(0, 89, 89);
             cbEntregue.BorderRadius = 10;
             cbEntregue.BorderThickness = 2;
             cbEntregue.CustomizableEdges = customizableEdges5;
@@ -286,7 +294,7 @@
             cbEntregue.FocusedState.BorderColor = Color.Teal;
             cbEntregue.Font = new Font("Segoe UI", 10F);
             cbEntregue.ForeColor = Color.FromArgb(68, 88, 112);
-            cbEntregue.HoverState.BorderColor = Color.Black;
+            cbEntregue.HoverState.BorderColor = Color.Teal;
             cbEntregue.ItemHeight = 30;
             cbEntregue.Location = new Point(203, 69);
             cbEntregue.Name = "cbEntregue";
@@ -298,7 +306,7 @@
             // 
             cbPago.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             cbPago.BackColor = Color.Transparent;
-            cbPago.BorderColor = Color.FromArgb(50, 52, 76);
+            cbPago.BorderColor = Color.FromArgb(0, 89, 89);
             cbPago.BorderRadius = 10;
             cbPago.BorderThickness = 2;
             cbPago.CustomizableEdges = customizableEdges7;
@@ -308,7 +316,7 @@
             cbPago.FocusedState.BorderColor = Color.Teal;
             cbPago.Font = new Font("Segoe UI", 10F);
             cbPago.ForeColor = Color.FromArgb(68, 88, 112);
-            cbPago.HoverState.BorderColor = Color.Black;
+            cbPago.HoverState.BorderColor = Color.Teal;
             cbPago.ItemHeight = 30;
             cbPago.Location = new Point(203, 122);
             cbPago.Name = "cbPago";
@@ -320,7 +328,7 @@
             // 
             datePickerRecolha.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             datePickerRecolha.BackColor = Color.White;
-            datePickerRecolha.BorderColor = Color.FromArgb(50, 52, 76);
+            datePickerRecolha.BorderColor = Color.FromArgb(0, 89, 89);
             datePickerRecolha.BorderRadius = 10;
             datePickerRecolha.BorderThickness = 2;
             datePickerRecolha.Checked = true;
@@ -343,7 +351,7 @@
             // 
             datePickerEnc.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             datePickerEnc.BackColor = Color.White;
-            datePickerEnc.BorderColor = Color.FromArgb(50, 52, 76);
+            datePickerEnc.BorderColor = Color.FromArgb(0, 89, 89);
             datePickerEnc.BorderRadius = 10;
             datePickerEnc.BorderThickness = 2;
             datePickerEnc.Checked = true;
@@ -365,7 +373,7 @@
             // txtNIF
             // 
             txtNIF.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txtNIF.BorderColor = Color.FromArgb(50, 52, 76);
+            txtNIF.BorderColor = Color.FromArgb(0, 89, 89);
             txtNIF.BorderRadius = 10;
             txtNIF.BorderThickness = 2;
             txtNIF.CustomizableEdges = customizableEdges13;
@@ -377,7 +385,7 @@
             txtNIF.FocusedState.BorderColor = Color.Teal;
             txtNIF.Font = new Font("Segoe UI", 9F);
             txtNIF.ForeColor = Color.FromArgb(64, 64, 64);
-            txtNIF.HoverState.BorderColor = Color.Black;
+            txtNIF.HoverState.BorderColor = Color.Teal;
             txtNIF.Location = new Point(203, 19);
             txtNIF.Margin = new Padding(3, 4, 3, 4);
             txtNIF.Name = "txtNIF";
@@ -397,43 +405,99 @@
             btnAddOrder.DisabledState.CustomBorderColor = Color.DarkGray;
             btnAddOrder.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnAddOrder.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnAddOrder.Font = new Font("Segoe UI", 9F);
+            btnAddOrder.FillColor = Color.FromArgb(0, 194, 194);
+            btnAddOrder.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAddOrder.ForeColor = Color.White;
-            btnAddOrder.Location = new Point(956, 76);
+            btnAddOrder.HoverState.FillColor = Color.Teal;
+            btnAddOrder.Image = (Image)resources.GetObject("btnAddOrder.Image");
+            btnAddOrder.ImageAlign = HorizontalAlignment.Left;
+            btnAddOrder.ImageOffset = new Point(2, 0);
+            btnAddOrder.ImageSize = new Size(40, 40);
+            btnAddOrder.Location = new Point(938, 81);
             btnAddOrder.Name = "btnAddOrder";
+            btnAddOrder.Padding = new Padding(5, 0, 0, 0);
             btnAddOrder.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            btnAddOrder.Size = new Size(180, 103);
+            btnAddOrder.Size = new Size(219, 80);
             btnAddOrder.TabIndex = 3;
             btnAddOrder.Text = "Nova Encomenda";
+            btnAddOrder.TextAlign = HorizontalAlignment.Left;
             btnAddOrder.Click += btnAddOrder_Click;
             // 
             // guna2Panel2
             // 
+            guna2Panel2.Controls.Add(btnCheckPago);
+            guna2Panel2.Controls.Add(btnCheckEntrega);
             guna2Panel2.Controls.Add(btnPDF);
             guna2Panel2.Controls.Add(btnApagar);
             guna2Panel2.Controls.Add(btnEditar);
-            guna2Panel2.CustomizableEdges = customizableEdges27;
+            guna2Panel2.CustomizableEdges = customizableEdges31;
             guna2Panel2.Dock = DockStyle.Right;
             guna2Panel2.Location = new Point(938, 223);
             guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges32;
             guna2Panel2.Size = new Size(231, 529);
             guna2Panel2.TabIndex = 5;
+            // 
+            // btnCheckPago
+            // 
+            btnCheckPago.BorderRadius = 10;
+            btnCheckPago.CustomizableEdges = customizableEdges21;
+            btnCheckPago.DisabledState.BorderColor = Color.DarkGray;
+            btnCheckPago.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnCheckPago.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnCheckPago.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnCheckPago.FillColor = Color.FromArgb(255, 128, 0);
+            btnCheckPago.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCheckPago.ForeColor = Color.White;
+            btnCheckPago.Image = (Image)resources.GetObject("btnCheckPago.Image");
+            btnCheckPago.ImageSize = new Size(30, 30);
+            btnCheckPago.Location = new Point(41, 298);
+            btnCheckPago.Name = "btnCheckPago";
+            btnCheckPago.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            btnCheckPago.Size = new Size(156, 48);
+            btnCheckPago.TabIndex = 8;
+            btnCheckPago.Text = "Pago";
+            btnCheckPago.Click += btnCheckPago_Click;
+            // 
+            // btnCheckEntrega
+            // 
+            btnCheckEntrega.BorderRadius = 10;
+            btnCheckEntrega.CustomizableEdges = customizableEdges23;
+            btnCheckEntrega.DisabledState.BorderColor = Color.DarkGray;
+            btnCheckEntrega.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnCheckEntrega.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnCheckEntrega.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnCheckEntrega.FillColor = Color.FromArgb(255, 128, 0);
+            btnCheckEntrega.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCheckEntrega.ForeColor = Color.White;
+            btnCheckEntrega.Image = (Image)resources.GetObject("btnCheckEntrega.Image");
+            btnCheckEntrega.ImageSize = new Size(25, 25);
+            btnCheckEntrega.Location = new Point(41, 352);
+            btnCheckEntrega.Name = "btnCheckEntrega";
+            btnCheckEntrega.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            btnCheckEntrega.Size = new Size(156, 48);
+            btnCheckEntrega.TabIndex = 7;
+            btnCheckEntrega.Text = "Entregue";
+            btnCheckEntrega.Click += btnCheckEntrega_Click;
             // 
             // btnPDF
             // 
             btnPDF.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnPDF.BorderRadius = 10;
-            btnPDF.CustomizableEdges = customizableEdges21;
+            btnPDF.CustomizableEdges = customizableEdges25;
             btnPDF.DisabledState.BorderColor = Color.DarkGray;
             btnPDF.DisabledState.CustomBorderColor = Color.DarkGray;
             btnPDF.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnPDF.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnPDF.Font = new Font("Segoe UI", 9F);
+            btnPDF.FillColor = Color.FromArgb(0, 89, 89);
+            btnPDF.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnPDF.ForeColor = Color.White;
-            btnPDF.Location = new Point(42, 313);
+            btnPDF.HoverState.FillColor = Color.Teal;
+            btnPDF.Image = (Image)resources.GetObject("btnPDF.Image");
+            btnPDF.ImageSize = new Size(30, 30);
+            btnPDF.Location = new Point(41, 204);
             btnPDF.Name = "btnPDF";
-            btnPDF.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            btnPDF.ShadowDecoration.CustomizableEdges = customizableEdges26;
             btnPDF.Size = new Size(156, 63);
             btnPDF.TabIndex = 6;
             btnPDF.Text = "Gerar PDF";
@@ -443,16 +507,20 @@
             // 
             btnApagar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnApagar.BorderRadius = 10;
-            btnApagar.CustomizableEdges = customizableEdges23;
+            btnApagar.CustomizableEdges = customizableEdges27;
             btnApagar.DisabledState.BorderColor = Color.DarkGray;
             btnApagar.DisabledState.CustomBorderColor = Color.DarkGray;
             btnApagar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnApagar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnApagar.Font = new Font("Segoe UI", 9F);
+            btnApagar.FillColor = Color.FromArgb(0, 89, 89);
+            btnApagar.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnApagar.ForeColor = Color.White;
-            btnApagar.Location = new Point(42, 231);
+            btnApagar.HoverState.FillColor = Color.Teal;
+            btnApagar.Image = (Image)resources.GetObject("btnApagar.Image");
+            btnApagar.ImageSize = new Size(30, 30);
+            btnApagar.Location = new Point(41, 135);
             btnApagar.Name = "btnApagar";
-            btnApagar.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            btnApagar.ShadowDecoration.CustomizableEdges = customizableEdges28;
             btnApagar.Size = new Size(156, 63);
             btnApagar.TabIndex = 5;
             btnApagar.Text = "Apagar";
@@ -462,16 +530,20 @@
             // 
             btnEditar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnEditar.BorderRadius = 10;
-            btnEditar.CustomizableEdges = customizableEdges25;
+            btnEditar.CustomizableEdges = customizableEdges29;
             btnEditar.DisabledState.BorderColor = Color.DarkGray;
             btnEditar.DisabledState.CustomBorderColor = Color.DarkGray;
             btnEditar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnEditar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnEditar.Font = new Font("Segoe UI", 9F);
+            btnEditar.FillColor = Color.FromArgb(0, 89, 89);
+            btnEditar.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEditar.ForeColor = Color.White;
-            btnEditar.Location = new Point(42, 145);
+            btnEditar.HoverState.FillColor = Color.Teal;
+            btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
+            btnEditar.ImageSize = new Size(30, 30);
+            btnEditar.Location = new Point(41, 66);
             btnEditar.Name = "btnEditar";
-            btnEditar.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            btnEditar.ShadowDecoration.CustomizableEdges = customizableEdges30;
             btnEditar.Size = new Size(156, 63);
             btnEditar.TabIndex = 4;
             btnEditar.Text = "Editar";
@@ -481,6 +553,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1169, 752);
             Controls.Add(guna2Panel2);
             Controls.Add(guna2Panel1);
@@ -521,5 +594,7 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker datePickerRecolha;
         private Guna.UI2.WinForms.Guna2DateTimePicker datePickerEnc;
         private Guna.UI2.WinForms.Guna2TextBox txtNIF;
+        private Guna.UI2.WinForms.Guna2Button btnCheckPago;
+        private Guna.UI2.WinForms.Guna2Button btnCheckEntrega;
     }
 }
