@@ -41,39 +41,40 @@ namespace projetoPadariaApp.Forms
             string username = txtUsername.Text;
             string password = txtPassword.Text;
 
+            // Autenticar e, de caminho, obter ID + Nome
             if (AuthService.AuthenticateUser(username, password))
             {
-                MessageBox.Show("Login bem-sucedido!");
+                // Estes dois métodos DEVEM receber o username (ou o id), não o nome que ainda não existe
+                int funcionarioId = AuthService.GetFuncionarioId(username);
+                string funcionarioNome = AuthService.GetFuncionarioNome(username);
 
-                // Obter o ID e nome do funcionário após autenticação bem-sucedida
-                int funcionarioId = AuthService.GetFuncionarioId(Session.FuncionarioNome);
-                // Supondo que o método GetFuncionarioId existe
-                string funcionarioNome = AuthService.GetFuncionarioNome(username);  // E o método GetFuncionarioNome também
+                if (funcionarioId == 0)              // sanity-check
+                {
+                    MessageBox.Show("Falha a obter o ID do funcionário.");
+                    return;
+                }
 
-                // Armazenar as informações do usuário na sessão
+                // Guardar na sessão
                 Session.FuncionarioId = funcionarioId;
                 Session.FuncionarioNome = funcionarioNome;
 
-                bool isAdmin = AuthService.IsAdmin(username);
+                // Registar quem entrou
+                LogsService.RegistarLog(funcionarioId, $"Login efectuado ({DateTime.Now:dd/MM/yyyy HH:mm})");
 
-                if (isAdmin)
-                {
-                    AdminForm adminPanel = new AdminForm();
-                    adminPanel.Show();
-                }
+                // Abrir o painel certo
+                if (AuthService.IsAdmin(username))
+                    new AdminForm().Show();
                 else
-                {
-                    EmployeeForm employeePanel = new EmployeeForm();
-                    employeePanel.Show();
-                }
+                    new EmployeeForm().Show();
 
-                this.Hide(); // Esconde o LoginForm após autenticação
+                this.Hide();
             }
             else
             {
                 MessageBox.Show("Nome de utilizador ou senha incorretos!");
             }
         }
+
 
 
         private void btnRegister_Click(object sender, EventArgs e)

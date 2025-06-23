@@ -158,6 +158,15 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
                         cmd.Parameters.AddWithValue("@id", stockId);
 
                         int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                                //LOGS AQUI
+                        {
+
+                            LogsService.RegistarLog(
+                                Session.FuncionarioId,
+                                $"Editou matéria-prima #{stockId} → " +
+                                $"Nome: {nome}, Preço: {preco}, Qtd: {quantidade}, IVA: {iva}, Fornecedor #{id_fornecedor}");
+                        }
                         return rowsAffected > 0;
                     }
                 }

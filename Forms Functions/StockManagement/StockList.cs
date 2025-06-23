@@ -1,4 +1,5 @@
 ﻿using PadariaApp;
+using projetoPadariaApp.Services;
 using System;
 using System.Data;
 using System.Data.SQLite;
@@ -115,7 +116,15 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
                     using (var cmd = new SQLiteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
-                        cmd.ExecuteNonQuery();
+                        int rows = cmd.ExecuteNonQuery();
+
+                        if (rows > 0)
+                        {
+                            //LOGS AQUI
+                            LogsService.RegistarLog(
+                                Session.FuncionarioId,
+                                $"Removeu matéria-prima #{id} (Fornecedor «{fornecedorNome}»)");
+                        }
                     }
                 }
 

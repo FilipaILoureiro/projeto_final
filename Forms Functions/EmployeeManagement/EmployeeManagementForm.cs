@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using PadariaApp;
 using projetoPadariaApp.Forms;
 using BCrypt.Net;
+using projetoPadariaApp.Services;
 
 namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
 {
@@ -98,7 +99,16 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                     using (var cmd = new SQLiteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
-                        cmd.ExecuteNonQuery();
+                        int rows = cmd.ExecuteNonQuery();
+
+                        if (rows > 0)
+                        {
+                            // -------------- NOVO --------------
+                            LogsService.RegistarLog(
+                                Session.FuncionarioId,
+                                $"Removeu o funcionário #{id} («{nome}»)");
+                            // -----------------------------------
+                        }
                     }
                 }
                 MessageBox.Show("Funcionário removido com sucesso!");
@@ -109,23 +119,35 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
         // para promover funcionário a admin
         private void PromoverAdmin(int id, string nome)
         {
-            DialogResult confirm = MessageBox.Show($"Deseja promover {nome} a administrador?", "Confirmação", MessageBoxButtons.YesNo);
+            DialogResult confirm = MessageBox.Show(
+                $"Deseja promover {nome} a administrador?", "Confirmação", MessageBoxButtons.YesNo);
+
             if (confirm == DialogResult.Yes)
             {
                 using (var conn = DatabaseManage.GetInstance().GetConnection())
                 {
                     conn.Open();
-                    string query = "UPDATE tipo_de_func SET admin = 'S' WHERE id_funcionario = @id";
-                    using (var cmd = new SQLiteCommand(query, conn))
+                    const string sql = "UPDATE tipo_de_func SET admin = 'S' WHERE id_funcionario = @id";
+                    using (var cmd = new SQLiteCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
-                        cmd.ExecuteNonQuery();
+                        int rows = cmd.ExecuteNonQuery();
+
+                        if (rows > 0)
+                        {
+                            //LOGS AQUI
+                            LogsService.RegistarLog(
+                                Session.FuncionarioId,
+                                $"Promoveu o funcionário #{id} («{nome}») a ADMIN");
+                        }
                     }
                 }
+
                 MessageBox.Show($"{nome} agora é Administrador!");
                 LoadFuncionarios();
             }
         }
+
 
         private void dgvEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

@@ -235,7 +235,7 @@ namespace projetoPadariaApp.Services
                         return id; // Retorna o ID do funcionário
                     }
 
-                    return null; // Retorna null se não encontrar o usuário
+                    return 000; // Retorna null se não encontrar o usuário
                 }
             }
         }

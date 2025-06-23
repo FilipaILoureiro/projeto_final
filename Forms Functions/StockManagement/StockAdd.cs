@@ -82,6 +82,14 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
                             if (rows > 0)
                             {
                                 transaction.Commit();  // Confirma a transação apenas se a inserção foi bem-sucedida
+
+                                // ------------- NOVO -------------
+                                LogsService.RegistarLog(
+                                    Session.FuncionarioId,
+                                    $"Adicionou matéria-prima «{nome}» (Fornecedor #{id_fornecedor}, " +
+                                    $"Qtd={quantidade}, Preço={preco}, IVA={iva})");
+                                // ---------------------------------
+
                                 return true;
                             }
                             else
