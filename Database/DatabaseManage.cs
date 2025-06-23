@@ -34,7 +34,7 @@ namespace PadariaApp
             // Crie uma nova conexão cada vez que for solicitada
             return new SQLiteConnection(connectionString);
         }
-        
+
 
         private void InitializeDatabase()
         {
@@ -47,8 +47,10 @@ namespace PadariaApp
                     try
                     {
                         CreateTables(conn);
-
                         CreateFuncaoTableAndInsertData(conn);
+
+                        // Inserir utilizadores de teste
+                        InsertTestUsers(conn);
 
                         transaction.Commit();
 
@@ -195,6 +197,75 @@ namespace PadariaApp
                     cmd.Parameters.AddWithValue("@funcao", funcao);
                     cmd.ExecuteNonQuery();
                 }
+            }
+        }
+
+        private void InsertTestUsers(SQLiteConnection conn)
+        {
+            // Buscar os IDs das funções
+            int idAdmin = GetFuncaoId(conn, "Administrador");
+            int idCaixa = GetFuncaoId(conn, "Caixa");
+
+            if (idAdmin == -1 || idCaixa == -1)
+            {
+                Console.WriteLine("Erro: Não foi possível encontrar os IDs das funções.");
+                return;
+            }
+
+            // Hashear as passwords
+            string hashedPasswordAdmin = BCrypt.Net.BCrypt.HashPassword("admin123");
+            string hashedPasswordFunc = BCrypt.Net.BCrypt.HashPassword("func123");
+
+            // Inserir utilizador admin
+            string insertAdmin = @"INSERT INTO funcionario (nome, contacto, username, pass, id_funcao)
+                                VALUES ('Admin Teste', '912345678', 'admin', @hashedPass, @idAdmin);
+                                SELECT last_insert_rowid();";
+
+            using (var cmd = new SQLiteCommand(insertAdmin, conn))
+            {
+                cmd.Parameters.AddWithValue("@hashedPass", hashedPasswordAdmin);
+                cmd.Parameters.AddWithValue("@idAdmin", idAdmin);
+                long adminId = (long)cmd.ExecuteScalar();
+
+                string insertTipoFuncAdmin = "INSERT INTO tipo_de_func (id_funcionario, admin) VALUES (@id, 'S');";
+                using (var cmdTipo = new SQLiteCommand(insertTipoFuncAdmin, conn))
+                {
+                    cmdTipo.Parameters.AddWithValue("@id", adminId);
+                    cmdTipo.ExecuteNonQuery();
+                }
+            }
+
+            // Inserir utilizador funcionário
+            string insertUser = @"INSERT INTO funcionario (nome, contacto, username, pass, id_funcao)
+                                VALUES ('Funcionario Teste', '923456789', 'func', @hashedPass, @idFuncao);
+                                SELECT last_insert_rowid();";
+
+            using (var cmd = new SQLiteCommand(insertUser, conn))
+            {
+                cmd.Parameters.AddWithValue("@hashedPass", hashedPasswordFunc);
+                cmd.Parameters.AddWithValue("@idFuncao", idCaixa);
+                long funcId = (long)cmd.ExecuteScalar();
+
+                string insertTipoFunc = "INSERT INTO tipo_de_func (id_funcionario, admin) VALUES (@id, 'N');";
+                using (var cmdTipo = new SQLiteCommand(insertTipoFunc, conn))
+                {
+                    cmdTipo.Parameters.AddWithValue("@id", funcId);
+                    cmdTipo.ExecuteNonQuery();
+                }
+            }
+
+            Console.WriteLine("Utilizadores de teste inseridos com sucesso!");
+        }
+
+
+        private int GetFuncaoId(SQLiteConnection conn, string nomeFuncao)
+        {
+            string query = "SELECT id_funcao FROM funcao WHERE funcao = @nomeFuncao;";
+            using (var cmd = new SQLiteCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@nomeFuncao", nomeFuncao);
+                object result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : -1;
             }
         }
 

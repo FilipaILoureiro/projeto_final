@@ -62,7 +62,7 @@
             btnAlterar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnAlterar.Font = new Font("Segoe UI", 9F);
             btnAlterar.ForeColor = Color.White;
-            btnAlterar.Location = new Point(826, 528);
+            btnAlterar.Location = new Point(50, 172);
             btnAlterar.Name = "btnAlterar";
             btnAlterar.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnAlterar.Size = new Size(167, 53);
@@ -73,7 +73,7 @@
             // lblProduto
             // 
             lblProduto.BackColor = Color.Transparent;
-            lblProduto.Location = new Point(119, 445);
+            lblProduto.Location = new Point(142, 490);
             lblProduto.Name = "lblProduto";
             lblProduto.Size = new Size(122, 22);
             lblProduto.TabIndex = 20;
@@ -88,10 +88,10 @@
             btnProdutos.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnProdutos.Font = new Font("Segoe UI", 9F);
             btnProdutos.ForeColor = Color.White;
-            btnProdutos.Location = new Point(258, 434);
+            btnProdutos.Location = new Point(281, 479);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnProdutos.Size = new Size(474, 42);
+            btnProdutos.Size = new Size(293, 42);
             btnProdutos.TabIndex = 19;
             btnProdutos.Text = "Catálogo";
             btnProdutos.Click += btnProdutos_Click;
@@ -99,7 +99,7 @@
             // lblEntregue
             // 
             lblEntregue.BackColor = Color.Transparent;
-            lblEntregue.Location = new Point(117, 371);
+            lblEntregue.Location = new Point(140, 416);
             lblEntregue.Name = "lblEntregue";
             lblEntregue.Size = new Size(124, 22);
             lblEntregue.TabIndex = 18;
@@ -116,16 +116,16 @@
             cbEntregue.Font = new Font("Segoe UI", 10F);
             cbEntregue.ForeColor = Color.FromArgb(68, 88, 112);
             cbEntregue.ItemHeight = 30;
-            cbEntregue.Location = new Point(257, 357);
+            cbEntregue.Location = new Point(280, 402);
             cbEntregue.Name = "cbEntregue";
             cbEntregue.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            cbEntregue.Size = new Size(475, 36);
+            cbEntregue.Size = new Size(294, 36);
             cbEntregue.TabIndex = 17;
             // 
             // lblPago
             // 
             lblPago.BackColor = Color.Transparent;
-            lblPago.Location = new Point(91, 293);
+            lblPago.Location = new Point(114, 338);
             lblPago.Name = "lblPago";
             lblPago.Size = new Size(150, 22);
             lblPago.TabIndex = 16;
@@ -142,16 +142,16 @@
             cbPago.Font = new Font("Segoe UI", 10F);
             cbPago.ForeColor = Color.FromArgb(68, 88, 112);
             cbPago.ItemHeight = 30;
-            cbPago.Location = new Point(258, 285);
+            cbPago.Location = new Point(281, 330);
             cbPago.Name = "cbPago";
             cbPago.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            cbPago.Size = new Size(474, 36);
+            cbPago.Size = new Size(293, 36);
             cbPago.TabIndex = 15;
             // 
             // lblDataRecolha
             // 
             lblDataRecolha.BackColor = Color.Transparent;
-            lblDataRecolha.Location = new Point(132, 195);
+            lblDataRecolha.Location = new Point(155, 240);
             lblDataRecolha.Name = "lblDataRecolha";
             lblDataRecolha.Size = new Size(109, 22);
             lblDataRecolha.TabIndex = 14;
@@ -163,19 +163,19 @@
             dtpDataRecolha.CustomizableEdges = customizableEdges9;
             dtpDataRecolha.Font = new Font("Segoe UI", 9F);
             dtpDataRecolha.Format = DateTimePickerFormat.Long;
-            dtpDataRecolha.Location = new Point(258, 164);
+            dtpDataRecolha.Location = new Point(281, 209);
             dtpDataRecolha.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpDataRecolha.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpDataRecolha.Name = "dtpDataRecolha";
             dtpDataRecolha.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            dtpDataRecolha.Size = new Size(474, 71);
+            dtpDataRecolha.Size = new Size(293, 71);
             dtpDataRecolha.TabIndex = 13;
             dtpDataRecolha.Value = new DateTime(2025, 4, 22, 16, 39, 38, 306);
             // 
             // lblNIF
             // 
             lblNIF.BackColor = Color.Transparent;
-            lblNIF.Location = new Point(169, 83);
+            lblNIF.Location = new Point(192, 128);
             lblNIF.Name = "lblNIF";
             lblNIF.Size = new Size(25, 22);
             lblNIF.TabIndex = 12;
@@ -192,20 +192,20 @@
             txtNIF.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNIF.Font = new Font("Segoe UI", 9F);
             txtNIF.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNIF.Location = new Point(257, 60);
+            txtNIF.Location = new Point(280, 105);
             txtNIF.Margin = new Padding(3, 4, 3, 4);
             txtNIF.Name = "txtNIF";
             txtNIF.PlaceholderText = "";
             txtNIF.SelectedText = "";
             txtNIF.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            txtNIF.Size = new Size(475, 61);
+            txtNIF.Size = new Size(294, 61);
             txtNIF.TabIndex = 11;
             // 
             // EditOrderForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1084, 640);
+            ClientSize = new Size(819, 553);
             Controls.Add(btnAlterar);
             Controls.Add(lblProduto);
             Controls.Add(btnProdutos);
