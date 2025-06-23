@@ -101,7 +101,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                 MessageBox.Show($"Erro ao carregar os dados do funcionário: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+            
 
         private void btnAlterar_Click_1(object sender, EventArgs e)
         {
@@ -219,11 +219,6 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-        }
-
-        private void txtNome_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

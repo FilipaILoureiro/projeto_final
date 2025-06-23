@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using projetoPadariaApp.Forms_Functions;
 using projetoPadariaApp.Forms_Functions.EmployeeManagement;
+using projetoPadariaApp.Forms_Functions.OrdersManagement;
+using projetoPadariaApp.Forms_Functions.ProductManagement;
 using projetoPadariaApp.Forms_Functions.StockManagement;
 using projetoPadariaApp.Forms_Functions.SupplierManagement;
 using projetoPadariaApp.Forms_Login_e_Registo;
@@ -55,6 +57,24 @@ namespace projetoPadariaApp.Forms
         {
             LogsList logslist = new LogsList();
             logslist.Show();
+        }
+
+        private void btnGallery_Click(object sender, EventArgs e)
+        {
+            ProductGalleryForm productGalleryForm = new ProductGalleryForm();
+            productGalleryForm.Show();
+        }
+
+        private void btnEncomendas_Click(object sender, EventArgs e)
+        {
+            OrderManagementForm orderManagementForm = new OrderManagementForm();
+            orderManagementForm.Show();
+        }
+
+        private void btnProdutos_Click(object sender, EventArgs e)
+        {
+            ProductManagementForm productManagementForm = new ProductManagementForm();
+            productManagementForm.Show();
         }
     }
 
