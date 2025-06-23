@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using projetoPadariaApp.Forms;
 using projetoPadariaApp.Properties.Style;
 using projetoPadariaApp.Services;
 using TheArtOfDevHtmlRenderer.Adapters;
@@ -68,14 +69,14 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 
             try
             {
-                int larguraTotal = dgvOrders.ClientSize.Width; 
+                int larguraTotal = dgvOrders.ClientSize.Width;
 
-                dgvOrders.Columns["Cliente"].Width = (int)(larguraTotal * 0.12); 
-                dgvOrders.Columns["Data"].Width = (int)(larguraTotal * 0.22);    
-                dgvOrders.Columns["Recolha"].Width = (int)(larguraTotal * 0.22); 
-                dgvOrders.Columns["Total"].Width = (int)(larguraTotal * 0.15);   
-                dgvOrders.Columns["Pago"].Width = (int)(larguraTotal * 0.14);    
-                dgvOrders.Columns["Entregue"].Width = (int)(larguraTotal * 0.15); 
+                dgvOrders.Columns["Cliente"].Width = (int)(larguraTotal * 0.12);
+                dgvOrders.Columns["Data"].Width = (int)(larguraTotal * 0.22);
+                dgvOrders.Columns["Recolha"].Width = (int)(larguraTotal * 0.22);
+                dgvOrders.Columns["Total"].Width = (int)(larguraTotal * 0.15);
+                dgvOrders.Columns["Pago"].Width = (int)(larguraTotal * 0.14);
+                dgvOrders.Columns["Entregue"].Width = (int)(larguraTotal * 0.15);
             }
             catch (Exception ex)
             {
@@ -209,12 +210,12 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     }
                     else if (!pago && !entregue)
                     {
-                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 121, 136); 
+                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 121, 136);
                         row.DefaultCellStyle.ForeColor = Color.Black;
                     }
                     else
                     {
-                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 242, 157); 
+                        row.DefaultCellStyle.BackColor = Color.FromArgb(255, 242, 157);
                         row.DefaultCellStyle.ForeColor = Color.Black;
                     }
                 }
@@ -268,7 +269,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 
             // Configurações visuais do cabeçalho
             dgvOrders.EnableHeadersVisualStyles = false;
-            dgvOrders.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 128, 128); 
+            dgvOrders.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 128, 128);
             dgvOrders.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgvOrders.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 11, FontStyle.Bold);
             dgvOrders.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -455,18 +456,87 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
         }
 
         #region Botões de Ação
+        // para adicionar nova encomenda e corrigir o fundo
+        private Panel modalContainer;
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
             try
             {
-                AddOrderForm addOrderForm = new AddOrderForm();
-                addOrderForm.FormClosed += (s, args) => LoadOrders();
-                addOrderForm.ShowDialog();
+                CreateModalContainer();
+                LoadAddOrderInContainer();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao abrir formulário de adição: {ex.Message}", "Erro",
+                CloseModalContainer();
+                MessageBox.Show($"Erro ao abrir formulário: {ex.Message}", "Erro",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CreateModalContainer()
+        {
+            modalContainer = new Panel
+            {
+                Size = new Size(837, 600),
+                BackColor = Color.FromArgb(0, 89, 89),
+                Anchor = AnchorStyles.None,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+
+            Screen currentScreen = Screen.FromControl(this);
+            System.Drawing.Rectangle screenBounds = currentScreen.WorkingArea;
+            Point screenCenter = new Point(
+                screenBounds.X + (screenBounds.Width - modalContainer.Width) / 2,
+                screenBounds.Y + (screenBounds.Height - modalContainer.Height) / 2
+            );
+            Point relativeLocation = this.PointToClient(screenCenter);
+            modalContainer.Location = relativeLocation;
+
+            this.Controls.Add(modalContainer);
+            modalContainer.BringToFront();
+
+            // Desativar outros controles
+            foreach (Control ctrl in this.Controls)
+            {
+                if (ctrl != modalContainer)
+                    ctrl.Enabled = false;
+            }
+        }
+
+        private void LoadAddOrderInContainer()
+        {
+            AddOrderForm addForm = new AddOrderForm
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+
+            modalContainer.Controls.Add(addForm);
+            addForm.FormClosed += OnAddOrderClosed;
+            addForm.Show();
+        }
+
+        private void OnAddOrderClosed(object sender, FormClosedEventArgs e)
+        {
+            CloseModalContainer();
+            LoadOrders();
+        }
+
+        private void CloseModalContainer()
+        {
+            if (modalContainer != null)
+            {
+                // Reativar outros controles
+                foreach (Control ctrl in this.Controls)
+                {
+                    if (ctrl != modalContainer)
+                        ctrl.Enabled = true;
+                }
+
+                this.Controls.Remove(modalContainer);
+                modalContainer.Dispose();
+                modalContainer = null;
             }
         }
 

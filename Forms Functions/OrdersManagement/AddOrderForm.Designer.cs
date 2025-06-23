@@ -37,9 +37,13 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOrderForm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             txtNIF = new Guna.UI2.WinForms.Guna2TextBox();
             lblNIF = new Guna.UI2.WinForms.Guna2HtmlLabel();
             dtpDataRecolha = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -50,11 +54,19 @@
             lblEntregue = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnProdutos = new Guna.UI2.WinForms.Guna2Button();
             lblProduto = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            btnGuardar = new Guna.UI2.WinForms.Guna2Button();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            btnClose = new Guna.UI2.WinForms.Guna2Button();
+            lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            btnGuardar = new Guna.UI2.WinForms.Guna2CircleButton();
+            guna2Panel1.SuspendLayout();
             SuspendLayout();
             // 
             // txtNIF
             // 
+            txtNIF.BackColor = Color.Transparent;
+            txtNIF.BorderColor = Color.FromArgb(0, 89, 89);
+            txtNIF.BorderRadius = 10;
+            txtNIF.BorderThickness = 2;
             txtNIF.CustomizableEdges = customizableEdges1;
             txtNIF.DefaultText = "";
             txtNIF.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -64,51 +76,64 @@
             txtNIF.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNIF.Font = new Font("Segoe UI", 9F);
             txtNIF.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNIF.Location = new Point(333, 82);
+            txtNIF.Location = new Point(304, 150);
             txtNIF.Margin = new Padding(3, 4, 3, 4);
             txtNIF.Name = "txtNIF";
             txtNIF.PlaceholderText = "";
             txtNIF.SelectedText = "";
             txtNIF.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtNIF.Size = new Size(475, 61);
+            txtNIF.Size = new Size(371, 41);
             txtNIF.TabIndex = 0;
             // 
             // lblNIF
             // 
             lblNIF.BackColor = Color.Transparent;
-            lblNIF.Location = new Point(245, 105);
+            lblNIF.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNIF.ForeColor = Color.FromArgb(64, 64, 64);
+            lblNIF.Location = new Point(237, 154);
             lblNIF.Name = "lblNIF";
-            lblNIF.Size = new Size(25, 22);
+            lblNIF.Size = new Size(35, 30);
             lblNIF.TabIndex = 1;
             lblNIF.Text = "NIF";
             // 
             // dtpDataRecolha
             // 
+            dtpDataRecolha.BorderColor = Color.FromArgb(0, 89, 89);
+            dtpDataRecolha.BorderRadius = 10;
+            dtpDataRecolha.BorderThickness = 2;
             dtpDataRecolha.Checked = true;
+            dtpDataRecolha.CheckedState.FillColor = Color.White;
             dtpDataRecolha.CustomizableEdges = customizableEdges3;
-            dtpDataRecolha.Font = new Font("Segoe UI", 9F);
-            dtpDataRecolha.Format = DateTimePickerFormat.Long;
-            dtpDataRecolha.Location = new Point(334, 186);
+            dtpDataRecolha.FillColor = Color.White;
+            dtpDataRecolha.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpDataRecolha.ForeColor = Color.DimGray;
+            dtpDataRecolha.Format = DateTimePickerFormat.Short;
+            dtpDataRecolha.Location = new Point(304, 220);
             dtpDataRecolha.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpDataRecolha.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpDataRecolha.Name = "dtpDataRecolha";
             dtpDataRecolha.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            dtpDataRecolha.Size = new Size(474, 71);
+            dtpDataRecolha.Size = new Size(371, 41);
             dtpDataRecolha.TabIndex = 2;
             dtpDataRecolha.Value = new DateTime(2025, 4, 22, 16, 39, 38, 306);
             // 
             // lblDataRecolha
             // 
             lblDataRecolha.BackColor = Color.Transparent;
-            lblDataRecolha.Location = new Point(208, 217);
+            lblDataRecolha.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblDataRecolha.ForeColor = Color.FromArgb(64, 64, 64);
+            lblDataRecolha.Location = new Point(119, 225);
             lblDataRecolha.Name = "lblDataRecolha";
-            lblDataRecolha.Size = new Size(109, 22);
+            lblDataRecolha.Size = new Size(153, 30);
             lblDataRecolha.TabIndex = 3;
             lblDataRecolha.Text = "Data de recolha";
             // 
             // cbPago
             // 
             cbPago.BackColor = Color.Transparent;
+            cbPago.BorderColor = Color.FromArgb(0, 89, 89);
+            cbPago.BorderRadius = 10;
+            cbPago.BorderThickness = 2;
             cbPago.CustomizableEdges = customizableEdges5;
             cbPago.DrawMode = DrawMode.OwnerDrawFixed;
             cbPago.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -117,24 +142,29 @@
             cbPago.Font = new Font("Segoe UI", 10F);
             cbPago.ForeColor = Color.FromArgb(68, 88, 112);
             cbPago.ItemHeight = 30;
-            cbPago.Location = new Point(334, 307);
+            cbPago.Location = new Point(304, 293);
             cbPago.Name = "cbPago";
             cbPago.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            cbPago.Size = new Size(474, 36);
+            cbPago.Size = new Size(371, 36);
             cbPago.TabIndex = 4;
             // 
             // lblPago
             // 
             lblPago.BackColor = Color.Transparent;
-            lblPago.Location = new Point(167, 315);
+            lblPago.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblPago.ForeColor = Color.FromArgb(64, 64, 64);
+            lblPago.Location = new Point(64, 299);
             lblPago.Name = "lblPago";
-            lblPago.Size = new Size(150, 22);
+            lblPago.Size = new Size(208, 30);
             lblPago.TabIndex = 5;
             lblPago.Text = "Estado de pagamento";
             // 
             // cbEntregue
             // 
             cbEntregue.BackColor = Color.Transparent;
+            cbEntregue.BorderColor = Color.FromArgb(0, 89, 89);
+            cbEntregue.BorderRadius = 10;
+            cbEntregue.BorderThickness = 2;
             cbEntregue.CustomizableEdges = customizableEdges7;
             cbEntregue.DrawMode = DrawMode.OwnerDrawFixed;
             cbEntregue.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -143,34 +173,40 @@
             cbEntregue.Font = new Font("Segoe UI", 10F);
             cbEntregue.ForeColor = Color.FromArgb(68, 88, 112);
             cbEntregue.ItemHeight = 30;
-            cbEntregue.Location = new Point(333, 379);
+            cbEntregue.Location = new Point(304, 363);
             cbEntregue.Name = "cbEntregue";
             cbEntregue.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            cbEntregue.Size = new Size(475, 36);
+            cbEntregue.Size = new Size(371, 36);
             cbEntregue.TabIndex = 6;
             // 
             // lblEntregue
             // 
             lblEntregue.BackColor = Color.Transparent;
-            lblEntregue.Location = new Point(193, 393);
+            lblEntregue.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblEntregue.ForeColor = Color.FromArgb(64, 64, 64);
+            lblEntregue.Location = new Point(98, 369);
             lblEntregue.Name = "lblEntregue";
-            lblEntregue.Size = new Size(124, 22);
+            lblEntregue.Size = new Size(174, 30);
             lblEntregue.TabIndex = 7;
             lblEntregue.Text = "Estado de entrega";
             // 
             // btnProdutos
             // 
+            btnProdutos.BorderRadius = 10;
             btnProdutos.CustomizableEdges = customizableEdges9;
             btnProdutos.DisabledState.BorderColor = Color.DarkGray;
             btnProdutos.DisabledState.CustomBorderColor = Color.DarkGray;
             btnProdutos.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnProdutos.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnProdutos.Font = new Font("Segoe UI", 9F);
+            btnProdutos.FillColor = Color.FromArgb(0, 89, 89);
+            btnProdutos.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnProdutos.ForeColor = Color.White;
-            btnProdutos.Location = new Point(334, 456);
+            btnProdutos.Image = (Image)resources.GetObject("btnProdutos.Image");
+            btnProdutos.ImageSize = new Size(35, 35);
+            btnProdutos.Location = new Point(304, 436);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnProdutos.Size = new Size(474, 42);
+            btnProdutos.Size = new Size(371, 42);
             btnProdutos.TabIndex = 8;
             btnProdutos.Text = "Catálogo";
             btnProdutos.Click += btnProdutos_Click;
@@ -178,35 +214,90 @@
             // lblProduto
             // 
             lblProduto.BackColor = Color.Transparent;
-            lblProduto.Location = new Point(195, 467);
+            lblProduto.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblProduto.ForeColor = Color.FromArgb(64, 64, 64);
+            lblProduto.Location = new Point(99, 441);
             lblProduto.Name = "lblProduto";
-            lblProduto.Size = new Size(122, 22);
+            lblProduto.Size = new Size(173, 30);
             lblProduto.TabIndex = 9;
             lblProduto.Text = "Escolher produtos";
             // 
+            // guna2Panel1
+            // 
+            guna2Panel1.BackColor = Color.Teal;
+            guna2Panel1.Controls.Add(btnClose);
+            guna2Panel1.Controls.Add(lblTitle);
+            guna2Panel1.CustomizableEdges = customizableEdges13;
+            guna2Panel1.Dock = DockStyle.Top;
+            guna2Panel1.Location = new Point(0, 0);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            guna2Panel1.Size = new Size(837, 91);
+            guna2Panel1.TabIndex = 11;
+            // 
+            // btnClose
+            // 
+            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnClose.BackColor = Color.Transparent;
+            btnClose.CustomizableEdges = customizableEdges11;
+            btnClose.DisabledState.BorderColor = Color.DarkGray;
+            btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnClose.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnClose.FillColor = Color.Transparent;
+            btnClose.Font = new Font("Segoe UI", 9F);
+            btnClose.ForeColor = Color.White;
+            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
+            btnClose.ImageSize = new Size(40, 40);
+            btnClose.Location = new Point(801, 0);
+            btnClose.Name = "btnClose";
+            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnClose.Size = new Size(36, 34);
+            btnClose.TabIndex = 1;
+            btnClose.Click += btnClose_Click;
+            // 
+            // lblTitle
+            // 
+            lblTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblTitle.AutoSize = false;
+            lblTitle.BackColor = Color.Transparent;
+            lblTitle.Font = new Font("Segoe UI", 22F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(0, 0);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(837, 88);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Criar Nova Encomenda";
+            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
             // btnGuardar
             // 
-            btnGuardar.CustomizableEdges = customizableEdges11;
+            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnGuardar.DisabledState.BorderColor = Color.DarkGray;
             btnGuardar.DisabledState.CustomBorderColor = Color.DarkGray;
             btnGuardar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnGuardar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnGuardar.FillColor = Color.FromArgb(0, 194, 194);
             btnGuardar.Font = new Font("Segoe UI", 9F);
             btnGuardar.ForeColor = Color.White;
-            btnGuardar.Location = new Point(902, 550);
+            btnGuardar.Image = (Image)resources.GetObject("btnGuardar.Image");
+            btnGuardar.ImageSize = new Size(50, 50);
+            btnGuardar.Location = new Point(714, 505);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnGuardar.Size = new Size(167, 53);
-            btnGuardar.TabIndex = 10;
-            btnGuardar.Text = "Guardar";
+            btnGuardar.ShadowDecoration.CustomizableEdges = customizableEdges15;
+            btnGuardar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            btnGuardar.Size = new Size(84, 74);
+            btnGuardar.TabIndex = 12;
             btnGuardar.Click += btnGuardar_Click;
             // 
             // AddOrderForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1114, 633);
+            BackColor = Color.White;
+            ClientSize = new Size(837, 600);
             Controls.Add(btnGuardar);
+            Controls.Add(guna2Panel1);
             Controls.Add(lblProduto);
             Controls.Add(btnProdutos);
             Controls.Add(lblEntregue);
@@ -217,8 +308,11 @@
             Controls.Add(dtpDataRecolha);
             Controls.Add(lblNIF);
             Controls.Add(txtNIF);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "AddOrderForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AddOrderForm";
+            guna2Panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -235,6 +329,9 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblEntregue;
         private Guna.UI2.WinForms.Guna2Button btnProdutos;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblProduto;
-        private Guna.UI2.WinForms.Guna2Button btnGuardar;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Button btnClose;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
+        private Guna.UI2.WinForms.Guna2CircleButton btnGuardar;
     }
 }
