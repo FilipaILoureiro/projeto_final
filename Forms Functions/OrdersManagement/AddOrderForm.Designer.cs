@@ -39,11 +39,11 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOrderForm));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             txtNIF = new Guna.UI2.WinForms.Guna2TextBox();
             lblNIF = new Guna.UI2.WinForms.Guna2HtmlLabel();
             dtpDataRecolha = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -54,10 +54,10 @@
             lblEntregue = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnProdutos = new Guna.UI2.WinForms.Guna2Button();
             lblProduto = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            btnGuardar = new Guna.UI2.WinForms.Guna2CircleButton();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             btnClose = new Guna.UI2.WinForms.Guna2Button();
-            lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            btnGuardar = new Guna.UI2.WinForms.Guna2CircleButton();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -222,54 +222,6 @@
             lblProduto.TabIndex = 9;
             lblProduto.Text = "Escolher produtos";
             // 
-            // guna2Panel1
-            // 
-            guna2Panel1.BackColor = Color.Teal;
-            guna2Panel1.Controls.Add(btnClose);
-            guna2Panel1.Controls.Add(lblTitle);
-            guna2Panel1.CustomizableEdges = customizableEdges13;
-            guna2Panel1.Dock = DockStyle.Top;
-            guna2Panel1.Location = new Point(0, 0);
-            guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2Panel1.Size = new Size(837, 91);
-            guna2Panel1.TabIndex = 11;
-            // 
-            // btnClose
-            // 
-            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnClose.BackColor = Color.Transparent;
-            btnClose.CustomizableEdges = customizableEdges11;
-            btnClose.DisabledState.BorderColor = Color.DarkGray;
-            btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnClose.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnClose.FillColor = Color.Transparent;
-            btnClose.Font = new Font("Segoe UI", 9F);
-            btnClose.ForeColor = Color.White;
-            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
-            btnClose.ImageSize = new Size(40, 40);
-            btnClose.Location = new Point(801, 0);
-            btnClose.Name = "btnClose";
-            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnClose.Size = new Size(36, 34);
-            btnClose.TabIndex = 1;
-            btnClose.Click += btnClose_Click;
-            // 
-            // lblTitle
-            // 
-            lblTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lblTitle.AutoSize = false;
-            lblTitle.BackColor = Color.Transparent;
-            lblTitle.Font = new Font("Segoe UI", 22F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(0, 0);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(837, 88);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "Criar Nova Encomenda";
-            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
             // btnGuardar
             // 
             btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
@@ -284,11 +236,57 @@
             btnGuardar.ImageSize = new Size(50, 50);
             btnGuardar.Location = new Point(714, 505);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.ShadowDecoration.CustomizableEdges = customizableEdges15;
+            btnGuardar.ShadowDecoration.CustomizableEdges = customizableEdges11;
             btnGuardar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnGuardar.Size = new Size(84, 74);
             btnGuardar.TabIndex = 12;
             btnGuardar.Click += btnGuardar_Click;
+            // 
+            // guna2Panel1
+            // 
+            guna2Panel1.BackColor = Color.Teal;
+            guna2Panel1.Controls.Add(guna2HtmlLabel1);
+            guna2Panel1.Controls.Add(btnClose);
+            guna2Panel1.CustomizableEdges = customizableEdges14;
+            guna2Panel1.Dock = DockStyle.Top;
+            guna2Panel1.Location = new Point(0, 0);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges15;
+            guna2Panel1.Size = new Size(837, 91);
+            guna2Panel1.TabIndex = 11;
+            // 
+            // btnClose
+            // 
+            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnClose.BackColor = Color.Transparent;
+            btnClose.CustomizableEdges = customizableEdges12;
+            btnClose.DisabledState.BorderColor = Color.DarkGray;
+            btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnClose.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnClose.FillColor = Color.Transparent;
+            btnClose.Font = new Font("Segoe UI", 9F);
+            btnClose.ForeColor = Color.White;
+            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
+            btnClose.ImageSize = new Size(40, 40);
+            btnClose.Location = new Point(801, 3);
+            btnClose.Name = "btnClose";
+            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges13;
+            btnClose.Size = new Size(36, 34);
+            btnClose.TabIndex = 24;
+            // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.AutoSize = false;
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel1.ForeColor = Color.White;
+            guna2HtmlLabel1.Location = new Point(37, 0);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(761, 88);
+            guna2HtmlLabel1.TabIndex = 25;
+            guna2HtmlLabel1.Text = "Criar Nova Encomenda";
+            guna2HtmlLabel1.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // AddOrderForm
             // 
@@ -329,9 +327,9 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblEntregue;
         private Guna.UI2.WinForms.Guna2Button btnProdutos;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblProduto;
+        private Guna.UI2.WinForms.Guna2CircleButton btnGuardar;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2Button btnClose;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
-        private Guna.UI2.WinForms.Guna2CircleButton btnGuardar;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
     }
 }
