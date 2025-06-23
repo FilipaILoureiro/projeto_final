@@ -28,18 +28,18 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             // Configurar ComboBox Entregue
             cbEntregue.Items.Clear();
             cbEntregue.Items.AddRange(new string[] { "Não", "Sim" });
-            cbEntregue.SelectedIndex = 0; // "Não" como padrão
-            cbEntregue.DropDownStyle = ComboBoxStyle.DropDownList; // Não permite edição
+            cbEntregue.SelectedIndex = 0; 
+            cbEntregue.DropDownStyle = ComboBoxStyle.DropDownList; 
 
             // Configurar ComboBox Pago
             cbPago.Items.Clear();
             cbPago.Items.AddRange(new string[] { "Não pago", "Pago" });
-            cbPago.SelectedIndex = 0; // "Não pago" como padrão
-            cbPago.DropDownStyle = ComboBoxStyle.DropDownList; // Não permite edição
+            cbPago.SelectedIndex = 0; 
+            cbPago.DropDownStyle = ComboBoxStyle.DropDownList; 
 
             // Configurar DateTimePicker
-            dtpDataRecolha.MinDate = DateTime.Today; // Não permite datas passadas
-            dtpDataRecolha.Value = DateTime.Today; // Data atual como padrão
+            dtpDataRecolha.MinDate = DateTime.Today; 
+            dtpDataRecolha.Value = DateTime.Today; 
         }
 
         private void ConfigurarValidacoes()
@@ -47,17 +47,13 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             // Configurar validação para NIF (apenas números)
             txtNIF.KeyPress += (sender, e) =>
             {
-                // Permite apenas números, backspace e delete
                 if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != (char)Keys.Delete)
                 {
                     e.Handled = true;
-                    // Mostrar tooltip com aviso
                     ToolTip tooltip = new ToolTip();
                     tooltip.Show("Apenas números são permitidos", txtNIF, 0, -20, 2000);
                 }
             };
-
-            // Limitar o comprimento do NIF
             txtNIF.MaxLength = 9;
         }
 
@@ -73,7 +69,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                         .Select(p => (p.productId, p.quantidade))
                         .ToList();
 
-                    // Mostrar feedback visual de que produtos foram selecionados
                     if (produtosSelecionados.Count > 0)
                     {
                         btnProdutos.Text = $"Produtos Selecionados ({produtosSelecionados.Count})";
@@ -154,7 +149,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                 using var conn = new SQLiteConnection("Data Source=projetoPadariaApp.db");
                 conn.Open();
 
-                // Iniciar transação para garantir consistência
                 using var transaction = conn.BeginTransaction();
 
                 try
@@ -166,24 +160,20 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     cmd.Parameters.AddWithValue("@nif", txtNIF.Text.Trim());
                     cmd.Parameters.AddWithValue("@dataRecolha", dtpDataRecolha.Value.Date);
 
-                    // Mapear valores dos ComboBoxes
                     string valorPago = cbPago.SelectedItem.ToString() == "Pago" ? "pago" : "não pago";
                     cmd.Parameters.AddWithValue("@pago", valorPago);
 
                     string valorEntregue = cbEntregue.SelectedItem.ToString() == "Sim" ? "S" : "N";
                     cmd.Parameters.AddWithValue("@entregue", valorEntregue);
 
-                    // Calcular o total dos produtos
                     double total = CalcularTotalProdutos(conn, transaction);
                     cmd.Parameters.AddWithValue("@preco", Math.Round(total, 2));
 
                     cmd.ExecuteNonQuery();
                     long lastId = conn.LastInsertRowId;
 
-                    // Inserir produtos da encomenda
                     InserirProdutosEncomenda(conn, transaction, lastId);
 
-                    // Confirmar transação
                     transaction.Commit();
 
                     MessageBox.Show($"Encomenda #{lastId} adicionada com sucesso!\nTotal: {total:C2}",
@@ -247,7 +237,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            // Confirmar se há dados não guardados
             if (PossuiDadosNaoGuardados())
             {
                 var resultado = MessageBox.Show(
