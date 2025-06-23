@@ -374,9 +374,8 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                 switch (colName)
                 {
                     case "Editar":
-                        EditOrderForm editForm = new EditOrderForm(id);
-                        editForm.FormClosed += (s, args) => LoadOrders();
-                        editForm.ShowDialog();
+                        CreateModalContainer();
+                        LoadEditOrderInContainer(id);
                         break;
 
                     case "Remover":
@@ -540,6 +539,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             }
         }
 
+        // botão de editar encomenda e editar fundo
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if (dgvOrders.SelectedRows.Count > 0)
@@ -547,9 +547,8 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                 try
                 {
                     int id = Convert.ToInt32(dgvOrders.SelectedRows[0].Cells["ID"].Value);
-                    EditOrderForm editForm = new EditOrderForm(id);
-                    editForm.FormClosed += (s, args) => LoadOrders();
-                    editForm.ShowDialog();
+                    CreateModalContainer();
+                    LoadEditOrderInContainer(id);
                 }
                 catch (Exception ex)
                 {
@@ -563,6 +562,28 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void LoadEditOrderInContainer(int id)
+        {
+            EditOrderForm editForm = new EditOrderForm(id)
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+
+            modalContainer.Controls.Add(editForm);
+            editForm.FormClosed += OnEditOrderClosed;
+            editForm.Show();
+        }
+
+        private void OnEditOrderClosed(object sender, FormClosedEventArgs e)
+        {
+            CloseModalContainer();
+            LoadOrders();
+        }
+
+
 
         private void btnApagar_Click(object sender, EventArgs e)
         {

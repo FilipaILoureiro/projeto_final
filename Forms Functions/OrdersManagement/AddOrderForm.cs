@@ -28,18 +28,18 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             // Configurar ComboBox Entregue
             cbEntregue.Items.Clear();
             cbEntregue.Items.AddRange(new string[] { "Não", "Sim" });
-            cbEntregue.SelectedIndex = 0; 
-            cbEntregue.DropDownStyle = ComboBoxStyle.DropDownList; 
+            cbEntregue.SelectedIndex = 0;
+            cbEntregue.DropDownStyle = ComboBoxStyle.DropDownList;
 
             // Configurar ComboBox Pago
             cbPago.Items.Clear();
             cbPago.Items.AddRange(new string[] { "Não pago", "Pago" });
-            cbPago.SelectedIndex = 0; 
-            cbPago.DropDownStyle = ComboBoxStyle.DropDownList; 
+            cbPago.SelectedIndex = 0;
+            cbPago.DropDownStyle = ComboBoxStyle.DropDownList;
 
             // Configurar DateTimePicker
-            dtpDataRecolha.MinDate = DateTime.Today; 
-            dtpDataRecolha.Value = DateTime.Today; 
+            dtpDataRecolha.MinDate = DateTime.Today;
+            dtpDataRecolha.Value = DateTime.Today;
         }
 
         private void ConfigurarValidacoes()
@@ -219,7 +219,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 
             return total;
         }
-
         private void InserirProdutosEncomenda(SQLiteConnection conn, SQLiteTransaction transaction, long idEncomenda)
         {
             foreach (var (idProduto, qtdd) in produtosSelecionados)
@@ -233,26 +232,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                 cmdInsertProd.Parameters.AddWithValue("@qtdd", qtdd);
                 cmdInsertProd.ExecuteNonQuery();
             }
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            if (PossuiDadosNaoGuardados())
-            {
-                var resultado = MessageBox.Show(
-                    "Tem dados não guardados. Deseja realmente sair?",
-                    "Confirmar Saída",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if (resultado == DialogResult.No)
-                {
-                    return;
-                }
-            }
-
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
         }
 
         private bool PossuiDadosNaoGuardados()
@@ -286,6 +265,26 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             }
 
             base.OnFormClosing(e);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            if (PossuiDadosNaoGuardados())
+            {
+                var resultado = MessageBox.Show(
+                    "Tem dados não guardados. Deseja realmente sair?",
+                    "Confirmar Saída",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

@@ -287,6 +287,7 @@
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges13;
             btnClose.Size = new Size(36, 34);
             btnClose.TabIndex = 24;
+            btnClose.Click += btnClose_Click;
             // 
             // AddOrderForm
             // 

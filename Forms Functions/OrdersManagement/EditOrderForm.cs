@@ -59,7 +59,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                 ));
             }
         }
-
         private void btnProdutos_Click(object sender, EventArgs e)
         {
             var galeria = new ProductGalleryForm(produtosSelecionados);
@@ -69,7 +68,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     .Select(p => (p.productId, p.quantidade))
                     .ToList();
             }
-
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -102,6 +100,11 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             }
 
             MessageBox.Show("Encomenda atualizada com sucesso!");
+            this.Close();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }
