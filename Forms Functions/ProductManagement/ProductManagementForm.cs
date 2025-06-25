@@ -33,25 +33,6 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
             dgvProducts.Columns.Clear();
             dgvProducts.AutoGenerateColumns = true;
 
-
-            var btnEditar = new DataGridViewButtonColumn
-            {
-                Name = "btnEditar",
-                HeaderText = "Editar",
-                Text = "✏️ Editar",
-                UseColumnTextForButtonValue = true
-            };
-            dgvProducts.Columns.Add(btnEditar);
-
-            var btnRemover = new DataGridViewButtonColumn
-            {
-                Name = "btnRemover",
-                HeaderText = "Remover",
-                Text = "🗑️ Remover",
-                UseColumnTextForButtonValue = true
-            };
-            dgvProducts.Columns.Add(btnRemover);
-
             // Configurar seleção de linha
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProducts.MultiSelect = false;  // Permitir selecionar uma linha de cada vez
@@ -91,31 +72,6 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
             dgvProducts.DataSource = null; // limpa se já estava ligado
             dgvProducts.DataSource = produtos;
 
-            if (!dgvProducts.Columns.Contains("btnEditar"))
-            {
-                var btnEditar = new DataGridViewButtonColumn
-                {
-                    Name = "btnEditar",
-                    HeaderText = "Editar",
-                    Text = "✏️ Editar",
-                    UseColumnTextForButtonValue = true
-                };
-                dgvProducts.Columns.Add(btnEditar);
-            }
-
-            if (!dgvProducts.Columns.Contains("btnRemover"))
-            {
-                var btnRemover = new DataGridViewButtonColumn
-                {
-                    Name = "btnRemover",
-                    HeaderText = "Remover",
-                    Text = "🗑️ Remover",
-                    UseColumnTextForButtonValue = true
-                };
-                dgvProducts.Columns.Add(btnRemover);
-            }
-
-
             reader.Close();
         }
 
@@ -141,22 +97,16 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
 
         private void EditarProduto(int produtoId)
         {
-            // Carregar os dados do produto selecionado
             var produto = CarregarProdutoPorId(produtoId);
 
-            // Exibir os dados em um formulário de edição ou atualizar a DataGridView
-            // Exemplo: abrir um formulário de edição de produto (você pode adaptar conforme seu design)
             var formEditar = new EditProductForm(produto);
             formEditar.ShowDialog();
 
-            // Após editar, atualizar a lista de produtos na DataGridView
             ListarProdutos();
         }
 
         private Product CarregarProdutoPorId(int produtoId)
         {
-            // Recuperar os dados do produto do banco de dados pelo ID
-            // Este código pode ser adaptado conforme sua estrutura de banco de dados
             Product product = null;
             using (var conn = new SQLiteConnection("Data Source=projetoPadariaApp.db"))
             {
@@ -185,21 +135,18 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
 
         private void RemoverProduto(int produtoId)
         {
-            // Confirmar com o usuário antes de remover
             var resultado = MessageBox.Show("Tem certeza que deseja remover este produto?", "Confirmar remoção", MessageBoxButtons.YesNo);
             if (resultado == DialogResult.Yes)
             {
                 using var conn = new SQLiteConnection("Data Source=padaria.db");
                 conn.Open();
 
-                // Comando SQL para remover o produto
                 var cmd = new SQLiteCommand("DELETE FROM produtos WHERE id = @id", conn);
                 cmd.Parameters.AddWithValue("@id", produtoId);
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Produto removido com sucesso!");
 
-                // Atualizar a lista de produtos após a remoção
                 ListarProdutos();
             }
         }

@@ -261,6 +261,8 @@
             guna2HtmlLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             guna2HtmlLabel1.AutoSize = false;
             guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel1.ForeColor = Color.FromArgb(64, 64, 64);
             guna2HtmlLabel1.Location = new Point(506, 67);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             guna2HtmlLabel1.Size = new Size(123, 37);
@@ -273,6 +275,8 @@
             lblDataEnc.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             lblDataEnc.AutoSize = false;
             lblDataEnc.BackColor = Color.Transparent;
+            lblDataEnc.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDataEnc.ForeColor = Color.FromArgb(64, 64, 64);
             lblDataEnc.Location = new Point(495, 17);
             lblDataEnc.Name = "lblDataEnc";
             lblDataEnc.Size = new Size(151, 37);
