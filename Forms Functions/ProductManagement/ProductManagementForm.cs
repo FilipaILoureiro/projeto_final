@@ -35,7 +35,7 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
 
             // Configurar seleção de linha
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProducts.MultiSelect = false;  // Permitir selecionar uma linha de cada vez
+            dgvProducts.MultiSelect = false;
 
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgvProducts.ColumnHeadersHeight = 40;
