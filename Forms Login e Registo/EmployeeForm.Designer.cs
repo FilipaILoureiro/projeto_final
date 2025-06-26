@@ -66,6 +66,7 @@
             panelTitle = new Guna.UI2.WinForms.Guna2Panel();
             lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             panelDesktop = new Guna.UI2.WinForms.Guna2Panel();
+            lblSaudacao = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblData = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblHora = new Guna.UI2.WinForms.Guna2HtmlLabel();
             timer1 = new System.Windows.Forms.Timer(components);
@@ -328,6 +329,7 @@
             // 
             // panelDesktop
             // 
+            panelDesktop.Controls.Add(lblSaudacao);
             panelDesktop.Controls.Add(lblData);
             panelDesktop.Controls.Add(lblHora);
             panelDesktop.CustomizableEdges = customizableEdges21;
@@ -337,6 +339,19 @@
             panelDesktop.ShadowDecoration.CustomizableEdges = customizableEdges22;
             panelDesktop.Size = new Size(1003, 656);
             panelDesktop.TabIndex = 6;
+            // 
+            // lblSaudacao
+            // 
+            lblSaudacao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblSaudacao.AutoSize = false;
+            lblSaudacao.BackColor = Color.Transparent;
+            lblSaudacao.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSaudacao.Location = new Point(0, 299);
+            lblSaudacao.Name = "lblSaudacao";
+            lblSaudacao.Size = new Size(1003, 83);
+            lblSaudacao.TabIndex = 2;
+            lblSaudacao.Text = "Saudação!";
+            lblSaudacao.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // lblData
             // 
@@ -404,5 +419,6 @@
         private System.Windows.Forms.Timer timer1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblData;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblHora;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblSaudacao;
     }
 }

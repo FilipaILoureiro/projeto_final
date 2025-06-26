@@ -15,6 +15,7 @@ using projetoPadariaApp.Forms_Functions.ProductManagement;
 using projetoPadariaApp.Forms_Functions.StockManagement;
 using projetoPadariaApp.Forms_Functions.SupplierManagement;
 using projetoPadariaApp.Properties.Style;
+using projetoPadariaApp.Services;
 
 // VAI TER ACESSO APENAS A DETERMINADAS FUNÇÕES
 namespace projetoPadariaApp.Forms
@@ -31,9 +32,25 @@ namespace projetoPadariaApp.Forms
         public EmployeeForm()
         {
             InitializeComponent();
+            this.Load += EmployeeForm_Load;
             random = new Random();
             this.Text = "Painel de Gestão";
         }
+
+        private void EmployeeForm_Load(object sender, EventArgs e)
+        {
+            if (Session.FuncionarioNome != null)
+            {
+                lblSaudacao.Text = $"Olá, {Session.FuncionarioNome}!";
+                lblSaudacao.Visible = true;
+            }
+            else
+            {
+                lblSaudacao.Text = "Olá estranho!";
+                lblSaudacao.Visible = true;
+            }
+        }
+
 
         // MÉTODOS
         private void ActivateButton(object btnSender, string secao)

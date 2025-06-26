@@ -2,12 +2,12 @@
 {
     public static class Session
     {
-        public static int? FuncionarioId { get; set; }  // Alterado para nullable int
+        public static int? FuncionarioId { get; set; }
         public static string FuncionarioNome { get; set; }
 
         public static void ClearSession()
         {
-            FuncionarioId = null;  // Mudança para null ao invés de 0
+            FuncionarioId = null;
             FuncionarioNome = string.Empty;
         }
     }
