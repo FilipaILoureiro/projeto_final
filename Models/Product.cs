@@ -13,6 +13,7 @@ namespace projetoPadariaApp.Models
         public int Quantidade { get; set; }
         public double Preco { get; set; }
         public int Iva { get; set; }
+        public string Imagem { get; set; }
 
         public override string ToString()
         {

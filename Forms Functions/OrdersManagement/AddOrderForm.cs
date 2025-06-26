@@ -242,8 +242,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                    cbPago.SelectedIndex != 0 ||
                    cbEntregue.SelectedIndex != 0;
         }
-
-        // Sobrescrever evento de fechar formulário
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing && this.DialogResult != DialogResult.OK)
