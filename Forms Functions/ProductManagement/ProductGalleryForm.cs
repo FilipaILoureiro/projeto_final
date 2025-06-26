@@ -34,21 +34,35 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
         {
             var produtos = new List<(int productId, string nome, Image imagem)>();
 
+            string pastaImagens = Path.Combine(Application.StartupPath, "Resources");
+            string caminhoDefault = Path.Combine(pastaImagens, "default.png");
+
             using (var conn = new SQLiteConnection("Data Source=projetoPadariaApp.db"))
             {
                 conn.Open();
-                var cmd = new SQLiteCommand("SELECT id, nome FROM produtos", conn);
+                var cmd = new SQLiteCommand("SELECT id, nome, imagem FROM produtos", conn);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         int id = reader.GetInt32(0);
                         string nome = reader.GetString(1);
-                        string caminhoImagem = Path.Combine("resources", $"{id}.png");
+                        string nomeImagem = reader["imagem"] != DBNull.Value ? reader["imagem"].ToString() : "default.png";
+                        string caminhoImagem = Path.Combine(pastaImagens, nomeImagem);
 
-                        Image imagem = File.Exists(caminhoImagem)
-                            ? Image.FromFile(caminhoImagem)
-                            : Image.FromFile(Path.Combine("resources", "default.png")); // imagem padrão caso não exista
+                        Image imagem;
+
+                        if (!File.Exists(caminhoImagem))
+                        {
+                            if (File.Exists(caminhoDefault))
+                                imagem = Image.FromFile(caminhoDefault);
+                            else
+                                imagem = SystemIcons.Warning.ToBitmap();
+                        }
+                        else
+                        {
+                            imagem = Image.FromFile(caminhoImagem);
+                        }
 
                         produtos.Add((id, nome, imagem));
                     }
