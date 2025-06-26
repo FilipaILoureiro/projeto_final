@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PadariaApp;
 using BCrypt.Net;
+using projetoPadariaApp.Services;
 
 namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
 {
@@ -189,7 +190,16 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Funcionário atualizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // LOGS AQUI!!
+                            LogsService.RegistarLog(
+                            Session.FuncionarioId,
+                             $"Actualizou funcionário #{funcionarioID} → " +
+                             $"Nome: {txtNome.Text}, Contacto: {txtContacto.Text}, " +
+                             $"Username: {txtUsername.Text}, Função: {cbFuncao.Text}" +
+                               (string.IsNullOrEmpty(txtPass.Text) ? "" : ", Senha alterada"));
+
+                            MessageBox.Show("Funcionário actualizado com sucesso!", "Sucesso",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.DialogResult = DialogResult.OK;
                             this.Close();
                         }

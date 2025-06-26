@@ -7,35 +7,38 @@ namespace projetoPadariaApp.Services
     {
         public static void RegistarLog(int? idFuncionario, string descricao)
         {
+            // aceitar só null como inválido; zero nunca é chave válida em AUTOINCREMENT
+            if (idFuncionario is null)
+            {
+                Console.WriteLine("ID do funcionário não encontrado. Log ignorado.");
+                return;
+            }
+
             try
             {
-                if (idFuncionario == null || idFuncionario == 0)
+                using (var conn = DatabaseManage.GetInstance().GetConnection())
                 {
-                    Console.WriteLine("Erro: ID do funcionário não encontrado.");
-                    return;  // Se o idFuncionario for nulo ou 0, não registra o log
+                    conn.Open();
+                    const string sql = "INSERT INTO log (id_funcionario, descricao) VALUES (@id, @desc)";
+
+                    using (var cmd = new SQLiteCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idFuncionario);
+                        cmd.Parameters.AddWithValue("@desc", descricao);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
-
-                var conn = DatabaseManage.GetInstance().GetConnection();
-                conn.Open();
-
-                string query = @"INSERT INTO log (id_funcionario, descricao) 
-                                 VALUES (@id_funcionario, @descricao)";
-
-                using (var cmd = new SQLiteCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id_funcionario", idFuncionario);
-                    cmd.Parameters.AddWithValue("@descricao", descricao);
-
-                    cmd.ExecuteNonQuery();
-                }
-
-                conn.Close();
             }
             catch (Exception ex)
             {
-                // Log de erro
-                Console.WriteLine("Erro ao gravar log: " + ex.Message);
+                Console.WriteLine($"Erro ao gravar log: {ex.Message}");
             }
         }
+
+        /* Se quiseres conveniência:
+        public static void RegistarLog(string descricao) =>
+            RegistarLog(Session.FuncionarioId, descricao);
+        */
     }
+
 }
