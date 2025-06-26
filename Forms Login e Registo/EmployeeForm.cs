@@ -32,12 +32,13 @@ namespace projetoPadariaApp.Forms
         public EmployeeForm()
         {
             InitializeComponent();
-            this.Load += EmployeeForm_Load;
+            //this.Load += EmployeeForm_Load; -> descomentar quando as sessões funcionarem
             random = new Random();
             this.Text = "Painel de Gestão";
         }
 
-        private void EmployeeForm_Load(object sender, EventArgs e)
+        //descomentar isto para quando as sessões funcionarem
+        /*private void EmployeeForm_Load(object sender, EventArgs e)
         {
             if (Session.FuncionarioNome != null)
             {
@@ -49,7 +50,7 @@ namespace projetoPadariaApp.Forms
                 lblSaudacao.Text = "Olá estranho!";
                 lblSaudacao.Visible = true;
             }
-        }
+        }*/
 
 
         // MÉTODOS

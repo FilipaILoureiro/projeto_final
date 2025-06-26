@@ -15,183 +15,119 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
         public List<(int productId, string nome, int quantidade)> ProdutosSelecionados { get; set; } = new();
 
         private List<(int productId, int quantidade)> produtosIniciais = new();
-        private List<(int productId, string nome, int quantidade)> produtosEncomenda = new List<(int productId, string nome, int quantidade)>();
+        private List<ProductControl> productControls = new();
 
         public ProductGalleryForm()
         {
             InitializeComponent();
             LoadProducts();
+            UpdateTotalDisplay();
+            txtSearch.TextChanged += txtSearch_TextChanged;
         }
 
         public ProductGalleryForm(List<(int productId, int quantidade)> produtosSelecionados)
         {
             InitializeComponent();
-            produtosIniciais = produtosSelecionados;
+            produtosIniciais = produtosSelecionados ?? new List<(int productId, int quantidade)>();
             LoadProducts();
+            UpdateTotalDisplay();
         }
 
         private void LoadProducts()
         {
-            var produtos = new List<(int productId, string nome, Image imagem)>();
+            var produtos = new List<(int productId, string nome, Image imagem, double preco)>();
 
             string pastaImagens = Path.Combine(Application.StartupPath, "Resources");
             string caminhoDefault = Path.Combine(pastaImagens, "default.png");
 
-            using (var conn = new SQLiteConnection("Data Source=projetoPadariaApp.db"))
+            try
             {
-                conn.Open();
-                var cmd = new SQLiteCommand("SELECT id, nome, imagem FROM produtos", conn);
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int id = reader.GetInt32(0);
-                        string nome = reader.GetString(1);
-                        string nomeImagem = reader["imagem"] != DBNull.Value ? reader["imagem"].ToString() : "default.png";
-                        string caminhoImagem = Path.Combine(pastaImagens, nomeImagem);
-
-                        Image imagem;
-
-                        if (!File.Exists(caminhoImagem))
-                        {
-                            if (File.Exists(caminhoDefault))
-                                imagem = Image.FromFile(caminhoDefault);
-                            else
-                                imagem = SystemIcons.Warning.ToBitmap();
-                        }
-                        else
-                        {
-                            imagem = Image.FromFile(caminhoImagem);
-                        }
-
-                        produtos.Add((id, nome, imagem));
-                    }
-                }
-            }
-
-
-            using (var conn = new SQLiteConnection("Data Source=projetoPadariaApp.db"))
-            {
-                conn.Open();
-
-                foreach (var produto in produtos)
-                {
-                    // Verifica se o produto já existe na base de dados
-                    var cmdCheckProduto = new SQLiteCommand("SELECT COUNT(*) FROM produtos WHERE id = @id", conn);
-                    cmdCheckProduto.Parameters.AddWithValue("@id", produto.productId);
-                    var existe = Convert.ToInt32(cmdCheckProduto.ExecuteScalar()) > 0;
-
-                    // Se não existir, insere o produto na tabela
-                    if (!existe)
-                    {
-                        var cmdInsertProduto = new SQLiteCommand(
-                            "INSERT INTO produtos (id, nome, quantidade, preco) VALUES (@id, @nome, @quantidade, @preco)", conn);
-                        cmdInsertProduto.Parameters.AddWithValue("@id", produto.productId);
-                        cmdInsertProduto.Parameters.AddWithValue("@nome", produto.nome);
-                        cmdInsertProduto.Parameters.AddWithValue("@quantidade", 0);  // Definir quantidade inicial
-                        cmdInsertProduto.Parameters.AddWithValue("@preco", 1.0);  // Definir um preço padrão
-                        cmdInsertProduto.ExecuteNonQuery();
-                    }
-                }
-            }
-
-            // Agora carrega os produtos na galeria
-            foreach (var produto in produtos)
-            {
-                var panel = new Panel
-                {
-                    Width = 150,
-                    Height = 200,
-                    Margin = new Padding(10),
-                    BorderStyle = BorderStyle.FixedSingle
-                };
-
-                var picture = new PictureBox
-                {
-                    Image = produto.imagem,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                    Width = 130,
-                    Height = 100,
-                    Top = 10,
-                    Left = 10,
-                    Tag = produto.productId // Vamos adicionar o ID do produto para identificar o produto clicado
-                };
-
-                // Adiciona o evento de clique na imagem para adicionar o produto à encomenda
-                picture.Click += (sender, e) =>
-                {
-                    AdicionarProdutoEncomenda((int)((PictureBox)sender).Tag);
-                };
-
-                var label = new Label
-                {
-                    Text = produto.nome,
-                    Top = 120,
-                    Width = 130,
-                    TextAlign = ContentAlignment.MiddleCenter
-                };
-
-                var numeric = new NumericUpDown
-                {
-                    Minimum = 0,
-                    Maximum = 100,
-                    Top = 150,
-                    Left = 35,
-                    Width = 80,
-                    Tag = produto.productId
-                };
-
-                // Adicionar o evento de mudança na quantidade
-                numeric.ValueChanged += (sender, e) =>
-                {
-                    AtualizarQuantidadeEncomenda((int)((NumericUpDown)sender).Tag, (int)((NumericUpDown)sender).Value);
-                };
-
-                panel.Controls.Add(picture);
-                panel.Controls.Add(label);
-                panel.Controls.Add(numeric);
-                gallery.Controls.Add(panel);
-            }
-        }
-
-        private void AdicionarProdutoEncomenda(int produtoId)
-        {
-            // Verifica se o produto já foi adicionado à lista de encomenda
-            var produtoExistente = produtosEncomenda.FirstOrDefault(p => p.productId == produtoId);
-
-            // Se o produto já foi adicionado, apenas aumenta a quantidade
-            if (produtoExistente != default)
-            {
-                produtoExistente.quantidade++;
-            }
-            else
-            {
-                var produto = (produtoId, string.Empty, 1);  // Inicializa a tupla com a quantidade 1
-
                 using (var conn = new SQLiteConnection("Data Source=projetoPadariaApp.db"))
                 {
                     conn.Open();
-                    var cmd = new SQLiteCommand("SELECT nome FROM produtos WHERE id = @id", conn);
-                    cmd.Parameters.AddWithValue("@id", produtoId);
-                    var nomeProduto = cmd.ExecuteScalar().ToString();
+                    var cmd = new SQLiteCommand("SELECT id, nome, imagem, preco FROM produtos ORDER BY nome", conn);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string nome = reader.GetString(1);
+                            string nomeImagem = reader["imagem"] != DBNull.Value ? reader["imagem"].ToString() : "default.png";
+                            double preco = reader["preco"] != DBNull.Value ? Convert.ToDouble(reader["preco"]) : 0.0;
+                            string caminhoImagem = Path.Combine(pastaImagens, nomeImagem);
 
-                    produto = (produtoId, nomeProduto, 1); // Definir a quantidade inicial como 1
+                            Image imagem;
+                            try
+                            {
+                                if (File.Exists(caminhoImagem))
+                                    imagem = Image.FromFile(caminhoImagem);
+                                else if (File.Exists(caminhoDefault))
+                                    imagem = Image.FromFile(caminhoDefault);
+                                else
+                                    imagem = SystemIcons.Application.ToBitmap();
+                            }
+                            catch
+                            {
+                                imagem = SystemIcons.Application.ToBitmap();
+                            }
+
+                            produtos.Add((id, nome, imagem, preco));
+                        }
+                    }
                 }
 
-                produtosEncomenda.Add(produto);
+                foreach (var produto in produtos)
+                {
+                    var quantidadeInicial = produtosIniciais.FirstOrDefault(p => p.productId == produto.productId).quantidade;
+                    var productControl = new ProductControl(produto.productId, produto.nome, produto.imagem, produto.preco, quantidadeInicial);
+                    productControl.QuantityChanged += ProductControl_QuantityChanged;
+                    productControls.Add(productControl);
+                    gallery.Controls.Add(productControl);
+                }
             }
-
-            MessageBox.Show($"Produto {produtosEncomenda.FirstOrDefault(p => p.productId == produtoId).nome} adicionado à encomenda.");
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar produtos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-
-        private void AtualizarQuantidadeEncomenda(int produtoId, decimal quantidade)
+        private void ProductControl_QuantityChanged(object sender, EventArgs e)
         {
-            // Atualiza a quantidade de produto na encomenda
-            var produtoEncomenda = produtosEncomenda.FirstOrDefault(p => p.productId == produtoId);
-            if (produtoEncomenda != default)
+            UpdateTotalDisplay();
+        }
+
+        private void UpdateTotalDisplay()
+        {
+            int totalItems = productControls.Sum(pc => pc.Quantity);
+            double totalValue = productControls.Sum(pc => pc.Quantity * pc.Price);
+
+            lblTotal.Text = $"Total: {totalItems} itens | Valor: {totalValue:C2}";
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchTerm = txtSearch.Text.ToLower();
+
+            foreach (var productControl in productControls)
             {
-                produtoEncomenda.quantidade = (int)quantidade;
+                bool visible = string.IsNullOrEmpty(searchTerm) ||
+                              productControl.ProductName.ToLower().Contains(searchTerm);
+                productControl.Visible = visible;
+            }
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Deseja limpar toda a seleção?", "Confirmar",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                foreach (var productControl in productControls)
+                {
+                    productControl.Quantity = 0;
+                }
+                UpdateTotalDisplay();
             }
         }
 
@@ -199,25 +135,192 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
         {
             ProdutosSelecionados.Clear();
 
-            // Adiciona os produtos selecionados à lista ProdutosSelecionados
-            foreach (Panel panel in gallery.Controls)
+            foreach (var productControl in productControls)
             {
-                foreach (Control control in panel.Controls)
+                if (productControl.Quantity > 0)
                 {
-                    if (control is NumericUpDown numeric && numeric.Value > 0)
-                    {
-                        int productId = (int)numeric.Tag;
-                        string nome = ((Label)panel.Controls[1]).Text;
-                        int quantidade = (int)numeric.Value;
-
-                        ProdutosSelecionados.Add((productId, nome, quantidade));
-                    }
+                    ProdutosSelecionados.Add((productControl.ProductId, productControl.ProductName, productControl.Quantity));
                 }
             }
 
-            // Retorna para o formulário principal
+            if (ProdutosSelecionados.Count == 0)
+            {
+                MessageBox.Show("Selecione pelo menos um produto.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            var resultado = MessageBox.Show(
+                    "Tem a certeza que pretende sair?",
+                    "Confirmar Saída",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.No)
+            {
+                return;
+            }
+
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+    }
+    public class ProductControl : Panel
+    {
+        public int ProductId { get; private set; }
+        public string ProductName { get; private set; }
+        public double Price { get; private set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int Quantity
+        {
+            get => (int)numericQuantity.Value;
+            set => numericQuantity.Value = Math.Max(0, Math.Min(value, 999));
+        }
+
+        private PictureBox pictureBox;
+        private Label labelName;
+        private Label labelPrice;
+        private NumericUpDown numericQuantity;
+        private Button btnAdd;
+        private Button btnRemove;
+
+        public event EventHandler QuantityChanged;
+
+        public ProductControl(int productId, string name, Image image, double price, int initialQuantity = 0)
+        {
+            ProductId = productId;
+            ProductName = name;
+            Price = price;
+
+            SetupControl();
+            SetupComponents(image, initialQuantity);
+        }
+
+        private void SetupControl()
+        {
+            Size = new Size(200, 280);
+            BackColor = Color.White;
+            Margin = new Padding(10);
+
+            // Adicionar sombra com borda
+            Paint += (s, e) =>
+            {
+                ControlPaint.DrawBorder(e.Graphics, ClientRectangle,
+                    Color.FromArgb(220, 220, 220), 1, ButtonBorderStyle.Solid,
+                    Color.FromArgb(220, 220, 220), 1, ButtonBorderStyle.Solid,
+                    Color.FromArgb(220, 220, 220), 1, ButtonBorderStyle.Solid,
+                    Color.FromArgb(220, 220, 220), 1, ButtonBorderStyle.Solid);
+            };
+        }
+
+        private void SetupComponents(Image image, int initialQuantity)
+        {
+            // Imagem do produto
+            pictureBox = new PictureBox
+            {
+                Image = image,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Size = new Size(160, 120),
+                Location = new Point(20, 15),
+                Cursor = Cursors.Hand
+            };
+            pictureBox.Click += (s, e) => { Quantity++; };
+
+            // Nome do produto
+            labelName = new Label
+            {
+                Text = ProductName,
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                ForeColor = Color.FromArgb(51, 51, 51),
+                Size = new Size(160, 40),
+                Location = new Point(20, 145),
+                TextAlign = ContentAlignment.TopCenter
+            };
+
+            // Preço
+            labelPrice = new Label
+            {
+                Text = Price.ToString("C2"),
+                Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                ForeColor = Color.FromArgb(51, 122, 183),
+                Size = new Size(160, 20),
+                Location = new Point(20, 185),
+                TextAlign = ContentAlignment.TopCenter
+            };
+
+            // Controles de quantidade
+            int controlWidth = 200;
+            int groupY = 215;  // Altura comum dos botões e do NumericUpDown
+
+            // Larguras
+            int btnSize = 25;
+            int numericWidth = 60;
+            int spacing = 5;
+
+            // Cálculo da posição central total
+            int totalWidth = btnSize + spacing + numericWidth + spacing + btnSize;
+            int startX = (controlWidth - totalWidth) / 2;
+
+            // Botão -
+            btnRemove = new Button
+            {
+                Text = "-",
+                Size = new Size(btnSize, btnSize),
+                Location = new Point(startX, groupY),
+                BackColor = Color.FromArgb(217, 83, 79),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold),
+                Cursor = Cursors.Hand,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Padding = new Padding(0),
+            };
+            btnRemove.FlatAppearance.BorderSize = 0;
+            btnRemove.Click += (s, e) => { if (Quantity > 0) Quantity--; };
+
+            // NumericUpDown (ao centro)
+            numericQuantity = new NumericUpDown
+            {
+                Size = new Size(numericWidth, btnSize),
+                Location = new Point(startX + btnSize + spacing, groupY),
+                Minimum = 0,
+                Maximum = 999,
+                Value = initialQuantity,
+                TextAlign = HorizontalAlignment.Center,
+                Font = new Font("Segoe UI", 9),
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            numericQuantity.ValueChanged += (s, e) => QuantityChanged?.Invoke(this, EventArgs.Empty);
+
+            // Botão +
+            btnAdd = new Button
+            {
+                Text = "+",
+                Size = new Size(btnSize, btnSize),
+                Location = new Point(startX + btnSize + spacing + numericWidth + spacing, groupY),
+                BackColor = Color.FromArgb(92, 184, 92),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold),
+                Cursor = Cursors.Hand,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Padding = new Padding(0),
+            };
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.Click += (s, e) => { Quantity++; };
+
+            // Adicionar todos os controles
+            Controls.AddRange(new Control[] { pictureBox, labelName, labelPrice, btnRemove, numericQuantity, btnAdd });
+
+            // Efeito hover
+            MouseEnter += (s, e) => BackColor = Color.FromArgb(248, 248, 248);
+            MouseLeave += (s, e) => BackColor = Color.White;
         }
     }
 }

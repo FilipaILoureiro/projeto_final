@@ -142,7 +142,8 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
         {
             if (produtosSelecionados.Count > 0)
             {
-                btnProdutos.Text = $"Produtos Selecionados ({produtosSelecionados.Count})";
+                int totalItens = produtosSelecionados.Sum(p => p.quantidade);
+                btnProdutos.Text = $"Selecionados: {totalItens} itens";
             }
             else
             {
@@ -193,6 +194,12 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             if (produtosSelecionados.Count == 0)
             {
                 erros.Add("• Deve selecionar pelo menos um produto");
+            }
+
+            // Validar se existe quantidade válida nos produtos
+            if (produtosSelecionados.Any(p => p.quantidade <= 0))
+            {
+                erros.Add("• Todos os produtos selecionados devem ter quantidade maior que zero");
             }
 
             // Validar data de recolha
@@ -288,12 +295,19 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 
             foreach (var produto in produtosSelecionados)
             {
-                if (!produtosOriginais.Contains(produto))
+                if (!produtosOriginais.Any(p => p.idProduto == produto.idProduto && p.quantidade == produto.quantidade))
+                    return true;
+            }
+
+            foreach (var produtoOriginal in produtosOriginais)
+            {
+                if (!produtosSelecionados.Any(p => p.idProduto == produtoOriginal.idProduto && p.quantidade == produtoOriginal.quantidade))
                     return true;
             }
 
             return false;
         }
+
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {

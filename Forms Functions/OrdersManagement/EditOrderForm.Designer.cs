@@ -151,7 +151,7 @@
             btnProdutos.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnProdutos.ForeColor = Color.White;
             btnProdutos.Image = (Image)resources.GetObject("btnProdutos.Image");
-            btnProdutos.ImageSize = new Size(35, 35);
+            btnProdutos.ImageSize = new Size(30, 30);
             btnProdutos.Location = new Point(277, 423);
             btnProdutos.Name = "btnProdutos";
             btnProdutos.ShadowDecoration.CustomizableEdges = customizableEdges7;

@@ -164,12 +164,13 @@
             btnLogin.FocusedColor = Color.DarkSlateGray;
             btnLogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.White;
-            btnLogin.HoverState.FillColor = Color.Black;
+            btnLogin.HoverState.FillColor = Color.FromArgb(0, 89, 89);
             btnLogin.Image = (Image)resources.GetObject("btnLogin.Image");
             btnLogin.Location = new Point(629, 532);
             btnLogin.Margin = new Padding(0);
             btnLogin.Name = "btnLogin";
             btnLogin.Padding = new Padding(8, 0, 0, 0);
+            btnLogin.PressedColor = Color.FromArgb(0, 89, 89);
             btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnLogin.Size = new Size(246, 56);
             btnLogin.TabIndex = 24;

@@ -346,6 +346,7 @@
             lblSaudacao.AutoSize = false;
             lblSaudacao.BackColor = Color.Transparent;
             lblSaudacao.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSaudacao.ForeColor = Color.FromArgb(64, 64, 64);
             lblSaudacao.Location = new Point(0, 299);
             lblSaudacao.Name = "lblSaudacao";
             lblSaudacao.Size = new Size(1003, 83);
