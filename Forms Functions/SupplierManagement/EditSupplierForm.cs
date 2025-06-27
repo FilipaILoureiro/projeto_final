@@ -68,17 +68,12 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
             InitializeComponent();
         }
 
-        private void EditSupplierForm_Load(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
-        private void lblContacto_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAlterar_Click(object sender, EventArgs e)
+        private void btnEditar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -181,7 +176,6 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-
         }
     }
 }

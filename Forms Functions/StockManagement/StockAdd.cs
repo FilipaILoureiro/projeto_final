@@ -16,49 +16,231 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
 {
     public partial class StockAdd : Form
     {
+        public StockAdd()
+        {
+            InitializeComponent();
+            ConfigurarControlos();
+            ConfigurarValidacoes();
+            LoadFornecedores();
+        }
+
+        private void ConfigurarControlos()
+        {
+            cbIva.Items.Clear();
+            cbIva.Items.AddRange(new object[] { 6, 13, 23 });
+            cbIva.SelectedIndex = 0; 
+            cbIva.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            cbFornecedor.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            txtNome.MaxLength = 50;
+            txtPreco.MaxLength = 10;
+            txtQuantidade.MaxLength = 10;
+        }
+
+        private void ConfigurarValidacoes()
+        {
+            // Validação para o campo Nome
+            txtNome.TextChanged += (sender, e) =>
+            {
+                if (txtNome.Text.Length > 50)
+                {
+                    txtNome.Text = txtNome.Text.Substring(0, 50);
+                    txtNome.SelectionStart = txtNome.Text.Length;
+                    ToolTip tooltip = new ToolTip();
+                    tooltip.Show("Máximo 50 caracteres permitidos", txtNome, 0, -20, 2000);
+                }
+            };
+
+            // Validação para o campo Preço
+            txtPreco.KeyPress += (sender, e) =>
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' &&
+                    e.KeyChar != (char)Keys.Delete && e.KeyChar != ',' && e.KeyChar != '.')
+                {
+                    e.Handled = true;
+                    ToolTip tooltip = new ToolTip();
+                    tooltip.Show("Apenas números e vírgula/ponto decimal são permitidos", txtPreco, 0, -20, 2000);
+                }
+
+                if ((e.KeyChar == ',' || e.KeyChar == '.') &&
+                    (txtPreco.Text.Contains(",") || txtPreco.Text.Contains(".")))
+                {
+                    e.Handled = true;
+                }
+            };
+
+            // Validação para o campo Quantidade
+            txtQuantidade.KeyPress += (sender, e) =>
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' &&
+                    e.KeyChar != (char)Keys.Delete && e.KeyChar != ',' && e.KeyChar != '.')
+                {
+                    e.Handled = true;
+                    ToolTip tooltip = new ToolTip();
+                    tooltip.Show("Apenas números e vírgula/ponto decimal são permitidos", txtQuantidade, 0, -20, 2000);
+                }
+
+                if ((e.KeyChar == ',' || e.KeyChar == '.') &&
+                    (txtQuantidade.Text.Contains(",") || txtQuantidade.Text.Contains(".")))
+                {
+                    e.Handled = true;
+                }
+            };
+        }
+
         private void LoadFornecedores()
         {
-            // Limpar o ComboBox
-            cbFornecedor.Items.Clear();
-
-            // Usar a instância singleton do DatabaseManage
-            var dbManager = DatabaseManage.GetInstance();
-            using (var connection = dbManager.GetConnection())
+            try
             {
-                connection.Open();
-                string query = "SELECT id, nome FROM fornecedor";
-                using (var cmd = new SQLiteCommand(query, connection))
+                cbFornecedor.Items.Clear();
+
+                var dbManager = DatabaseManage.GetInstance();
+                using (var connection = dbManager.GetConnection())
                 {
-                    using (var reader = cmd.ExecuteReader())
+                    connection.Open();
+                    string query = "SELECT id, nome FROM fornecedor ORDER BY nome";
+                    using (var cmd = new SQLiteCommand(query, connection))
                     {
-                        while (reader.Read())
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            // Criar um objeto para armazenar ID e nome da função
-                            var funcaoItem = new FuncaoItem
+                            while (reader.Read())
                             {
-                                Id = reader.GetInt32(0),
-                                Name = reader.GetString(1)
-                            };
-                            cbFornecedor.Items.Add(funcaoItem);
+                                var fornecedorItem = new FuncaoItem
+                                {
+                                    Id = reader.GetInt32("id"),
+                                    Name = reader.GetString("nome")
+                                };
+                                cbFornecedor.Items.Add(fornecedorItem);
+                            }
                         }
                     }
                 }
+
+                cbFornecedor.DisplayMember = "Name";
+                cbFornecedor.ValueMember = "Id";
+
+                if (cbFornecedor.Items.Count == 0)
+                {
+                    MessageBox.Show("Não existem fornecedores cadastrados. Por favor, cadastre um fornecedor primeiro.",
+                        "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar fornecedores: {ex.Message}",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool ValidarFormulario()
+        {
+            var erros = new List<string>();
+
+            // Validar Nome
+            if (string.IsNullOrWhiteSpace(txtNome.Text))
+            {
+                erros.Add("• Nome da matéria-prima é obrigatório");
+            }
+            else if (txtNome.Text.Trim().Length < 2)
+            {
+                erros.Add("• Nome da matéria-prima deve ter pelo menos 2 caracteres");
             }
 
-            // Configurar o ComboBox para mostrar apenas o nome
-            cbFornecedor.DisplayMember = "Name";
-            cbFornecedor.ValueMember = "Id";
-        }
-        //para adicionar o caminho para o ficheiro database
-        private static readonly string connectionString = "Data Source=projetoPadariaApp.db;Version=3;";
-        public static bool RegisterStock(string nome, string preco, string quantidade, int id_fornecedor , int iva)
-        {
-            if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(preco) ||
-                string.IsNullOrWhiteSpace(quantidade))
-                return false;
+            // Validar Preço
+            if (string.IsNullOrWhiteSpace(txtPreco.Text))
+            {
+                erros.Add("• Preço é obrigatório");
+            }
+            else if (!double.TryParse(txtPreco.Text.Replace('.', ','), out double preco))
+            {
+                erros.Add("• Preço deve ser um valor numérico válido");
+            }
+            else if (preco <= 0)
+            {
+                erros.Add("• Preço deve ser maior que zero");
+            }
+            else if (preco > 99999.99)
+            {
+                erros.Add("• Preço não pode exceder 99.999,99€");
+            }
 
+            // Validar Quantidade
+            if (string.IsNullOrWhiteSpace(txtQuantidade.Text))
+            {
+                erros.Add("• Quantidade é obrigatória");
+            }
+            else if (!double.TryParse(txtQuantidade.Text.Replace('.', ','), out double quantidade))
+            {
+                erros.Add("• Quantidade deve ser um valor numérico válido");
+            }
+            else if (quantidade < 0)
+            {
+                erros.Add("• Quantidade não pode ser negativa");
+            }
+            else if (quantidade > 999999)
+            {
+                erros.Add("• Quantidade não pode exceder 999.999");
+            }
+
+            // Validar Fornecedor
+            if (cbFornecedor.SelectedItem == null)
+            {
+                erros.Add("• Fornecedor é obrigatório");
+            }
+
+            // Validar IVA
+            if (cbIva.SelectedItem == null)
+            {
+                erros.Add("• Taxa de IVA é obrigatória");
+            }
+
+            // Verificar se já existe matéria-prima com o mesmo nome
+            if (!string.IsNullOrWhiteSpace(txtNome.Text))
+            {
+                if (MateriaPrimaJaExiste(txtNome.Text.Trim()))
+                {
+                    erros.Add("• Já existe uma matéria-prima com este nome");
+                }
+            }
+
+            if (erros.Count > 0)
+            {
+                string mensagem = "Por favor, corrija os seguintes erros:\n\n" + string.Join("\n", erros);
+                MessageBox.Show(mensagem, "Dados Inválidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool MateriaPrimaJaExiste(string nome)
+        {
+            try
+            {
+                var dbManager = DatabaseManage.GetInstance();
+                using (var conn = dbManager.GetConnection())
+                {
+                    conn.Open();
+                    using var cmd = new SQLiteCommand(
+                        "SELECT COUNT(*) FROM materia WHERE LOWER(nome) = LOWER(@nome)", conn);
+                    cmd.Parameters.AddWithValue("@nome", nome);
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Erro ao verificar duplicação: {ex.Message}");
+                return false;
+            }
+        }
+
+        public static bool RegisterStock(string nome, double preco, double quantidade, int id_fornecedor, int iva)
+        {
             var dbManager = DatabaseManage.GetInstance();
-            var conn = dbManager.GetConnection();
+            using var conn = dbManager.GetConnection();
 
             try
             {
@@ -67,13 +249,14 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
                 {
                     try
                     {
-                        string query = "INSERT INTO materia (nome, id_fornecedor, preco, quantidade, iva) VALUES (@nome, @id_fornecedor, @preco, @quantidade, @iva)";
+                        string query = @"INSERT INTO materia (nome, id_fornecedor, preco, quantidade, iva) 
+                                       VALUES (@nome, @id_fornecedor, @preco, @quantidade, @iva)";
 
-                        using (var cmd = new SQLiteCommand(query, conn))
+                        using (var cmd = new SQLiteCommand(query, conn, transaction))
                         {
-                            cmd.Parameters.AddWithValue("@nome", nome);
-                            cmd.Parameters.AddWithValue("@preco", preco);
-                            cmd.Parameters.AddWithValue("@quantidade", quantidade);
+                            cmd.Parameters.AddWithValue("@nome", nome.Trim());
+                            cmd.Parameters.AddWithValue("@preco", Math.Round(preco, 2));
+                            cmd.Parameters.AddWithValue("@quantidade", Math.Round(quantidade, 3));
                             cmd.Parameters.AddWithValue("@id_fornecedor", id_fornecedor);
                             cmd.Parameters.AddWithValue("@iva", iva);
 
@@ -81,14 +264,13 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
 
                             if (rows > 0)
                             {
-                                transaction.Commit();  // Confirma a transação apenas se a inserção foi bem-sucedida
+                                transaction.Commit();
 
-                                // ------------- NOVO -------------
+                                // Registar log da operação
                                 LogsService.RegistarLog(
                                     Session.FuncionarioId,
                                     $"Adicionou matéria-prima «{nome}» (Fornecedor #{id_fornecedor}, " +
-                                    $"Qtd={quantidade}, Preço={preco}, IVA={iva})");
-                                // ---------------------------------
+                                    $"Qtd={quantidade:F3}, Preço={preco:C2}, IVA={iva}%)");
 
                                 return true;
                             }
@@ -102,85 +284,124 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
                     catch (Exception ex)
                     {
                         transaction.Rollback();
-                        MessageBox.Show("Erro durante o registo: " + ex.Message);
-                        return false;
+                        throw; 
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao abrir conexão: " + ex.Message);
                 return false;
             }
-            finally
+        }
+
+        private bool PossuiDadosNaoGuardados()
+        {
+            return !string.IsNullOrWhiteSpace(txtNome.Text) ||
+                   !string.IsNullOrWhiteSpace(txtPreco.Text) ||
+                   !string.IsNullOrWhiteSpace(txtQuantidade.Text) ||
+                   cbFornecedor.SelectedIndex != -1 ||
+                   cbIva.SelectedIndex != 0; // 0 é o índice padrão (6%)
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing && this.DialogResult != DialogResult.OK)
             {
-                if (conn.State == ConnectionState.Open)
+                if (PossuiDadosNaoGuardados())
                 {
-                    conn.Close();
+                    var resultado = MessageBox.Show(
+                        "Tem dados não guardados. Deseja realmente sair?",
+                        "Confirmar Saída",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.No)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
                 }
             }
-        }
-        public StockAdd()
-        {
-            InitializeComponent();
-            cbIva.Items.AddRange(new object[] { 6, 13, 23 }); // <- aqui sim
-            LoadFornecedores(); // já podes carregar os fornecedores também logo aqui
+
+            base.OnFormClosing(e);
         }
 
-
-        private void lblUsername_Click(object sender, EventArgs e)
+        private void LimparFormulario()
         {
-
+            txtNome.Clear();
+            txtPreco.Clear();
+            txtQuantidade.Clear();
+            cbIva.SelectedIndex = 0; 
+            cbFornecedor.SelectedIndex = -1;
+            txtNome.Focus(); 
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            string nome = txtNome.Text;
-            string preco = txtPreco.Text;
-            string quantidade = txtQuantidade.Text;
-
-            FuncaoItem selectedItem = cbFornecedor.SelectedItem as FuncaoItem;
-            if (selectedItem == null)
+            if (!ValidarFormulario())
             {
-                MessageBox.Show("Por favor, selecione um fornecedor.");
                 return;
             }
 
-            if (cbIva.SelectedItem == null)
+            try
             {
-                MessageBox.Show("Por favor, selecione uma taxa de IVA.");
-                return;
+                string nome = txtNome.Text.Trim();
+                double preco = double.Parse(txtPreco.Text.Replace('.', ','));
+                double quantidade = double.Parse(txtQuantidade.Text.Replace('.', ','));
+
+                FuncaoItem selectedItem = cbFornecedor.SelectedItem as FuncaoItem;
+                int fornecedorID = selectedItem.Id;
+                int iva = (int)cbIva.SelectedItem;
+
+                bool success = RegisterStock(nome, preco, quantidade, fornecedorID, iva);
+
+                if (success)
+                {
+                    MessageBox.Show($"Matéria-prima '{nome}' registada com sucesso!\n" +
+                                  $"Fornecedor: {selectedItem.Name}\n" +
+                                  $"Quantidade: {quantidade:F3}\n" +
+                                  $"Preço: {preco:C2}\n" +
+                                  $"IVA: {iva}%",
+                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    LimparFormulario();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao registar matéria-prima. Tente novamente.",
+                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-
-            int fornecedorID = selectedItem.Id;
-            int iva = Convert.ToInt32(cbIva.SelectedItem);
-
-            bool success = RegisterStock(nome, preco, quantidade, fornecedorID, iva);
-
-            if (success)
+            catch (FormatException)
             {
-                MessageBox.Show("Stock registado com sucesso!");
-                txtNome.Clear();
-                txtPreco.Clear();
-                txtQuantidade.Clear();
-                cbIva.SelectedIndex = -1;
-                cbFornecedor.SelectedIndex = -1;
+                MessageBox.Show("Por favor, verifique se os valores numéricos estão corretos.",
+                    "Erro de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao registar stock.");
+                MessageBox.Show($"Erro inesperado ao registar matéria-prima: {ex.Message}",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-        private void materialTextBox21_Click(object sender, EventArgs e)
+        
+        private void btnClose_Click(object sender, EventArgs e)
         {
+            if (PossuiDadosNaoGuardados())
+            {
+                var resultado = MessageBox.Show(
+                    "Tem dados não guardados. Deseja realmente sair?",
+                    "Confirmar Saída",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-        }
+                if (resultado == DialogResult.No)
+                {
+                    return;
+                }
+            }
 
-        private void cbFornecedor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

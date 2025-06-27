@@ -60,8 +60,8 @@
             numQuantidade = new Guna.UI2.WinForms.Guna2NumericUpDown();
             txtNome = new Guna.UI2.WinForms.Guna2TextBox();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnClose = new Guna.UI2.WinForms.Guna2Button();
+            lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnRemoverImagem = new Guna.UI2.WinForms.Guna2CircleButton();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProduto).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numQuantidade).BeginInit();
@@ -266,8 +266,8 @@
             // 
             // guna2Panel1
             // 
-            guna2Panel1.Controls.Add(lblTitle);
             guna2Panel1.Controls.Add(btnClose);
+            guna2Panel1.Controls.Add(lblTitle);
             guna2Panel1.CustomizableEdges = customizableEdges16;
             guna2Panel1.Dock = DockStyle.Top;
             guna2Panel1.FillColor = Color.FromArgb(128, 19, 49);
@@ -276,19 +276,6 @@
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges17;
             guna2Panel1.Size = new Size(819, 91);
             guna2Panel1.TabIndex = 35;
-            // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = false;
-            lblTitle.BackColor = Color.Transparent;
-            lblTitle.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(41, 21);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(733, 52);
-            lblTitle.TabIndex = 28;
-            lblTitle.Text = "Alterar Produto";
-            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // btnClose
             // 
@@ -308,8 +295,21 @@
             btnClose.Name = "btnClose";
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges15;
             btnClose.Size = new Size(36, 34);
-            btnClose.TabIndex = 27;
+            btnClose.TabIndex = 29;
             btnClose.Click += btnClose_Click;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = false;
+            lblTitle.BackColor = Color.Transparent;
+            lblTitle.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(41, 21);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(733, 52);
+            lblTitle.TabIndex = 28;
+            lblTitle.Text = "Editar Produto";
+            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // btnRemoverImagem
             // 
@@ -375,7 +375,7 @@
         private Guna.UI2.WinForms.Guna2TextBox txtNome;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
-        private Guna.UI2.WinForms.Guna2Button btnClose;
         private Guna.UI2.WinForms.Guna2CircleButton btnRemoverImagem;
+        private Guna.UI2.WinForms.Guna2Button btnClose;
     }
 }

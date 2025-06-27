@@ -28,230 +28,293 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtEmail = new MaterialSkin.Controls.MaterialTextBox2();
-            lblUsername = new MaterialSkin.Controls.MaterialLabel();
-            btnRegister = new MaterialSkin.Controls.MaterialButton();
-            lblPass = new MaterialSkin.Controls.MaterialLabel();
-            lblContacto = new MaterialSkin.Controls.MaterialLabel();
-            lblNome = new MaterialSkin.Controls.MaterialLabel();
-            txtTempodeEntrega = new MaterialSkin.Controls.MaterialTextBox2();
-            txtContacto = new MaterialSkin.Controls.MaterialTextBox2();
-            txtNome = new MaterialSkin.Controls.MaterialTextBox2();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupplierAdd));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            lblNome = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblContacto = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblEmail = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblTempoEntrega = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            txtNome = new Guna.UI2.WinForms.Guna2TextBox();
+            txtContacto = new Guna.UI2.WinForms.Guna2TextBox();
+            txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
+            txtTempodeEntrega = new Guna.UI2.WinForms.Guna2TextBox();
+            btnRegister = new Guna.UI2.WinForms.Guna2CircleButton();
+            panelTitle = new Guna.UI2.WinForms.Guna2Panel();
+            btnClose = new Guna.UI2.WinForms.Guna2Button();
+            lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            panelTitle.SuspendLayout();
             SuspendLayout();
-            // 
-            // txtEmail
-            // 
-            txtEmail.AnimateReadOnly = false;
-            txtEmail.BackgroundImageLayout = ImageLayout.None;
-            txtEmail.CharacterCasing = CharacterCasing.Normal;
-            txtEmail.Depth = 0;
-            txtEmail.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtEmail.HideSelection = true;
-            txtEmail.LeadingIcon = null;
-            txtEmail.Location = new Point(248, 203);
-            txtEmail.Margin = new Padding(3, 2, 3, 2);
-            txtEmail.MaxLength = 32767;
-            txtEmail.MouseState = MaterialSkin.MouseState.OUT;
-            txtEmail.Name = "txtEmail";
-            txtEmail.PasswordChar = '\0';
-            txtEmail.PrefixSuffixText = null;
-            txtEmail.ReadOnly = false;
-            txtEmail.RightToLeft = RightToLeft.No;
-            txtEmail.SelectedText = "";
-            txtEmail.SelectionLength = 0;
-            txtEmail.SelectionStart = 0;
-            txtEmail.ShortcutsEnabled = true;
-            txtEmail.Size = new Size(438, 48);
-            txtEmail.TabIndex = 23;
-            txtEmail.TabStop = false;
-            txtEmail.TextAlign = HorizontalAlignment.Left;
-            txtEmail.TrailingIcon = null;
-            txtEmail.UseSystemPasswordChar = false;
-            // 
-            // lblUsername
-            // 
-            lblUsername.AutoSize = true;
-            lblUsername.Depth = 0;
-            lblUsername.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUsername.Location = new Point(179, 215);
-            lblUsername.MouseState = MaterialSkin.MouseState.HOVER;
-            lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(45, 19);
-            lblUsername.TabIndex = 22;
-            lblUsername.Text = "E-mail";
-            // 
-            // btnRegister
-            // 
-            btnRegister.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnRegister.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnRegister.Depth = 0;
-            btnRegister.HighEmphasis = true;
-            btnRegister.Icon = null;
-            btnRegister.Location = new Point(355, 386);
-            btnRegister.Margin = new Padding(4);
-            btnRegister.MouseState = MaterialSkin.MouseState.HOVER;
-            btnRegister.Name = "btnRegister";
-            btnRegister.NoAccentTextColor = Color.Empty;
-            btnRegister.Size = new Size(99, 36);
-            btnRegister.TabIndex = 20;
-            btnRegister.Text = "Registrar";
-            btnRegister.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnRegister.UseAccentColor = false;
-            btnRegister.UseVisualStyleBackColor = true;
-            btnRegister.Click += btnRegister_Click;
-            // 
-            // lblPass
-            // 
-            lblPass.AutoSize = true;
-            lblPass.Depth = 0;
-            lblPass.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblPass.Location = new Point(95, 287);
-            lblPass.MouseState = MaterialSkin.MouseState.HOVER;
-            lblPass.Name = "lblPass";
-            lblPass.Size = new Size(129, 19);
-            lblPass.TabIndex = 19;
-            lblPass.Text = "Tempo de entrega";
-            // 
-            // lblContacto
-            // 
-            lblContacto.AutoSize = true;
-            lblContacto.Depth = 0;
-            lblContacto.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblContacto.Location = new Point(161, 126);
-            lblContacto.MouseState = MaterialSkin.MouseState.HOVER;
-            lblContacto.Name = "lblContacto";
-            lblContacto.Size = new Size(65, 19);
-            lblContacto.TabIndex = 18;
-            lblContacto.Text = "Contacto";
             // 
             // lblNome
             // 
-            lblNome.AutoSize = true;
-            lblNome.Depth = 0;
-            lblNome.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblNome.Location = new Point(181, 42);
-            lblNome.MouseState = MaterialSkin.MouseState.HOVER;
+            lblNome.BackColor = Color.Transparent;
+            lblNome.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblNome.ForeColor = Color.FromArgb(64, 64, 64);
+            lblNome.Location = new Point(219, 165);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(43, 19);
-            lblNome.TabIndex = 17;
+            lblNome.Size = new Size(60, 30);
+            lblNome.TabIndex = 30;
             lblNome.Text = "Nome";
             // 
-            // txtTempodeEntrega
+            // lblContacto
             // 
-            txtTempodeEntrega.AnimateReadOnly = false;
-            txtTempodeEntrega.BackgroundImageLayout = ImageLayout.None;
-            txtTempodeEntrega.CharacterCasing = CharacterCasing.Normal;
-            txtTempodeEntrega.Depth = 0;
-            txtTempodeEntrega.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtTempodeEntrega.HideSelection = true;
-            txtTempodeEntrega.LeadingIcon = null;
-            txtTempodeEntrega.Location = new Point(248, 274);
-            txtTempodeEntrega.Margin = new Padding(3, 2, 3, 2);
-            txtTempodeEntrega.MaxLength = 32767;
-            txtTempodeEntrega.MouseState = MaterialSkin.MouseState.OUT;
-            txtTempodeEntrega.Name = "txtTempodeEntrega";
-            txtTempodeEntrega.PasswordChar = '\0';
-            txtTempodeEntrega.PrefixSuffixText = null;
-            txtTempodeEntrega.ReadOnly = false;
-            txtTempodeEntrega.RightToLeft = RightToLeft.No;
-            txtTempodeEntrega.SelectedText = "";
-            txtTempodeEntrega.SelectionLength = 0;
-            txtTempodeEntrega.SelectionStart = 0;
-            txtTempodeEntrega.ShortcutsEnabled = true;
-            txtTempodeEntrega.Size = new Size(438, 48);
-            txtTempodeEntrega.TabIndex = 15;
-            txtTempodeEntrega.TabStop = false;
-            txtTempodeEntrega.TextAlign = HorizontalAlignment.Left;
-            txtTempodeEntrega.TrailingIcon = null;
-            txtTempodeEntrega.UseSystemPasswordChar = false;
+            lblContacto.BackColor = Color.Transparent;
+            lblContacto.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblContacto.ForeColor = Color.FromArgb(64, 64, 64);
+            lblContacto.Location = new Point(85, 230);
+            lblContacto.Name = "lblContacto";
+            lblContacto.Size = new Size(194, 30);
+            lblContacto.TabIndex = 31;
+            lblContacto.Text = "Contacto Telefónico";
             // 
-            // txtContacto
+            // lblEmail
             // 
-            txtContacto.AnimateReadOnly = false;
-            txtContacto.BackgroundImageLayout = ImageLayout.None;
-            txtContacto.CharacterCasing = CharacterCasing.Normal;
-            txtContacto.Depth = 0;
-            txtContacto.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtContacto.HideSelection = true;
-            txtContacto.LeadingIcon = null;
-            txtContacto.Location = new Point(248, 112);
-            txtContacto.Margin = new Padding(3, 2, 3, 2);
-            txtContacto.MaxLength = 32767;
-            txtContacto.MouseState = MaterialSkin.MouseState.OUT;
-            txtContacto.Name = "txtContacto";
-            txtContacto.PasswordChar = '\0';
-            txtContacto.PrefixSuffixText = null;
-            txtContacto.ReadOnly = false;
-            txtContacto.RightToLeft = RightToLeft.No;
-            txtContacto.SelectedText = "";
-            txtContacto.SelectionLength = 0;
-            txtContacto.SelectionStart = 0;
-            txtContacto.ShortcutsEnabled = true;
-            txtContacto.Size = new Size(438, 48);
-            txtContacto.TabIndex = 14;
-            txtContacto.TabStop = false;
-            txtContacto.TextAlign = HorizontalAlignment.Left;
-            txtContacto.TrailingIcon = null;
-            txtContacto.UseSystemPasswordChar = false;
+            lblEmail.BackColor = Color.Transparent;
+            lblEmail.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblEmail.ForeColor = Color.FromArgb(64, 64, 64);
+            lblEmail.Location = new Point(224, 295);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(55, 30);
+            lblEmail.TabIndex = 32;
+            lblEmail.Text = "Email";
+            // 
+            // lblTempoEntrega
+            // 
+            lblTempoEntrega.BackColor = Color.Transparent;
+            lblTempoEntrega.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblTempoEntrega.ForeColor = Color.FromArgb(64, 64, 64);
+            lblTempoEntrega.Location = new Point(103, 372);
+            lblTempoEntrega.Name = "lblTempoEntrega";
+            lblTempoEntrega.Size = new Size(176, 30);
+            lblTempoEntrega.TabIndex = 33;
+            lblTempoEntrega.Text = "Tempo de Entrega";
             // 
             // txtNome
             // 
-            txtNome.AnimateReadOnly = false;
-            txtNome.BackgroundImageLayout = ImageLayout.None;
-            txtNome.CharacterCasing = CharacterCasing.Normal;
-            txtNome.Depth = 0;
-            txtNome.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtNome.HideSelection = true;
-            txtNome.LeadingIcon = null;
-            txtNome.Location = new Point(248, 29);
-            txtNome.Margin = new Padding(3, 2, 3, 2);
-            txtNome.MaxLength = 32767;
-            txtNome.MouseState = MaterialSkin.MouseState.OUT;
+            txtNome.BorderColor = Color.FromArgb(109, 27, 123);
+            txtNome.BorderRadius = 10;
+            txtNome.BorderThickness = 2;
+            txtNome.CustomizableEdges = customizableEdges1;
+            txtNome.DefaultText = "";
+            txtNome.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtNome.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtNome.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtNome.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtNome.FocusedState.BorderColor = Color.FromArgb(215, 54, 242);
+            txtNome.Font = new Font("Segoe UI", 9F);
+            txtNome.HoverState.BorderColor = Color.FromArgb(215, 54, 242);
+            txtNome.Location = new Point(302, 158);
+            txtNome.Margin = new Padding(3, 4, 3, 4);
             txtNome.Name = "txtNome";
-            txtNome.PasswordChar = '\0';
-            txtNome.PrefixSuffixText = null;
-            txtNome.ReadOnly = false;
-            txtNome.RightToLeft = RightToLeft.No;
+            txtNome.PlaceholderText = "";
             txtNome.SelectedText = "";
-            txtNome.SelectionLength = 0;
-            txtNome.SelectionStart = 0;
-            txtNome.ShortcutsEnabled = true;
-            txtNome.Size = new Size(438, 48);
-            txtNome.TabIndex = 13;
-            txtNome.TabStop = false;
-            txtNome.TextAlign = HorizontalAlignment.Left;
-            txtNome.TrailingIcon = null;
-            txtNome.UseSystemPasswordChar = false;
+            txtNome.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtNome.Size = new Size(371, 41);
+            txtNome.TabIndex = 37;
+            // 
+            // txtContacto
+            // 
+            txtContacto.BorderColor = Color.FromArgb(109, 27, 123);
+            txtContacto.BorderRadius = 10;
+            txtContacto.BorderThickness = 2;
+            txtContacto.CustomizableEdges = customizableEdges3;
+            txtContacto.DefaultText = "";
+            txtContacto.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtContacto.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtContacto.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtContacto.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtContacto.FocusedState.BorderColor = Color.FromArgb(215, 54, 242);
+            txtContacto.Font = new Font("Segoe UI", 9F);
+            txtContacto.HoverState.BorderColor = Color.FromArgb(215, 54, 242);
+            txtContacto.Location = new Point(302, 225);
+            txtContacto.Margin = new Padding(3, 4, 3, 4);
+            txtContacto.Name = "txtContacto";
+            txtContacto.PlaceholderText = "";
+            txtContacto.SelectedText = "";
+            txtContacto.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtContacto.Size = new Size(371, 41);
+            txtContacto.TabIndex = 38;
+            // 
+            // txtEmail
+            // 
+            txtEmail.BorderColor = Color.FromArgb(109, 27, 123);
+            txtEmail.BorderRadius = 10;
+            txtEmail.BorderThickness = 2;
+            txtEmail.CustomizableEdges = customizableEdges5;
+            txtEmail.DefaultText = "";
+            txtEmail.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtEmail.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtEmail.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtEmail.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtEmail.FocusedState.BorderColor = Color.FromArgb(215, 54, 242);
+            txtEmail.Font = new Font("Segoe UI", 9F);
+            txtEmail.HoverState.BorderColor = Color.FromArgb(215, 54, 242);
+            txtEmail.Location = new Point(302, 295);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
+            txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderText = "";
+            txtEmail.SelectedText = "";
+            txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtEmail.Size = new Size(371, 41);
+            txtEmail.TabIndex = 39;
+            // 
+            // txtTempodeEntrega
+            // 
+            txtTempodeEntrega.BorderColor = Color.FromArgb(109, 27, 123);
+            txtTempodeEntrega.BorderRadius = 10;
+            txtTempodeEntrega.BorderThickness = 2;
+            txtTempodeEntrega.CustomizableEdges = customizableEdges7;
+            txtTempodeEntrega.DefaultText = "";
+            txtTempodeEntrega.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtTempodeEntrega.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtTempodeEntrega.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtTempodeEntrega.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtTempodeEntrega.FocusedState.BorderColor = Color.FromArgb(215, 54, 242);
+            txtTempodeEntrega.Font = new Font("Segoe UI", 9F);
+            txtTempodeEntrega.HoverState.BorderColor = Color.FromArgb(215, 54, 242);
+            txtTempodeEntrega.Location = new Point(302, 363);
+            txtTempodeEntrega.Margin = new Padding(3, 4, 3, 4);
+            txtTempodeEntrega.Name = "txtTempodeEntrega";
+            txtTempodeEntrega.PlaceholderText = "";
+            txtTempodeEntrega.SelectedText = "";
+            txtTempodeEntrega.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            txtTempodeEntrega.Size = new Size(190, 50);
+            txtTempodeEntrega.TabIndex = 40;
+            // 
+            // btnRegister
+            // 
+            btnRegister.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnRegister.BackColor = Color.White;
+            btnRegister.DisabledState.BorderColor = Color.DarkGray;
+            btnRegister.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnRegister.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnRegister.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnRegister.FillColor = Color.FromArgb(215, 54, 242);
+            btnRegister.FocusedColor = Color.FromArgb(109, 27, 123);
+            btnRegister.Font = new Font("Segoe UI", 9F);
+            btnRegister.ForeColor = Color.White;
+            btnRegister.HoverState.BorderColor = Color.FromArgb(109, 27, 123);
+            btnRegister.Image = (Image)resources.GetObject("btnRegister.Image");
+            btnRegister.ImageSize = new Size(50, 50);
+            btnRegister.Location = new Point(686, 411);
+            btnRegister.Name = "btnRegister";
+            btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges9;
+            btnRegister.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            btnRegister.Size = new Size(84, 74);
+            btnRegister.TabIndex = 41;
+            btnRegister.Click += btnRegister_Click;
+            // 
+            // panelTitle
+            // 
+            panelTitle.BackColor = Color.FromArgb(109, 27, 123);
+            panelTitle.Controls.Add(btnClose);
+            panelTitle.Controls.Add(lblTitle);
+            panelTitle.CustomizableEdges = customizableEdges12;
+            panelTitle.Dock = DockStyle.Top;
+            panelTitle.Location = new Point(0, 0);
+            panelTitle.Name = "panelTitle";
+            panelTitle.ShadowDecoration.CustomizableEdges = customizableEdges13;
+            panelTitle.Size = new Size(801, 91);
+            panelTitle.TabIndex = 42;
+            // 
+            // btnClose
+            // 
+            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnClose.BackColor = Color.Transparent;
+            btnClose.CustomizableEdges = customizableEdges10;
+            btnClose.DisabledState.BorderColor = Color.DarkGray;
+            btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnClose.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnClose.FillColor = Color.Transparent;
+            btnClose.Font = new Font("Segoe UI", 9F);
+            btnClose.ForeColor = Color.White;
+            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
+            btnClose.ImageSize = new Size(40, 40);
+            btnClose.Location = new Point(762, 3);
+            btnClose.Name = "btnClose";
+            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges11;
+            btnClose.Size = new Size(36, 34);
+            btnClose.TabIndex = 29;
+            btnClose.Click += btnClose_Click;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = false;
+            lblTitle.BackColor = Color.Transparent;
+            lblTitle.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(31, 19);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(726, 52);
+            lblTitle.TabIndex = 27;
+            lblTitle.Text = "Criar Novo Fornecedor";
+            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            guna2HtmlLabel1.ForeColor = Color.FromArgb(64, 64, 64);
+            guna2HtmlLabel1.Location = new Point(498, 382);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(47, 25);
+            guna2HtmlLabel1.TabIndex = 43;
+            guna2HtmlLabel1.Text = "(dias)";
             // 
             // SupplierAdd
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(788, 450);
-            Controls.Add(txtEmail);
-            Controls.Add(lblUsername);
+            BackColor = Color.White;
+            ClientSize = new Size(801, 506);
+            Controls.Add(guna2HtmlLabel1);
+            Controls.Add(panelTitle);
             Controls.Add(btnRegister);
-            Controls.Add(lblPass);
-            Controls.Add(lblContacto);
-            Controls.Add(lblNome);
             Controls.Add(txtTempodeEntrega);
+            Controls.Add(txtEmail);
             Controls.Add(txtContacto);
             Controls.Add(txtNome);
+            Controls.Add(lblTempoEntrega);
+            Controls.Add(lblEmail);
+            Controls.Add(lblContacto);
+            Controls.Add(lblNome);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "SupplierAdd";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SupplierAdd";
+            panelTitle.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private MaterialSkin.Controls.MaterialTextBox2 txtEmail;
-        private MaterialSkin.Controls.MaterialLabel lblUsername;
-        private MaterialSkin.Controls.MaterialButton btnRegister;
-        private MaterialSkin.Controls.MaterialLabel lblPass;
-        private MaterialSkin.Controls.MaterialLabel lblContacto;
-        private MaterialSkin.Controls.MaterialLabel lblNome;
-        private MaterialSkin.Controls.MaterialTextBox2 txtTempodeEntrega;
-        private MaterialSkin.Controls.MaterialTextBox2 txtContacto;
-        private MaterialSkin.Controls.MaterialTextBox2 txtNome;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblNome;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblContacto;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmail;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTempoEntrega;
+        private Guna.UI2.WinForms.Guna2TextBox txtNome;
+        private Guna.UI2.WinForms.Guna2TextBox txtContacto;
+        private Guna.UI2.WinForms.Guna2TextBox txtEmail;
+        private Guna.UI2.WinForms.Guna2TextBox txtTempodeEntrega;
+        private Guna.UI2.WinForms.Guna2CircleButton btnRegister;
+        private Guna.UI2.WinForms.Guna2Panel panelTitle;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
+        private Guna.UI2.WinForms.Guna2Button btnClose;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
     }
 }
