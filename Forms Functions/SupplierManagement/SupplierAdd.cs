@@ -20,56 +20,125 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
 
         private void ConfigurarControlos()
         {
-            txtNome.MaxLength = 50;
-            txtContacto.MaxLength = 9;
-            txtEmail.MaxLength = 50;
-            txtTempodeEntrega.MaxLength = 3;
+            txtNome.MaxLength = 100;        
+            txtContacto.MaxLength = 9;      
+            txtEmail.MaxLength = 100;        
+            txtTempodeEntrega.MaxLength = 3; 
         }
 
         private void ConfigurarValidacoes()
         {
-            txtContacto.KeyPress += (s, e) =>
+            txtContacto.KeyPress += (sender, e) =>
             {
-                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '+' && e.KeyChar != ' ')
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != (char)Keys.Delete)
                 {
                     e.Handled = true;
-                    new ToolTip().Show("Apenas números, espaços e '+' permitidos", txtContacto, 0, -20, 2000);
+                    ToolTip tooltip = new ToolTip();
+                    tooltip.Show("Apenas números são permitidos", txtContacto, 0, -20, 2000);
                 }
             };
 
-            txtEmail.TextChanged += (s, e) =>
+            txtEmail.Leave += (sender, e) =>
             {
-                if (txtEmail.Text.Length > 50)
+                if (!string.IsNullOrWhiteSpace(txtEmail.Text) && !IsValidEmail(txtEmail.Text))
                 {
-                    txtEmail.Text = txtEmail.Text.Substring(0, 50);
-                    txtEmail.SelectionStart = txtEmail.Text.Length;
-                    new ToolTip().Show("Máximo de 50 caracteres", txtEmail, 0, -20, 2000);
+                    ToolTip tooltip = new ToolTip();
+                    tooltip.Show("Formato de email inválido", txtEmail, 0, -20, 3000);
                 }
             };
+
+            txtTempodeEntrega.KeyPress += (sender, e) =>
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != (char)Keys.Delete)
+                {
+                    e.Handled = true;
+                    ToolTip tooltip = new ToolTip();
+                    tooltip.Show("Apenas números são permitidos", txtTempodeEntrega, 0, -20, 2000);
+                }
+            };
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var emailRegex = new Regex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                return emailRegex.IsMatch(email);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private bool ValidarFormulario()
         {
             var erros = new List<string>();
 
-            if (string.IsNullOrWhiteSpace(txtNome.Text) || txtNome.Text.Trim().Length < 2)
-                erros.Add("• Nome do fornecedor deve ter pelo menos 2 caracteres");
+            // Validar nome (igual ao EditSupplier)
+            if (string.IsNullOrWhiteSpace(txtNome.Text))
+            {
+                erros.Add("• Nome do fornecedor é obrigatório");
+            }
+            else if (txtNome.Text.Trim().Length < 2)
+            {
+                erros.Add("• Nome deve ter pelo menos 2 caracteres");
+            }
 
-            if (string.IsNullOrWhiteSpace(txtContacto.Text) || !Regex.IsMatch(txtContacto.Text, @"^\d{9}$"))
-                erros.Add("• Contacto deve conter exatamente 9 dígitos numéricos");
+            // Validar contacto (igual ao EditSupplier)
+            if (string.IsNullOrWhiteSpace(txtContacto.Text))
+            {
+                erros.Add("• Contacto é obrigatório");
+            }
+            else if (txtContacto.Text.Trim().Length != 9)
+            {
+                erros.Add("• Contacto deve ter exatamente 9 dígitos");
+            }
+            else if (!txtContacto.Text.All(char.IsDigit))
+            {
+                erros.Add("• Contacto deve conter apenas números");
+            }
 
-            if (string.IsNullOrWhiteSpace(txtEmail.Text) || !Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-                erros.Add("• Email inválido");
+            // Validar email (igual ao EditSupplier)
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                erros.Add("• Email é obrigatório");
+            }
+            else if (!IsValidEmail(txtEmail.Text.Trim()))
+            {
+                erros.Add("• Email deve ter um formato válido");
+            }
 
+            // Validar tempo de entrega (igual ao EditSupplier)
             if (string.IsNullOrWhiteSpace(txtTempodeEntrega.Text))
+            {
                 erros.Add("• Tempo de entrega é obrigatório");
+            }
+            else if (!int.TryParse(txtTempodeEntrega.Text, out int tempo) || tempo <= 0)
+            {
+                erros.Add("• Tempo de entrega deve ser um número válido maior que 0");
+            }
+            else if (tempo > 365)
+            {
+                erros.Add("• Tempo de entrega não pode ser superior a 365 dias");
+            }
 
-            if (FornecedorJaExiste(txtNome.Text.Trim()))
+            // Verificar se nome já existe
+            if (!string.IsNullOrWhiteSpace(txtNome.Text) && FornecedorJaExiste(txtNome.Text.Trim()))
+            {
                 erros.Add("• Já existe um fornecedor com este nome");
+            }
+
+            // Verificar se email já existe
+            if (!string.IsNullOrWhiteSpace(txtEmail.Text) && IsValidEmail(txtEmail.Text.Trim()) && EmailJaExiste(txtEmail.Text.Trim()))
+            {
+                erros.Add("• Já existe um fornecedor com este email");
+            }
 
             if (erros.Count > 0)
             {
-                MessageBox.Show("Corrija os seguintes erros:\n\n" + string.Join("\n", erros), "Dados Inválidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string mensagem = "Por favor, corrija os seguintes erros:\n\n" + string.Join("\n", erros);
+                MessageBox.Show(mensagem, "Dados Inválidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -90,6 +159,28 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
             }
             catch
             {
+                return false;
+            }
+        }
+
+        private bool EmailJaExiste(string email)
+        {
+            try
+            {
+                using (var conn = DatabaseManage.GetInstance().GetConnection())
+                {
+                    conn.Open();
+                    var cmd = new SQLiteCommand("SELECT COUNT(*) FROM fornecedor WHERE LOWER(email) = LOWER(@email)", conn);
+                    cmd.Parameters.AddWithValue("@email", email);
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao verificar email: {ex.Message}",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -116,45 +207,59 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
             base.OnFormClosing(e);
         }
 
-        private void LimparFormulario()
+        public static bool RegisterSupplier(string nome, string contacto, string email, int tempoDeEntrega)
         {
-            txtNome.Clear();
-            txtContacto.Clear();
-            txtEmail.Clear();
-            txtTempodeEntrega.Clear();
-            txtNome.Focus();
-        }
-
-        public static bool RegisterSupplier(string nome, string contacto, string email, string tempoDeEntrega)
-        {
-            var db = DatabaseManage.GetInstance();
-            using var conn = db.GetConnection();
-
             try
             {
-                conn.Open();
-                using var tx = conn.BeginTransaction();
-                var query = "INSERT INTO fornecedor (nome, contacto, email, tempo_de_entrega) VALUES (@nome, @contacto, @email, @tempo)";
-                using var cmd = new SQLiteCommand(query, conn, tx);
-
-                cmd.Parameters.AddWithValue("@nome", nome);
-                cmd.Parameters.AddWithValue("@contacto", contacto);
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@tempo", tempoDeEntrega);
-
-                int rows = cmd.ExecuteNonQuery();
-                if (rows > 0)
+                using (var conn = DatabaseManage.GetInstance().GetConnection())
                 {
-                    tx.Commit();
-                    LogsService.RegistarLog(Session.FuncionarioId ?? 0, $"Fornecedor «{nome}» registado com sucesso.");
-                    return true;
+                    conn.Open();
+
+                    using (var transaction = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            string query = "INSERT INTO fornecedor (nome, contacto, email, tempo_de_entrega) VALUES (@nome, @contacto, @email, @tempo)";
+
+                            using (var cmd = new SQLiteCommand(query, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@nome", nome);
+                                cmd.Parameters.AddWithValue("@contacto", contacto);
+                                cmd.Parameters.AddWithValue("@email", email);
+                                cmd.Parameters.AddWithValue("@tempo", tempoDeEntrega);
+
+                                int rowsAffected = cmd.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    // Registar log
+                                    LogsService.RegistarLog(
+                                        Session.FuncionarioId,
+                                        $"Registou novo fornecedor → " +
+                                        $"Nome: {nome}, Contacto: {contacto}, Email: {email}, Tempo entrega: {tempoDeEntrega} dias");
+
+                                    transaction.Commit();
+                                    return true;
+                                }
+                                else
+                                {
+                                    transaction.Rollback();
+                                    return false;
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
                 }
-                tx.Rollback();
-                return false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao registar fornecedor: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao registar fornecedor: {ex.Message}",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -163,23 +268,24 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
         {
             if (!ValidarFormulario()) return;
 
-            bool sucesso = RegisterSupplier(txtNome.Text.Trim(), txtContacto.Text.Trim(), txtEmail.Text.Trim(), txtTempodeEntrega.Text.Trim());
+            string nome = txtNome.Text.Trim();
+            string contacto = txtContacto.Text.Trim();
+            string email = txtEmail.Text.Trim();
+            int tempoDeEntrega = int.Parse(txtTempodeEntrega.Text);
+
+            bool sucesso = RegisterSupplier(nome, contacto, email, tempoDeEntrega);
 
             if (sucesso)
             {
-                MessageBox.Show(
-                    $"Fornecedor «{txtNome.Text.Trim()}» registado com sucesso!\n" +
-                    $"Contacto: {txtContacto.Text.Trim()}\n" +
-                    $"Email: {txtEmail.Text.Trim()}\n" +
-                    $"Tempo de entrega: {txtTempodeEntrega.Text.Trim()}",
+                MessageBox.Show($"Fornecedor '{nome}' registado com sucesso!",
                     "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Erro ao registar fornecedor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro ao registar fornecedor.",
+                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

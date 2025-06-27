@@ -76,7 +76,8 @@ namespace PadariaApp
             contacto TEXT NOT NULL,
             username TEXT NOT NULL,
             pass TEXT NOT NULL,
-            id_funcao INTEGER NOT NULL
+            id_funcao INTEGER NOT NULL,
+            ativo TEXT CHECK(ativo IN ('S', 'N')) DEFAULT 'S'
         );
 
         CREATE TABLE funcao (

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static projetoPadariaApp.Forms.registerForm;
+using static projetoPadariaApp.Forms.RegisterForm;
 
 namespace projetoPadariaApp.Forms_Functions.StockManagement
 {

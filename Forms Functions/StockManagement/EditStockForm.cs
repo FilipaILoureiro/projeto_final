@@ -4,7 +4,7 @@ using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Windows.Forms;
-using static projetoPadariaApp.Forms.registerForm;
+using static projetoPadariaApp.Forms.RegisterForm;
 
 namespace projetoPadariaApp.Forms_Functions.StockManagement
 {

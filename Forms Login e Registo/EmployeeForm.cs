@@ -24,8 +24,6 @@ namespace projetoPadariaApp.Forms
     {
         // CAMPOS
         private Guna2Button currentButton;
-        private Random random;
-        private int tempIndex;
         private Form activeForm;
 
         // CONSTRUTOR
@@ -33,7 +31,6 @@ namespace projetoPadariaApp.Forms
         {
             InitializeComponent();
             //this.Load += EmployeeForm_Load; -> descomentar quando as sessões funcionarem
-            random = new Random();
             this.Text = "Painel de Gestão";
         }
 
@@ -162,6 +159,7 @@ namespace projetoPadariaApp.Forms
         {
             loginForm loginForm = new loginForm();
             loginForm.Show();
+            //Session.ClearSession(); -> descomentar quando as sessões funcionarem
             this.Close();
         }
 

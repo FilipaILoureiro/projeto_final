@@ -16,9 +16,9 @@ using projetoPadariaApp.Services;
 
 namespace projetoPadariaApp.Forms
 {
-    public partial class registerForm : Form
+    public partial class RegisterForm : Form
     {
-        public registerForm()
+        public RegisterForm()
         {
             InitializeComponent();
         }
