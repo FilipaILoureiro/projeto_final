@@ -29,7 +29,6 @@ namespace projetoPadariaApp.Forms
             SetupValidation();
         }
 
-        //para adicionar o caminho para o ficheiro database
         private static readonly string connectionString = "Data Source=projetoPadariaApp.db;Version=3;";
 
         private void SetupValidation()
@@ -38,16 +37,15 @@ namespace projetoPadariaApp.Forms
             txtContacto.Leave += ValidateContacto;
             txtUsername.Leave += ValidateUsername;
             txtPass.Leave += ValidatePassword;
+            txtConfirmarPass.Leave += ValidateConfirmPassword;
         }
 
         private void LoadFuncoes()
         {
             try
             {
-                // Limpar o ComboBox
                 cbFuncao.Items.Clear();
 
-                // Usar a instância singleton do DatabaseManage
                 var dbManager = DatabaseManage.GetInstance();
                 using (var connection = dbManager.GetConnection())
                 {
@@ -161,7 +159,37 @@ namespace projetoPadariaApp.Forms
                 ShowFieldError(txtPass, "Palavra-passe é obrigatória");
                 return;
             }
+            if (password.Length < 6)
+            {
+                ShowFieldError(txtPass, "Palavra-passe deve ter pelo menos 6 caracteres");
+                return;
+            }
             ClearFieldError(txtPass);
+
+            if (!string.IsNullOrWhiteSpace(txtConfirmarPass.Text))
+            {
+                ValidateConfirmPassword(txtConfirmarPass, EventArgs.Empty);
+            }
+        }
+
+        private void ValidateConfirmPassword(object sender, EventArgs e)
+        {
+            string password = txtPass.Text;
+            string confirmPassword = txtConfirmarPass.Text;
+
+            if (string.IsNullOrWhiteSpace(confirmPassword))
+            {
+                ShowFieldError(txtConfirmarPass, "Confirmação de palavra-passe é obrigatória");
+                return;
+            }
+
+            if (password != confirmPassword)
+            {
+                ShowFieldError(txtConfirmarPass, "As palavras-passe não coincidem");
+                return;
+            }
+
+            ClearFieldError(txtConfirmarPass);
         }
 
         private bool IsValidEmail(string email)
@@ -256,7 +284,6 @@ namespace projetoPadariaApp.Forms
                 gunaTextBox.BorderColor = Color.Red;
             }
 
-            // Mostra tooltip com erro
             ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(control, message);
             toolTip.Show(message, control, control.Width, 0, 3000);
@@ -264,7 +291,6 @@ namespace projetoPadariaApp.Forms
 
         private void ClearFieldError(Control control)
         {
-            // Restaura a cor original da borda
             if (control is Guna2TextBox gunaTextBox)
             {
                 gunaTextBox.BorderColor = Color.FromArgb(213, 218, 223);
@@ -276,13 +302,12 @@ namespace projetoPadariaApp.Forms
         {
             bool isValid = true;
 
-            // Validar todos os campos
             string nome = txtNome.Text.Trim();
             string contacto = txtContacto.Text.Trim();
             string username = txtUsername.Text.Trim();
             string password = txtPass.Text;
+            string confirmPassword = txtConfirmarPass.Text;
 
-            // Verificar campos vazios
             if (string.IsNullOrWhiteSpace(nome))
             {
                 ShowFieldError(txtNome, "Nome é obrigatório");
@@ -337,7 +362,17 @@ namespace projetoPadariaApp.Forms
                 isValid = false;
             }
 
-            // Verificar se função foi selecionada
+            if (string.IsNullOrWhiteSpace(confirmPassword))
+            {
+                ShowFieldError(txtConfirmarPass, "Confirmação de palavra-passe é obrigatória");
+                isValid = false;
+            }
+            else if (password != confirmPassword)
+            {
+                ShowFieldError(txtConfirmarPass, "As palavras-passe não coincidem");
+                isValid = false;
+            }
+
             if (cbFuncao.SelectedItem == null)
             {
                 MessageBox.Show("Por favor, selecione uma função.", "Campo Obrigatório", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -347,14 +382,13 @@ namespace projetoPadariaApp.Forms
             return isValid;
         }
 
-
-
         private void ClearForm()
         {
             txtNome.Clear();
             txtContacto.Clear();
             txtUsername.Clear();
             txtPass.Clear();
+            txtConfirmarPass.Clear();
             cbFuncao.SelectedIndex = -1;
             chkIsAdmin.Checked = false;
 
@@ -362,40 +396,7 @@ namespace projetoPadariaApp.Forms
             ClearFieldError(txtContacto);
             ClearFieldError(txtUsername);
             ClearFieldError(txtPass);
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            if (HasDataFilled())
-            {
-                DialogResult result = MessageBox.Show(
-                    "Tem dados preenchidos. Tem certeza que quer sair?",
-                    "Confirmar Saída",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
-
-                if (result == DialogResult.Yes)
-                {
-                    this.Close();
-                }
-            }
-            else
-            {
-                loginForm loginForm = new loginForm();
-                loginForm.Show();
-                this.Close();
-            }
-        }
-
-        private bool HasDataFilled()
-        {
-            return !string.IsNullOrWhiteSpace(txtNome.Text) ||
-                   !string.IsNullOrWhiteSpace(txtContacto.Text) ||
-                   !string.IsNullOrWhiteSpace(txtUsername.Text) ||
-                   !string.IsNullOrWhiteSpace(txtPass.Text) ||
-                   cbFuncao.SelectedIndex != -1 ||
-                   chkIsAdmin.Checked;
+            ClearFieldError(txtConfirmarPass);
         }
 
         private void lblNome_Click(object sender, EventArgs e)
@@ -422,7 +423,6 @@ namespace projetoPadariaApp.Forms
         {
             try
             {
-                // Validar todos os campos primeiro
                 if (!ValidateAllFields())
                 {
                     return;
@@ -463,6 +463,39 @@ namespace projetoPadariaApp.Forms
             {
                 MessageBox.Show($"Erro inesperado: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            if (HasDataFilled())
+            {
+                DialogResult result = MessageBox.Show(
+                    "Tem dados preenchidos. Tem certeza que quer sair?",
+                    "Confirmar Saída",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            else 
+            {
+                this.Close();
+            }
+        }
+
+        private bool HasDataFilled()
+        {
+            return !string.IsNullOrWhiteSpace(txtNome.Text) ||
+                   !string.IsNullOrWhiteSpace(txtContacto.Text) ||
+                   !string.IsNullOrWhiteSpace(txtUsername.Text) ||
+                   !string.IsNullOrWhiteSpace(txtPass.Text) ||
+                   !string.IsNullOrWhiteSpace(txtConfirmarPass.Text) ||
+                   cbFuncao.SelectedIndex != -1 ||
+                   chkIsAdmin.Checked;
         }
     }
 }

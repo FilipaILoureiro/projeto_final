@@ -31,7 +31,6 @@ namespace PadariaApp
 
         public SQLiteConnection GetConnection()
         {
-            // Crie uma nova conexão cada vez que for solicitada
             return new SQLiteConnection(connectionString);
         }
 
@@ -48,8 +47,6 @@ namespace PadariaApp
                     {
                         CreateTables(conn);
                         CreateFuncaoTableAndInsertData(conn);
-
-                        // Inserir utilizadores de teste
                         InsertTestUsers(conn);
 
                         transaction.Commit();
@@ -77,7 +74,9 @@ namespace PadariaApp
             username TEXT NOT NULL,
             pass TEXT NOT NULL,
             id_funcao INTEGER NOT NULL,
-            ativo TEXT CHECK(ativo IN ('S', 'N')) DEFAULT 'S'
+            ativo TEXT CHECK(ativo IN ('S', 'N')) DEFAULT 'S',
+            pass_temp TEXT,
+            usar_pass_temp INTEGER DEFAULT 0
         );
 
         CREATE TABLE funcao (
@@ -203,7 +202,6 @@ namespace PadariaApp
 
         private void InsertTestUsers(SQLiteConnection conn)
         {
-            // Buscar os IDs das funções
             int idAdmin = GetFuncaoId(conn, "Administrador");
             int idCaixa = GetFuncaoId(conn, "Caixa");
 
@@ -213,13 +211,12 @@ namespace PadariaApp
                 return;
             }
 
-            // Hashear as passwords
             string hashedPasswordAdmin = BCrypt.Net.BCrypt.HashPassword("admin123");
             string hashedPasswordFunc = BCrypt.Net.BCrypt.HashPassword("func123");
 
             // Inserir utilizador admin
             string insertAdmin = @"INSERT INTO funcionario (nome, contacto, username, pass, id_funcao)
-                                VALUES ('Admin Teste', '912345678', 'admin', @hashedPass, @idAdmin);
+                                VALUES ('Admin Teste', 'admin@admin.com', 'admin', @hashedPass, @idAdmin);
                                 SELECT last_insert_rowid();";
 
             using (var cmd = new SQLiteCommand(insertAdmin, conn))
@@ -238,7 +235,7 @@ namespace PadariaApp
 
             // Inserir utilizador funcionário
             string insertUser = @"INSERT INTO funcionario (nome, contacto, username, pass, id_funcao)
-                                VALUES ('Funcionario Teste', '923456789', 'func', @hashedPass, @idFuncao);
+                                VALUES ('Funcionario Teste', 'func@funcionario.com', 'func', @hashedPass, @idFuncao);
                                 SELECT last_insert_rowid();";
 
             using (var cmd = new SQLiteCommand(insertUser, conn))

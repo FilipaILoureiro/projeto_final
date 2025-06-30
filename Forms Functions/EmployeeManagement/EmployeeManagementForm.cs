@@ -31,6 +31,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             dgvEmployees.DataBindingComplete += dgvEmployees_DataBindingComplete;
             dgvEmployees.Resize += dgvEmployees_Resize;
             cbAtivo.SelectedIndexChanged += cbAtivo_SelectedIndexChanged;
+            dgvEmployees.SelectionChanged += dgvEmployees_SelectionChanged;
         }
 
         private void ConfigurarComboBoxes()
@@ -45,6 +46,11 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
         private void dgvEmployees_Resize(object sender, EventArgs e)
         {
             AjustarLarguraColunas();
+        }
+
+        private void dgvEmployees_SelectionChanged(object sender, EventArgs e)
+        {
+            AtualizarBotaoApagar();
         }
 
         private void AjustarLarguraColunas()
@@ -163,7 +169,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                 {
                     if (row.Cells["Ativo"].Value != null)
                     {
-                        bool isAtivo = Convert.ToBoolean(row.Cells["Ativo"].Value);
+                        bool isAtivo = row.Cells["Ativo"].Value?.ToString() == "S";
                         if (!isAtivo)
                         {
                             row.DefaultCellStyle.BackColor = Color.FromArgb(255, 235, 235);
@@ -319,7 +325,6 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                     {
                         try
                         {
-                            // Verificar se a coluna 'ativo' existe
                             string checkColumnQuery = "PRAGMA table_info(funcionario)";
                             using (var checkCmd = new SQLiteCommand(checkColumnQuery, connection, transaction))
                             {
@@ -337,7 +342,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
 
                                 if (!hasAtivoColumn)
                                 {
-                                    string addColumnQuery = "ALTER TABLE funcionario ADD COLUMN ativo INTEGER DEFAULT 1";
+                                    string addColumnQuery = "ALTER TABLE funcionario ADD COLUMN ativo TEXT CHECK(ativo IN ('S', 'N')) DEFAULT 'S'";
                                     using (var addCmd = new SQLiteCommand(addColumnQuery, connection, transaction))
                                     {
                                         addCmd.ExecuteNonQuery();
@@ -345,7 +350,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                                 }
                             }
 
-                            string updateQuery = "UPDATE funcionario SET ativo = 0 WHERE id = @id";
+                            string updateQuery = "UPDATE funcionario SET ativo = 'N' WHERE id = @id";
                             using (var cmd = new SQLiteCommand(updateQuery, connection, transaction))
                             {
                                 cmd.Parameters.AddWithValue("@id", employeeId);
@@ -387,7 +392,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                 using (var connection = DatabaseManage.GetInstance().GetConnection())
                 {
                     connection.Open();
-                    string updateQuery = "UPDATE funcionario SET ativo = 1 WHERE id = @id";
+                    string updateQuery = "UPDATE funcionario SET ativo = 'S' WHERE id = @id";
                     using (var cmd = new SQLiteCommand(updateQuery, connection))
                     {
                         cmd.Parameters.AddWithValue("@id", employeeId);
@@ -398,6 +403,11 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                             MessageBox.Show("Funcionário ativado com sucesso!", "Sucesso",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadEmployees();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Não foi possível ativar o funcionário.", "Aviso",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -544,7 +554,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                 {
                     int employeeId = Convert.ToInt32(dgvEmployees.SelectedRows[0].Cells["Id"].Value);
                     string nomeEmployee = dgvEmployees.SelectedRows[0].Cells["Nome"].Value?.ToString();
-                    bool isAtivo = Convert.ToBoolean(dgvEmployees.SelectedRows[0].Cells["Ativo"].Value);
+                    bool isAtivo = dgvEmployees.SelectedRows[0].Cells["Ativo"].Value?.ToString() == "S";
 
                     string action = isAtivo ? "desativar" : "ativar";
                     string confirmMsg = $"Tem a certeza que deseja {action} o funcionário '{nomeEmployee}'?";
@@ -571,6 +581,35 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             {
                 MessageBox.Show("Selecione um funcionário para alterar o status.", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void AtualizarBotaoApagar()
+        {
+            if (dgvEmployees.SelectedRows.Count == 0)
+            {
+                btnApagar.Text = "Desativar";
+                btnApagar.ForeColor = Color.White;
+                btnApagar.Image = null;
+                btnApagar.Enabled = false;
+                return;
+            }
+
+            var ativo = dgvEmployees.SelectedRows[0].Cells["Ativo"].Value?.ToString();
+
+            if (ativo == "S")
+            {
+                btnApagar.Text = "Desativar";
+                btnApagar.FillColor = Color.Red;
+                btnApagar.Image = Properties.Resources.Cruz;
+                btnApagar.Enabled = true;
+            }
+            else
+            {
+                btnApagar.Text = "Ativar";
+                btnApagar.FillColor = Color.Green;
+                btnApagar.Image = Properties.Resources.Visto;
+                btnApagar.Enabled = true;
             }
         }
 
@@ -617,17 +656,24 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
 
         private void btnResetPass_Click(object sender, EventArgs e)
         {
-            /*if (dgvEmployees.SelectedRows.Count > 0)
+            if (dgvEmployees.SelectedRows.Count > 0)
             {
                 try
                 {
                     string employeeUsername = dgvEmployees.SelectedRows[0].Cells["Username"].Value?.ToString();
                     string nomeEmployee = dgvEmployees.SelectedRows[0].Cells["Nome"].Value?.ToString();
 
-                    if (MessageBox.Show($"Tem a certeza que deseja redefinir a senha de '{nomeEmployee}'?",
+                    // Verificar se não é o próprio utilizador
+                    if (employeeUsername == currentUserUsername)
+                    {
+                        MessageBox.Show("Não pode redefinir a sua própria senha através desta opção.", "Aviso",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    if (MessageBox.Show($"Tem a certeza que deseja redefinir a senha de '{nomeEmployee}'?\n\nUma nova senha temporária será gerada.",
                         "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        // Usar o método do AuthService para redefinir senha
                         bool success = AuthService.ResetPassword(employeeUsername);
 
                         if (!success)
@@ -647,7 +693,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             {
                 MessageBox.Show("Selecione um funcionário para redefinir a senha.", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }*/
+            }
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -665,7 +711,5 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             }
         }
         #endregion
-
-        
     }
 }

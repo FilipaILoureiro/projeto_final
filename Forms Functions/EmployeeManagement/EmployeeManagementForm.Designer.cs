@@ -198,6 +198,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             // 
             // cbAtivo
             // 
+            cbAtivo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             cbAtivo.BackColor = Color.Transparent;
             cbAtivo.BorderColor = Color.FromArgb(163, 50, 35);
             cbAtivo.BorderRadius = 10;
@@ -213,7 +214,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             cbAtivo.Location = new Point(685, 55);
             cbAtivo.Name = "cbAtivo";
             cbAtivo.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            cbAtivo.Size = new Size(147, 36);
+            cbAtivo.Size = new Size(168, 36);
             cbAtivo.TabIndex = 27;
             // 
             // lblFiltro
@@ -249,12 +250,12 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             txtPesquisa.PlaceholderText = "";
             txtPesquisa.SelectedText = "";
             txtPesquisa.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            txtPesquisa.Size = new Size(464, 36);
+            txtPesquisa.Size = new Size(463, 36);
             txtPesquisa.TabIndex = 25;
             // 
             // btnLimpar
             // 
-            btnLimpar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            btnLimpar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             btnLimpar.BorderRadius = 10;
             btnLimpar.CustomizableEdges = customizableEdges7;
             btnLimpar.DisabledState.BorderColor = Color.DarkGray;
@@ -339,6 +340,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             btnResetPass.HoverState.FillColor = Color.FromArgb(163, 50, 35);
             btnResetPass.Image = (Image)resources.GetObject("btnResetPass.Image");
             btnResetPass.ImageAlign = HorizontalAlignment.Left;
+            btnResetPass.ImageOffset = new Point(-5, 0);
             btnResetPass.ImageSize = new Size(40, 40);
             btnResetPass.Location = new Point(43, 364);
             btnResetPass.Name = "btnResetPass";
@@ -347,6 +349,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             btnResetPass.TabIndex = 11;
             btnResetPass.Text = "Redefinir Palavra Passe";
             btnResetPass.TextAlign = HorizontalAlignment.Left;
+            btnResetPass.TextOffset = new Point(-10, 0);
             btnResetPass.Click += btnResetPass_Click;
             // 
             // btnPromover
@@ -395,6 +398,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             btnApagar.Size = new Size(156, 63);
             btnApagar.TabIndex = 9;
             btnApagar.Text = "Desativar";
+            btnApagar.TextOffset = new Point(3, 0);
             btnApagar.Click += btnApagar_Click;
             // 
             // btnEditar
