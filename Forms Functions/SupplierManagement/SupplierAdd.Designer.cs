@@ -63,7 +63,7 @@
             lblNome.BackColor = Color.Transparent;
             lblNome.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblNome.ForeColor = Color.FromArgb(64, 64, 64);
-            lblNome.Location = new Point(219, 165);
+            lblNome.Location = new Point(219, 157);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(60, 30);
             lblNome.TabIndex = 30;
@@ -74,7 +74,7 @@
             lblContacto.BackColor = Color.Transparent;
             lblContacto.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblContacto.ForeColor = Color.FromArgb(64, 64, 64);
-            lblContacto.Location = new Point(85, 230);
+            lblContacto.Location = new Point(85, 249);
             lblContacto.Name = "lblContacto";
             lblContacto.Size = new Size(194, 30);
             lblContacto.TabIndex = 31;
@@ -85,7 +85,7 @@
             lblEmail.BackColor = Color.Transparent;
             lblEmail.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblEmail.ForeColor = Color.FromArgb(64, 64, 64);
-            lblEmail.Location = new Point(224, 295);
+            lblEmail.Location = new Point(224, 330);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(55, 30);
             lblEmail.TabIndex = 32;
@@ -96,7 +96,7 @@
             lblTempoEntrega.BackColor = Color.Transparent;
             lblTempoEntrega.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblTempoEntrega.ForeColor = Color.FromArgb(64, 64, 64);
-            lblTempoEntrega.Location = new Point(103, 372);
+            lblTempoEntrega.Location = new Point(103, 409);
             lblTempoEntrega.Name = "lblTempoEntrega";
             lblTempoEntrega.Size = new Size(176, 30);
             lblTempoEntrega.TabIndex = 33;
@@ -116,13 +116,13 @@
             txtNome.FocusedState.BorderColor = Color.FromArgb(215, 54, 242);
             txtNome.Font = new Font("Segoe UI", 9F);
             txtNome.HoverState.BorderColor = Color.FromArgb(215, 54, 242);
-            txtNome.Location = new Point(302, 158);
+            txtNome.Location = new Point(302, 150);
             txtNome.Margin = new Padding(3, 4, 3, 4);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "";
             txtNome.SelectedText = "";
             txtNome.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtNome.Size = new Size(371, 41);
+            txtNome.Size = new Size(400, 50);
             txtNome.TabIndex = 37;
             // 
             // txtContacto
@@ -139,13 +139,13 @@
             txtContacto.FocusedState.BorderColor = Color.FromArgb(215, 54, 242);
             txtContacto.Font = new Font("Segoe UI", 9F);
             txtContacto.HoverState.BorderColor = Color.FromArgb(215, 54, 242);
-            txtContacto.Location = new Point(302, 225);
+            txtContacto.Location = new Point(302, 238);
             txtContacto.Margin = new Padding(3, 4, 3, 4);
             txtContacto.Name = "txtContacto";
             txtContacto.PlaceholderText = "";
             txtContacto.SelectedText = "";
             txtContacto.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtContacto.Size = new Size(371, 41);
+            txtContacto.Size = new Size(400, 50);
             txtContacto.TabIndex = 38;
             // 
             // txtEmail
@@ -162,13 +162,13 @@
             txtEmail.FocusedState.BorderColor = Color.FromArgb(215, 54, 242);
             txtEmail.Font = new Font("Segoe UI", 9F);
             txtEmail.HoverState.BorderColor = Color.FromArgb(215, 54, 242);
-            txtEmail.Location = new Point(302, 295);
+            txtEmail.Location = new Point(302, 321);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            txtEmail.Size = new Size(371, 41);
+            txtEmail.Size = new Size(400, 50);
             txtEmail.TabIndex = 39;
             // 
             // txtTempodeEntrega
@@ -185,7 +185,7 @@
             txtTempodeEntrega.FocusedState.BorderColor = Color.FromArgb(215, 54, 242);
             txtTempodeEntrega.Font = new Font("Segoe UI", 9F);
             txtTempodeEntrega.HoverState.BorderColor = Color.FromArgb(215, 54, 242);
-            txtTempodeEntrega.Location = new Point(302, 363);
+            txtTempodeEntrega.Location = new Point(302, 400);
             txtTempodeEntrega.Margin = new Padding(3, 4, 3, 4);
             txtTempodeEntrega.Name = "txtTempodeEntrega";
             txtTempodeEntrega.PlaceholderText = "";
@@ -209,7 +209,7 @@
             btnRegister.HoverState.BorderColor = Color.FromArgb(109, 27, 123);
             btnRegister.Image = (Image)resources.GetObject("btnRegister.Image");
             btnRegister.ImageSize = new Size(50, 50);
-            btnRegister.Location = new Point(686, 411);
+            btnRegister.Location = new Point(704, 458);
             btnRegister.Name = "btnRegister";
             btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges9;
             btnRegister.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -227,7 +227,7 @@
             panelTitle.Location = new Point(0, 0);
             panelTitle.Name = "panelTitle";
             panelTitle.ShadowDecoration.CustomizableEdges = customizableEdges13;
-            panelTitle.Size = new Size(801, 91);
+            panelTitle.Size = new Size(819, 91);
             panelTitle.TabIndex = 42;
             // 
             // btnClose
@@ -244,7 +244,7 @@
             btnClose.ForeColor = Color.White;
             btnClose.Image = (Image)resources.GetObject("btnClose.Image");
             btnClose.ImageSize = new Size(40, 40);
-            btnClose.Location = new Point(762, 3);
+            btnClose.Location = new Point(780, 3);
             btnClose.Name = "btnClose";
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges11;
             btnClose.Size = new Size(36, 34);
@@ -269,7 +269,7 @@
             guna2HtmlLabel1.BackColor = Color.Transparent;
             guna2HtmlLabel1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             guna2HtmlLabel1.ForeColor = Color.FromArgb(64, 64, 64);
-            guna2HtmlLabel1.Location = new Point(498, 382);
+            guna2HtmlLabel1.Location = new Point(498, 419);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             guna2HtmlLabel1.Size = new Size(47, 25);
             guna2HtmlLabel1.TabIndex = 43;
@@ -280,7 +280,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(801, 506);
+            ClientSize = new Size(819, 553);
             Controls.Add(guna2HtmlLabel1);
             Controls.Add(panelTitle);
             Controls.Add(btnRegister);

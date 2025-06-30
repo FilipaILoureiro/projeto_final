@@ -447,11 +447,23 @@ namespace projetoPadariaApp.Forms
                 if (result == DialogResult.Yes)
                 {
                     bool success = AuthService.RegisterUser(nome, contacto, username, password, funcaoID, isAdmin);
-
                     if (success)
                     {
-                        MessageBox.Show("Utilizador registado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        ClearForm();
+                        DialogResult continueResult = MessageBox.Show(
+                            "Utilizador registado com sucesso!\n\nDeseja adicionar outro utilizador?",
+                            "Sucesso",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question
+                        );
+
+                        if (continueResult == DialogResult.No)
+                        {
+                            this.Close();
+                        }
+                        else
+                        {
+                            ClearForm();
+                        }
                     }
                     else
                     {

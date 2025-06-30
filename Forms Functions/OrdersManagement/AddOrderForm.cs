@@ -176,11 +176,25 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 
                     transaction.Commit();
 
-                    MessageBox.Show($"Encomenda #{lastId} adicionada com sucesso!\nTotal: {total:C2}",
-                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show($"Encomenda #{lastId} adicionada com sucesso!\nTotal: {total:C2}\n\nDeseja adicionar outra encomenda?",
+                                            "Sucesso",
+                                            MessageBoxButtons.YesNo,
+                                            MessageBoxIcon.Question);
 
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    if (result == DialogResult.No)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    else
+                    {
+                        txtNIF.Clear();
+                        produtosSelecionados.Clear();
+                        cbEntregue.SelectedIndex = 0;
+                        cbPago.SelectedIndex = 0;
+                        dtpDataRecolha.Value = DateTime.Today;
+                        btnProdutos.Text = "Selecionar Produtos";
+                    }
                 }
                 catch (Exception)
                 {

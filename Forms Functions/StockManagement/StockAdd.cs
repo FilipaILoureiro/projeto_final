@@ -357,19 +357,22 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
 
                 if (success)
                 {
-                    MessageBox.Show($"Matéria-prima '{nome}' registada com sucesso!\n" +
-                                  $"Fornecedor: {selectedItem.Name}\n" +
-                                  $"Quantidade: {quantidade:F3}\n" +
-                                  $"Preço: {preco:C2}\n" +
-                                  $"IVA: {iva}%",
-                        "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show($"Matéria-prima '{nome}' registada com sucesso!\n" +
+                                      $"Fornecedor: {selectedItem.Name}\n" +
+                                      $"Quantidade: {quantidade:F3}\n" +
+                                      $"Preço: {preco:C2}\n" +
+                                      $"IVA: {iva}%\n\nDeseja adicionar outra matéria-prima?",
+                            "Sucesso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    LimparFormulario();
-                }
-                else
-                {
-                    MessageBox.Show("Erro ao registar matéria-prima. Tente novamente.",
-                        "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (result == DialogResult.No)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    else
+                    {
+                        LimparFormulario();
+                    }
                 }
             }
             catch (FormatException)

@@ -277,15 +277,22 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
 
             if (sucesso)
             {
-                MessageBox.Show($"Fornecedor '{nome}' registado com sucesso!",
-                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Erro ao registar fornecedor.",
-                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult result = MessageBox.Show($"Fornecedor '{nome}' registado com sucesso!\n\nDeseja adicionar outro fornecedor?",
+                    "Sucesso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    txtNome.Clear();
+                    txtContacto.Clear();
+                    txtEmail.Clear();
+                    txtTempodeEntrega.Clear();
+                    txtNome.Focus();
+                }
             }
         }
 

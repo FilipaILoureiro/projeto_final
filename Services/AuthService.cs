@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SQLite;
-using PadariaApp;
 using System.Windows.Forms;
+using PadariaApp;
+using projetoPadariaApp.Properties.Style;
 
 namespace projetoPadariaApp.Services
 {
@@ -31,9 +32,9 @@ namespace projetoPadariaApp.Services
                     conn.Open();
 
                     // Verificar se o utilizador existe e está ativo
-                    string query = @"SELECT id, pass, COALESCE(usar_pass_temp, 0) as usar_temp, COALESCE(ativo, 'S') as ativo 
-                                   FROM funcionario 
-                                   WHERE username = @username";
+                    string query = @"SELECT id, pass, COALESCE(usar_pass_temp, 'N') as usar_temp, COALESCE(ativo, 'S') as ativo 
+                           FROM funcionario 
+                           WHERE username = @username";
 
                     using (var cmd = new SQLiteCommand(query, conn))
                     {
@@ -52,7 +53,10 @@ namespace projetoPadariaApp.Services
 
                                 userId = Convert.ToInt32(reader["id"]);
                                 string storedPassword = reader["pass"].ToString();
-                                bool usarTemp = Convert.ToBoolean(reader["usar_temp"]);
+
+                                // CORREÇÃO: Converter corretamente 'S'/'N' para boolean
+                                string usarTempStr = reader["usar_temp"].ToString();
+                                bool usarTemp = usarTempStr == "S" || usarTempStr == "1";
 
                                 if (BCrypt.Net.BCrypt.Verify(password, storedPassword))
                                 {
@@ -155,8 +159,6 @@ namespace projetoPadariaApp.Services
                                     }
 
                                     transaction.Commit();
-                                    MessageBox.Show("Utilizador registado com sucesso!", "Sucesso",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     return true;
                                 }
                             }
@@ -218,7 +220,7 @@ namespace projetoPadariaApp.Services
         /// </summary>
         public static bool PromoteToAdmin(string loggedUsername, string targetUsername)
         {
-            if (!IsAdmin(loggedUsername))
+            if (!Session.IsLoggedIn || !Session.IsAdmin)
             {
                 MessageBox.Show("Apenas administradores podem realizar esta ação.", "Acesso Negado",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -306,7 +308,6 @@ namespace projetoPadariaApp.Services
             {
                 conn.Open();
 
-                // Verificar se o utilizador existe e se está ativo
                 string checkQuery = "SELECT id, nome, COALESCE(ativo, 'S') as ativo FROM funcionario WHERE username = @username";
                 using (var checkCmd = new SQLiteCommand(checkQuery, conn))
                 {
@@ -341,8 +342,10 @@ namespace projetoPadariaApp.Services
 
                             if (rowsAffected > 0)
                             {
-                                MessageBox.Show($"Nova senha temporária para '{nome}' ({username}):\n\n{newPassword}\n\nO funcionário deve alterar esta senha no próximo login.",
-                                    "Senha Redefinida", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                using (var dialog = new PasswordTempDialog(newPassword, nome, username))
+                                {
+                                    dialog.ShowDialog();
+                                }
                                 return true;
                             }
                         }
@@ -355,7 +358,6 @@ namespace projetoPadariaApp.Services
                     }
                 }
             }
-
             return false;
         }
 
@@ -380,13 +382,15 @@ namespace projetoPadariaApp.Services
                 using (var conn = DatabaseManage.GetInstance().GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT COALESCE(usar_pass_temp, 0) FROM funcionario WHERE username = @username";
+                    string query = "SELECT COALESCE(usar_pass_temp, 'N') FROM funcionario WHERE username = @username";
 
                     using (var cmd = new SQLiteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@username", username);
                         var result = cmd.ExecuteScalar();
-                        return result != null && Convert.ToBoolean(result);
+
+                        string resultStr = result?.ToString() ?? "N";
+                        return resultStr == "S" || resultStr == "1";
                     }
                 }
             }

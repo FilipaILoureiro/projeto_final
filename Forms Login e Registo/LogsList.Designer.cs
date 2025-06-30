@@ -31,7 +31,10 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dgvLogs = new Guna.UI2.WinForms.Guna2DataGridView();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             ((System.ComponentModel.ISupportInitialize)dgvLogs).BeginInit();
             SuspendLayout();
             // 
@@ -58,13 +61,11 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvLogs.DefaultCellStyle = dataGridViewCellStyle3;
             dgvLogs.GridColor = Color.FromArgb(231, 229, 255);
-            dgvLogs.Location = new Point(-94, 49);
-            dgvLogs.Margin = new Padding(3, 2, 3, 2);
+            dgvLogs.Location = new Point(12, 240);
             dgvLogs.Name = "dgvLogs";
             dgvLogs.RowHeadersVisible = false;
             dgvLogs.RowHeadersWidth = 51;
-            dgvLogs.RowTemplate.Height = 29;
-            dgvLogs.Size = new Size(989, 352);
+            dgvLogs.Size = new Size(1145, 500);
             dgvLogs.TabIndex = 2;
             dgvLogs.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvLogs.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -89,12 +90,24 @@
             dgvLogs.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgvLogs.CellContentClick += dgvLogs_CellContentClick;
             // 
+            // guna2Panel1
+            // 
+            guna2Panel1.CustomizableEdges = customizableEdges1;
+            guna2Panel1.Dock = DockStyle.Top;
+            guna2Panel1.Location = new Point(0, 0);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2Panel1.Size = new Size(1169, 223);
+            guna2Panel1.TabIndex = 3;
+            // 
             // LogsList
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(873, 539);
+            ClientSize = new Size(1169, 752);
+            Controls.Add(guna2Panel1);
             Controls.Add(dgvLogs);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "LogsList";
             Text = "LogsList";
             ((System.ComponentModel.ISupportInitialize)dgvLogs).EndInit();
@@ -104,5 +117,6 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2DataGridView dgvLogs;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
     }
 }

@@ -35,61 +35,45 @@ namespace projetoPadariaApp.Forms
             string username = txtUsername.Text;
             string password = txtPassword.Text;
 
-            if (AuthService.AuthenticateUser(username, password))
+            if (AuthService.AuthenticateUser(username, password, out bool needsPasswordChange, out int userId))
             {
-                using (var conn = DatabaseManage.GetInstance().GetConnection())
+                if (needsPasswordChange)
                 {
-                    conn.Open();
-                    string query = "SELECT id, usar_pass_temp, id_funcao FROM funcionario WHERE username = @username";
-                    using (var cmd = new SQLiteCommand(query, conn))
+                    MessageBox.Show("Estás a usar uma password temporária. Por favor define uma nova password.");
+                    AlterarPasswordForm alterarForm = new AlterarPasswordForm(userId);
+                    this.Hide();
+                    alterarForm.ShowDialog();
+                    this.Show();
+                    return;
+                }
+
+                var userInfo = AuthService.GetUserInfo(username);
+                if (userInfo != null)
+                {
+                    Session.InitializeSession(userInfo);
+                    MessageBox.Show("Login bem-sucedido!");
+
+                    if (Session.IsAdmin)
                     {
-                        cmd.Parameters.AddWithValue("@username", username);
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                int funcionarioId = Convert.ToInt32(reader["id"]);
-                                bool usarPassTemp = Convert.ToInt32(reader["usar_pass_temp"]) == 1;
-                                int idFuncao = Convert.ToInt32(reader["id_funcao"]);
-
-                                if (usarPassTemp)
-                                {
-                                    MessageBox.Show("Estás a usar uma password temporária. Por favor define uma nova password.");
-                                    AlterarPasswordForm alterarForm = new AlterarPasswordForm(funcionarioId);
-                                    this.Hide();
-                                    alterarForm.ShowDialog();
-                                    this.Show();
-                                    return;
-                                }
-
-                                MessageBox.Show("Login bem-sucedido!");
-
-                                bool isAdmin = AuthService.IsAdmin(username);
-
-                                if (isAdmin)
-                                {
-                                    AdminForm adminForm = new AdminForm();
-                                    adminForm.Show();
-                                }
-                                else
-                                {
-                                    EmployeeForm employeeForm = new EmployeeForm();
-                                    employeeForm.Show();
-                                }
-
-                                this.Hide();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Erro ao obter dados do utilizador após autenticação.");
-                            }
-                        }
+                        AdminForm adminForm = new AdminForm();
+                        adminForm.Show();
                     }
+                    else
+                    {
+                        EmployeeForm employeeForm = new EmployeeForm();
+                        employeeForm.Show();
+                    }
+
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao obter dados do utilizador após autenticação.");
                 }
             }
             else
             {
-                MessageBox.Show("Nome de utilizador ou senha incorretos!");
+                MessageBox.Show("Nome de utilizador, senha incorretos ou conta desativada!");
             }
         }
     }

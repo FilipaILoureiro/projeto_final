@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             ConfigurarComboBoxes();
             ConfigurarEventHandlers();
             LoadOrders();
+            this.dgvOrders.SelectionChanged += dgvOrders_SelectionChanged;
         }
 
         private void ConfigurarComboBoxes()
@@ -644,6 +646,75 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             }
         }
 
+
+        // para pdf
+        private string VerificarPDFExistente(int idEncomenda)
+        {
+            string pastaPDF = Path.Combine(Application.StartupPath, "PDFs");
+
+            if (!Directory.Exists(pastaPDF))
+                return null;
+
+            string padraoNome = $"Fatura_Encomenda_{idEncomenda}_*";
+            string[] arquivosPDF = Directory.GetFiles(pastaPDF, padraoNome);
+
+            return arquivosPDF.Length > 0 ? arquivosPDF.OrderByDescending(f => File.GetCreationTime(f)).First() : null;
+        }
+
+        private void AbrirPDFExistente(string caminhoArquivo)
+        {
+            try
+            {
+                var psi = new ProcessStartInfo
+                {
+                    FileName = caminhoArquivo,
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir o PDF: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AtualizarTextoBotaoPDF()
+        {
+            if (dgvOrders.SelectedRows.Count > 0)
+            {
+
+                try
+                {
+                    int id = Convert.ToInt32(dgvOrders.SelectedRows[0].Cells["ID"].Value);
+                    string pdfExistente = VerificarPDFExistente(id);
+
+                    btnPDF.AutoRoundedCorners = true;
+                    btnPDF.BorderRadius = 10;
+                    btnPDF.AutoSize = false;
+                    btnPDF.Width = 156;
+                    btnPDF.Height = 63;
+                    btnPDF.CustomBorderThickness = new Padding(0);
+                    btnPDF.FillColor = Color.Transparent;
+
+                    if (pdfExistente != null)
+                    {
+                        btnPDF.Text = "Ver PDF";
+                        btnPDF.BackColor = Color.FromArgb(46, 125, 50); 
+                    }
+                    else
+                    {
+                        btnPDF.Text = "Gerar PDF";
+                        btnPDF.BackColor = Color.FromArgb(41, 128, 185); 
+                    }
+                }
+                catch
+                {
+                    btnPDF.Text = "Gerar PDF";
+                    btnPDF.BackColor = Color.FromArgb(41, 128, 185);
+                }
+            }
+        }
         private void btnPDF_Click(object sender, EventArgs e)
         {
             if (dgvOrders.SelectedRows.Count > 0)
@@ -651,12 +722,50 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                 try
                 {
                     int id = Convert.ToInt32(dgvOrders.SelectedRows[0].Cells["ID"].Value);
-                    OrderPDFGenerator.GerarPDFEncomenda(id);
+                    string pdfExistente = VerificarPDFExistente(id);
+
+                    if (pdfExistente != null)
+                    {
+                        // Verificar se pode estar desatualizado
+                        DateTime dataPDF = File.GetCreationTime(pdfExistente);
+
+                        var resultado = MessageBox.Show(
+                            $"PDF existente encontrado!\n\n" +
+                            $"📄 Arquivo: {Path.GetFileName(pdfExistente)}\n" +
+                            $"📅 Criado em: {dataPDF:dd/MM/yyyy às HH:mm}\n\n" +
+                            $"⚠️ ATENÇÃO: Se editou a encomenda após esta data,\n" +
+                            $"o PDF pode estar desatualizado!\n\n" +
+                            $"• SIM = Abrir PDF existente\n" +
+                            $"• NÃO = Gerar novo PDF atualizado\n" +
+                            $"• CANCELAR = Cancelar",
+                            "PDF Existente - Verificar Data! ⚠️",
+                            MessageBoxButtons.YesNoCancel,
+                            MessageBoxIcon.Warning);
+
+                        switch (resultado)
+                        {
+                            case DialogResult.Yes:
+                                AbrirPDFExistente(pdfExistente);
+                                break;
+
+                            case DialogResult.No:
+                                OrderPDFGenerator.GerarPDFEncomenda(id);
+                                AtualizarTextoBotaoPDF(); 
+                                break;
+
+                            case DialogResult.Cancel:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        OrderPDFGenerator.GerarPDFEncomenda(id);
+                        AtualizarTextoBotaoPDF(); 
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Erro ao gerar PDF: {ex.Message}", "Erro",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -664,6 +773,11 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                 MessageBox.Show("Selecione uma encomenda para gerar o PDF.", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void dgvOrders_SelectionChanged(object sender, EventArgs e)
+        {
+            AtualizarTextoBotaoPDF();
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)

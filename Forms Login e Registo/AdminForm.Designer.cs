@@ -362,6 +362,7 @@
             // timer1
             // 
             timer1.Enabled = true;
+            timer1.Tick += timer1_Tick;
             // 
             // panelTitle
             // 
@@ -375,7 +376,7 @@
             panelTitle.Size = new Size(1003, 94);
             panelTitle.TabIndex = 6;
             // 
-            // guna2HtmlLabel2
+            // lblTitle
             // 
             lblTitle.Anchor = AnchorStyles.None;
             lblTitle.AutoSize = false;
@@ -383,7 +384,7 @@
             lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(0, 28);
-            lblTitle.Name = "guna2HtmlLabel2";
+            lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(1003, 43);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "HOME";

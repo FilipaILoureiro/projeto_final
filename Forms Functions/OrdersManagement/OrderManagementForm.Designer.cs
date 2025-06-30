@@ -486,7 +486,7 @@
             // 
             // btnPDF
             // 
-            btnPDF.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnPDF.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnPDF.BorderRadius = 10;
             btnPDF.CustomizableEdges = customizableEdges25;
             btnPDF.DisabledState.BorderColor = Color.DarkGray;

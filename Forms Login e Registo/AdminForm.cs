@@ -31,13 +31,12 @@ namespace projetoPadariaApp.Forms
         public AdminForm()
         {
             InitializeComponent();
-            //this.Load += AdminForm_Load; -> descomentar quando as sessões funcionarem
+            this.Load += AdminForm_Load;
             this.Text = "Painel de Gestão";
             btnLogs.Text = "Registo\nde Atividade";
         }
 
-        //descomentar isto para quando as sessões funcionarem
-        /*private void AdminForm_Load(object sender, EventArgs e)
+        private void AdminForm_Load(object sender, EventArgs e)
         {
             if (Session.FuncionarioNome != null)
             {
@@ -49,8 +48,7 @@ namespace projetoPadariaApp.Forms
                 lblSaudacao.Text = "Olá estranho!";
                 lblSaudacao.Visible = true;
             }
-        }*/
-
+        }
 
         // MÉTODOS
         private void ActivateButton(object btnSender, string secao)
@@ -124,8 +122,8 @@ namespace projetoPadariaApp.Forms
             if (activeForm != null)
                 activeForm.Close();
 
-            DisableButton(); 
-            currentButton = null; 
+            DisableButton();
+            currentButton = null;
 
             panelTitle.BackColor = Color.FromArgb(51, 51, 76);
             panelLogo.BackColor = Color.FromArgb(39, 39, 58);
@@ -179,11 +177,19 @@ namespace projetoPadariaApp.Forms
         {
             loginForm loginForm = new loginForm();
             loginForm.Show();
-            //Session.ClearSession(); -> descomentar quando as sessões funcionarem
+            Session.ClearSession();
             this.Close();
         }
 
-        // data e hora
+        private void AdminForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Session.ClearSession();
+            if (Application.OpenForms.Count == 1)
+            {
+                Application.Exit();
+            }
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblHora.Text = DateTime.Now.ToString("HH:mm");

@@ -254,11 +254,27 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
 
                         transaction.Commit();
 
-                        MessageBox.Show($"Produto '{nome}' (ID: {novoId}) adicionado com sucesso!\nPreço: {preco:C2}",
-                            "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DialogResult result = MessageBox.Show($"Produto '{nome}' (ID: {novoId}) adicionado com sucesso!\nPreço: {preco:C2}\n\nDeseja adicionar outro produto?",
+                                                                "Sucesso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result == DialogResult.No)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            txtNome.Clear();
+                            txtPreco.Clear();
+                            numQuantidade.Value = 1;
+                            cbIVA.SelectedIndex = 0;
+                            imagePath = "";
+                            nomeFicheiroImagem = "";
+                            pictureBoxProduto.Image?.Dispose();
+                            pictureBoxProduto.Image = null;
+                            btnEscolherImagem.Text = "Escolher Imagem";
+                            txtNome.Focus();
+                        }
                     }
                     catch (Exception)
                     {

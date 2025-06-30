@@ -75,7 +75,7 @@
             btnRegister.HoverState.BorderColor = Color.FromArgb(109, 27, 123);
             btnRegister.Image = (Image)resources.GetObject("btnRegister.Image");
             btnRegister.ImageSize = new Size(50, 50);
-            btnRegister.Location = new Point(685, 413);
+            btnRegister.Location = new Point(703, 460);
             btnRegister.Name = "btnRegister";
             btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges1;
             btnRegister.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -88,7 +88,7 @@
             lblNome.BackColor = Color.Transparent;
             lblNome.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblNome.ForeColor = Color.FromArgb(64, 64, 64);
-            lblNome.Location = new Point(153, 143);
+            lblNome.Location = new Point(154, 150);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(60, 30);
             lblNome.TabIndex = 29;
@@ -99,7 +99,7 @@
             lblQuantidade.BackColor = Color.Transparent;
             lblQuantidade.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblQuantidade.ForeColor = Color.FromArgb(64, 64, 64);
-            lblQuantidade.Location = new Point(100, 340);
+            lblQuantidade.Location = new Point(101, 357);
             lblQuantidade.Name = "lblQuantidade";
             lblQuantidade.Size = new Size(113, 30);
             lblQuantidade.TabIndex = 31;
@@ -110,7 +110,7 @@
             lblIVA.BackColor = Color.Transparent;
             lblIVA.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblIVA.ForeColor = Color.FromArgb(64, 64, 64);
-            lblIVA.Location = new Point(177, 404);
+            lblIVA.Location = new Point(178, 425);
             lblIVA.Name = "lblIVA";
             lblIVA.Size = new Size(36, 30);
             lblIVA.TabIndex = 33;
@@ -121,7 +121,7 @@
             lblPreco.BackColor = Color.Transparent;
             lblPreco.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblPreco.ForeColor = Color.FromArgb(64, 64, 64);
-            lblPreco.Location = new Point(157, 273);
+            lblPreco.Location = new Point(158, 287);
             lblPreco.Name = "lblPreco";
             lblPreco.Size = new Size(56, 30);
             lblPreco.TabIndex = 32;
@@ -141,13 +141,13 @@
             txtQuantidade.FocusedState.BorderColor = Color.FromArgb(215, 54, 242);
             txtQuantidade.Font = new Font("Segoe UI", 9F);
             txtQuantidade.HoverState.BorderColor = Color.FromArgb(215, 54, 242);
-            txtQuantidade.Location = new Point(240, 337);
+            txtQuantidade.Location = new Point(241, 354);
             txtQuantidade.Margin = new Padding(3, 4, 3, 4);
             txtQuantidade.Name = "txtQuantidade";
             txtQuantidade.PlaceholderText = "";
             txtQuantidade.SelectedText = "";
             txtQuantidade.ShadowDecoration.CustomizableEdges = customizableEdges3;
-            txtQuantidade.Size = new Size(371, 41);
+            txtQuantidade.Size = new Size(402, 41);
             txtQuantidade.TabIndex = 34;
             // 
             // txtPreco
@@ -164,13 +164,13 @@
             txtPreco.FocusedState.BorderColor = Color.FromArgb(215, 54, 242);
             txtPreco.Font = new Font("Segoe UI", 9F);
             txtPreco.HoverState.BorderColor = Color.FromArgb(215, 54, 242);
-            txtPreco.Location = new Point(240, 270);
+            txtPreco.Location = new Point(241, 284);
             txtPreco.Margin = new Padding(3, 4, 3, 4);
             txtPreco.Name = "txtPreco";
             txtPreco.PlaceholderText = "";
             txtPreco.SelectedText = "";
             txtPreco.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            txtPreco.Size = new Size(371, 41);
+            txtPreco.Size = new Size(402, 41);
             txtPreco.TabIndex = 35;
             // 
             // txtNome
@@ -187,13 +187,13 @@
             txtNome.FocusedState.BorderColor = Color.FromArgb(215, 54, 242);
             txtNome.Font = new Font("Segoe UI", 9F);
             txtNome.HoverState.BorderColor = Color.FromArgb(215, 54, 242);
-            txtNome.Location = new Point(240, 139);
+            txtNome.Location = new Point(241, 146);
             txtNome.Margin = new Padding(3, 4, 3, 4);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "";
             txtNome.SelectedText = "";
             txtNome.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            txtNome.Size = new Size(371, 41);
+            txtNome.Size = new Size(402, 41);
             txtNome.TabIndex = 36;
             // 
             // cbFornecedor
@@ -210,10 +210,10 @@
             cbFornecedor.Font = new Font("Segoe UI", 10F);
             cbFornecedor.ForeColor = Color.FromArgb(68, 88, 112);
             cbFornecedor.ItemHeight = 30;
-            cbFornecedor.Location = new Point(240, 208);
+            cbFornecedor.Location = new Point(241, 217);
             cbFornecedor.Name = "cbFornecedor";
             cbFornecedor.ShadowDecoration.CustomizableEdges = customizableEdges9;
-            cbFornecedor.Size = new Size(371, 36);
+            cbFornecedor.Size = new Size(402, 36);
             cbFornecedor.TabIndex = 37;
             // 
             // cbIva
@@ -230,10 +230,10 @@
             cbIva.Font = new Font("Segoe UI", 10F);
             cbIva.ForeColor = Color.FromArgb(68, 88, 112);
             cbIva.ItemHeight = 30;
-            cbIva.Location = new Point(240, 402);
+            cbIva.Location = new Point(241, 423);
             cbIva.Name = "cbIva";
             cbIva.ShadowDecoration.CustomizableEdges = customizableEdges11;
-            cbIva.Size = new Size(371, 36);
+            cbIva.Size = new Size(402, 36);
             cbIva.TabIndex = 38;
             // 
             // panelTitle
@@ -246,7 +246,7 @@
             panelTitle.Location = new Point(0, 0);
             panelTitle.Name = "panelTitle";
             panelTitle.ShadowDecoration.CustomizableEdges = customizableEdges15;
-            panelTitle.Size = new Size(801, 91);
+            panelTitle.Size = new Size(819, 91);
             panelTitle.TabIndex = 39;
             // 
             // btnClose
@@ -263,7 +263,7 @@
             btnClose.ForeColor = Color.White;
             btnClose.Image = (Image)resources.GetObject("btnClose.Image");
             btnClose.ImageSize = new Size(40, 40);
-            btnClose.Location = new Point(762, 3);
+            btnClose.Location = new Point(780, 3);
             btnClose.Name = "btnClose";
             btnClose.ShadowDecoration.CustomizableEdges = customizableEdges13;
             btnClose.Size = new Size(36, 34);
@@ -288,7 +288,7 @@
             lblFornecedor.BackColor = Color.Transparent;
             lblFornecedor.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblFornecedor.ForeColor = Color.FromArgb(64, 64, 64);
-            lblFornecedor.Location = new Point(104, 208);
+            lblFornecedor.Location = new Point(105, 217);
             lblFornecedor.Name = "lblFornecedor";
             lblFornecedor.Size = new Size(109, 30);
             lblFornecedor.TabIndex = 40;
@@ -299,7 +299,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(801, 506);
+            ClientSize = new Size(819, 553);
             Controls.Add(lblFornecedor);
             Controls.Add(panelTitle);
             Controls.Add(cbIva);
