@@ -16,6 +16,7 @@ namespace projetoPadariaApp.Properties.Style
             { "Fornecedores", "#0094BC" },
             { "Funcionarios", "#EA4833" },
             { "Logs", "#8BC240" },
+            {"Documentos", "#607D8B" }
         };
 
         public static Color ChangeColorBrightness(Color color, double correctionFactor) 

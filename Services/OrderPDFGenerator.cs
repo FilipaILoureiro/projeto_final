@@ -20,7 +20,6 @@ namespace projetoPadariaApp.Services
             {
                 connection.Open();
 
-                // Query melhorada para incluir informações do cliente
                 string query = @"
                 SELECT e.id, e.nif_clientes, e.data_encomenda, e.data_recolha, e.pago, e.entregue, 
                        p.nome, ep.qtdd, p.preco
@@ -48,12 +47,10 @@ namespace projetoPadariaApp.Services
                         PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
                         doc.Open();
 
-                        // Definir cores profissionais
-                        BaseColor corPrimaria = new BaseColor(41, 128, 185);  // Azul elegante
-                        BaseColor corSecundaria = new BaseColor(52, 73, 94);  // Cinza escuro
-                        BaseColor corFundo = new BaseColor(245, 245, 245);    // Cinza claro
+                        BaseColor corPrimaria = new BaseColor(41, 128, 185);  
+                        BaseColor corSecundaria = new BaseColor(52, 73, 94);  
+                        BaseColor corFundo = new BaseColor(245, 245, 245);    
 
-                        // Fontes profissionais
                         var titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 24, corPrimaria);
                         var subtitleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14, corSecundaria);
                         var normalFont = FontFactory.GetFont(FontFactory.HELVETICA, 11);
@@ -138,7 +135,7 @@ namespace projetoPadariaApp.Services
                         encomendaHeaderCell.Padding = 8;
                         infoTable.AddCell(encomendaHeaderCell);
 
-                        // Dados do cliente (simplificados)
+                        // Dados do cliente
                         StringBuilder clienteInfo = new StringBuilder();
                         clienteInfo.AppendLine($"Nome: {nomeCliente}");
                         clienteInfo.AppendLine($"NIF: {nif}");
@@ -187,10 +184,8 @@ namespace projetoPadariaApp.Services
                         decimal total = 0;
                         bool zebraRow = false;
 
-                        // Armazenar os dados dos produtos numa lista primeiro
                         var produtos = new List<dynamic>();
 
-                        // Ler o primeiro produto (já temos reader.Read() feito anteriormente)
                         do
                         {
                             produtos.Add(new
@@ -201,7 +196,6 @@ namespace projetoPadariaApp.Services
                             });
                         } while (reader.Read());
 
-                        // Agora processar os produtos armazenados
                         foreach (var produto in produtos)
                         {
                             decimal subtotal = produto.Preco * produto.Qtdd;

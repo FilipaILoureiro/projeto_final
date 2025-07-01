@@ -173,6 +173,13 @@ namespace projetoPadariaApp.Forms
             OpenChildForm(new LogsList(), sender, "Logs");
         }
 
+        private void btnDocumentos_Click(object sender, EventArgs e)
+        {
+            lblTitle.Text = "Pasta de Documentos";
+            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
+            OpenChildForm(new DocumentListForm(), sender, "Documentos");
+        }
+
         private void btnSair_Click(object sender, EventArgs e)
         {
             loginForm loginForm = new loginForm();
@@ -195,5 +202,7 @@ namespace projetoPadariaApp.Forms
             lblHora.Text = DateTime.Now.ToString("HH:mm");
             lblData.Text = DateTime.Now.ToLongDateString();
         }
+
+        
     }
 }

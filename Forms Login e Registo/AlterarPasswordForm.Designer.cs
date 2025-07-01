@@ -46,10 +46,10 @@
             txtPass = new Guna.UI2.WinForms.Guna2TextBox();
             lblPass = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnAlterarPass = new Guna.UI2.WinForms.Guna2Button();
-            btnClose = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             pictureBox1 = new PictureBox();
             lblInfo = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            btnClose = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             guna2Panel1.SuspendLayout();
@@ -179,26 +179,6 @@
             btnAlterarPass.Text = "Alterar Password";
             btnAlterarPass.Click += btnAlterarPass_Click;
             // 
-            // btnClose
-            // 
-            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnClose.CustomizableEdges = customizableEdges7;
-            btnClose.DisabledState.BorderColor = Color.DarkGray;
-            btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnClose.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnClose.FillColor = Color.Empty;
-            btnClose.Font = new Font("Segoe UI", 9F);
-            btnClose.ForeColor = Color.White;
-            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
-            btnClose.ImageSize = new Size(40, 40);
-            btnClose.Location = new Point(719, 8);
-            btnClose.Name = "btnClose";
-            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnClose.Size = new Size(45, 43);
-            btnClose.TabIndex = 36;
-            btnClose.Click += btnClose_Click;
-            // 
             // guna2Panel1
             // 
             guna2Panel1.BorderColor = Color.DarkCyan;
@@ -206,11 +186,11 @@
             guna2Panel1.BorderThickness = 1;
             guna2Panel1.Controls.Add(pictureBox1);
             guna2Panel1.Controls.Add(lblInfo);
-            guna2Panel1.CustomizableEdges = customizableEdges9;
+            guna2Panel1.CustomizableEdges = customizableEdges7;
             guna2Panel1.FillColor = Color.FromArgb(35, 37, 54);
             guna2Panel1.Location = new Point(33, 70);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2Panel1.Size = new Size(709, 74);
             guna2Panel1.TabIndex = 37;
             // 
@@ -237,6 +217,26 @@
             lblInfo.TabIndex = 0;
             lblInfo.Text = "Entrou na aplicação com uma palavra-passe temporária. Por favor, defina uma nova palavra-passe.";
             lblInfo.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // btnClose
+            // 
+            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnClose.CustomizableEdges = customizableEdges9;
+            btnClose.DisabledState.BorderColor = Color.DarkGray;
+            btnClose.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnClose.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnClose.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnClose.FillColor = Color.Empty;
+            btnClose.Font = new Font("Segoe UI", 9F);
+            btnClose.ForeColor = Color.White;
+            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
+            btnClose.ImageSize = new Size(40, 40);
+            btnClose.Location = new Point(719, 8);
+            btnClose.Name = "btnClose";
+            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnClose.Size = new Size(45, 43);
+            btnClose.TabIndex = 36;
+            btnClose.Click += btnClose_Click;
             // 
             // AlterarPasswordForm
             // 
@@ -274,9 +274,9 @@
         private Guna.UI2.WinForms.Guna2TextBox txtPass;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPass;
         private Guna.UI2.WinForms.Guna2Button btnAlterarPass;
-        private Guna.UI2.WinForms.Guna2Button btnClose;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblInfo;
+        private Guna.UI2.WinForms.Guna2Button btnClose;
     }
 }

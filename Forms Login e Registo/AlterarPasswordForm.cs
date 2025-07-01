@@ -105,6 +105,18 @@ namespace projetoPadariaApp.Forms_Login_e_Registo
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            var resultado = MessageBox.Show(
+                    "Tem a certeza que pretende sair?",
+                    "Confirmar Saída",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.No)
+            {
+                return;
+            }
+
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }

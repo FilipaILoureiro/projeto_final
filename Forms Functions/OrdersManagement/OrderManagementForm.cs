@@ -143,7 +143,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             }
         }
 
-
         #region Event Handlers para Filtros
         private void txtNIF_TextChanged(object sender, EventArgs e)
         {
@@ -689,29 +688,26 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     int id = Convert.ToInt32(dgvOrders.SelectedRows[0].Cells["ID"].Value);
                     string pdfExistente = VerificarPDFExistente(id);
 
-                    btnPDF.AutoRoundedCorners = true;
                     btnPDF.BorderRadius = 10;
                     btnPDF.AutoSize = false;
                     btnPDF.Width = 156;
                     btnPDF.Height = 63;
-                    btnPDF.CustomBorderThickness = new Padding(0);
-                    btnPDF.FillColor = Color.Transparent;
 
                     if (pdfExistente != null)
                     {
                         btnPDF.Text = "Ver PDF";
-                        btnPDF.BackColor = Color.FromArgb(46, 125, 50); 
+                        btnPDF.FillColor = Color.FromArgb(46, 125, 50); 
                     }
                     else
                     {
                         btnPDF.Text = "Gerar PDF";
-                        btnPDF.BackColor = Color.FromArgb(41, 128, 185); 
+                        btnPDF.FillColor = Color.FromArgb(41, 128, 185); 
                     }
                 }
                 catch
                 {
                     btnPDF.Text = "Gerar PDF";
-                    btnPDF.BackColor = Color.FromArgb(41, 128, 185);
+                    btnPDF.FillColor = Color.FromArgb(41, 128, 185);
                 }
             }
         }

@@ -9,10 +9,103 @@ namespace projetoPadariaApp.Forms_Login_e_Registo
 {
     public partial class LogsList : Form
     {
+        private DataTable logsTable;
+        private DataView logsView;
+
         public LogsList()
         {
             InitializeComponent();
+            ConfigurarDataGridView();
+            ConfigurarEventHandlers();
             CarregarLogs();
+        }
+
+        private void ConfigurarEventHandlers()
+        {
+            dgvLogs.DataBindingComplete += dgvLogs_DataBindingComplete;
+            dgvLogs.Resize += dgvLogs_Resize;
+        }
+
+        private void dgvLogs_Resize(object sender, EventArgs e)
+        {
+            AjustarLarguraColunas();
+        }
+
+        private void AjustarLarguraColunas()
+        {
+            if (dgvLogs.Columns.Count == 0) return;
+
+            try
+            {
+                int larguraTotal = dgvLogs.ClientSize.Width;
+
+                dgvLogs.Columns["ID"].Width = (int)(larguraTotal * 0.08);
+                dgvLogs.Columns["Data"].Width = (int)(larguraTotal * 0.20);
+                dgvLogs.Columns["Funcionario"].Width = (int)(larguraTotal * 0.20);
+                dgvLogs.Columns["Descrição"].Width = (int)(larguraTotal * 0.52);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Erro ao ajustar largura das colunas: {ex.Message}");
+            }
+        }
+
+        private void dgvLogs_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            AjustarLarguraColunas();
+        }
+
+        private void ConfigurarDataGridView()
+        {
+            dgvLogs.Columns.Clear();
+            dgvLogs.AutoGenerateColumns = false;
+            dgvLogs.ColumnHeadersVisible = true;
+            dgvLogs.AllowUserToAddRows = false;
+            dgvLogs.AllowUserToDeleteRows = false;
+
+            // Configurar colunas
+            dgvLogs.Columns.Add("ID", "ID");
+            dgvLogs.Columns["ID"].DataPropertyName = "ID";
+            dgvLogs.Columns["ID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvLogs.Columns.Add("Data", "Data");
+            dgvLogs.Columns["Data"].DataPropertyName = "Data";
+            dgvLogs.Columns["Data"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvLogs.Columns.Add("Funcionario", "Funcionário");
+            dgvLogs.Columns["Funcionario"].DataPropertyName = "Funcionario";
+            dgvLogs.Columns["Funcionario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dgvLogs.Columns.Add("Descrição", "Descrição");
+            dgvLogs.Columns["Descrição"].DataPropertyName = "Descrição";
+            dgvLogs.Columns["Descrição"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            // Configurações de estilo
+            dgvLogs.EnableHeadersVisualStyles = false;
+            dgvLogs.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(97, 135, 44); // #61872C
+            dgvLogs.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvLogs.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 11, FontStyle.Bold);
+            dgvLogs.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvLogs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvLogs.ColumnHeadersHeight = 45;
+
+            dgvLogs.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
+            dgvLogs.DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 232, 231);
+            dgvLogs.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgvLogs.RowTemplate.Height = 35;
+            dgvLogs.GridColor = Color.LightGray;
+            dgvLogs.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            dgvLogs.BorderStyle = BorderStyle.Fixed3D;
+
+            dgvLogs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvLogs.MultiSelect = false;
+            dgvLogs.ReadOnly = true;
+            dgvLogs.ScrollBars = ScrollBars.Both;
+            dgvLogs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+
+            dgvLogs.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 248, 248);
+
+            AjustarLarguraColunas();
         }
 
         private void CarregarLogs()
