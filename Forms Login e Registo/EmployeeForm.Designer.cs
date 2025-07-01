@@ -363,10 +363,10 @@
             guna2Panel1.Controls.Add(guna2Panel3);
             guna2Panel1.Controls.Add(guna2Panel2);
             guna2Panel1.CustomizableEdges = customizableEdges27;
-            guna2Panel1.Location = new Point(0, 326);
+            guna2Panel1.Location = new Point(0, 320);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges28;
-            guna2Panel1.Size = new Size(1003, 330);
+            guna2Panel1.Size = new Size(1003, 336);
             guna2Panel1.TabIndex = 3;
             // 
             // guna2Panel4
@@ -378,7 +378,7 @@
             guna2Panel4.Location = new Point(522, 65);
             guna2Panel4.Name = "guna2Panel4";
             guna2Panel4.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            guna2Panel4.Size = new Size(433, 250);
+            guna2Panel4.Size = new Size(433, 256);
             guna2Panel4.TabIndex = 2;
             // 
             // guna2Panel3
@@ -390,7 +390,7 @@
             guna2Panel3.Location = new Point(48, 65);
             guna2Panel3.Name = "guna2Panel3";
             guna2Panel3.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            guna2Panel3.Size = new Size(433, 250);
+            guna2Panel3.Size = new Size(433, 256);
             guna2Panel3.TabIndex = 1;
             // 
             // guna2Panel2
@@ -399,7 +399,7 @@
             guna2Panel2.AutoSize = true;
             guna2Panel2.BackColor = Color.FromArgb(224, 224, 224);
             guna2Panel2.CustomizableEdges = customizableEdges25;
-            guna2Panel2.Location = new Point(48, 3);
+            guna2Panel2.Location = new Point(48, 9);
             guna2Panel2.Name = "guna2Panel2";
             guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges26;
             guna2Panel2.Size = new Size(907, 48);
