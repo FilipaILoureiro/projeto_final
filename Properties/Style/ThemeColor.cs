@@ -10,6 +10,7 @@ namespace projetoPadariaApp.Properties.Style
     {
         public static Dictionary<string, string> ColorList = new Dictionary<string, string>
         {
+            {"Home", "#32344C" },
             { "Encomendas", "#008080" },
             { "Produtos", "#B71C46" },
             { "Stock", "#9C27B0" },

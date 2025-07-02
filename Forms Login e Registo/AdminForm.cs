@@ -38,16 +38,9 @@ namespace projetoPadariaApp.Forms
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            if (Session.FuncionarioNome != null)
-            {
-                lblSaudacao.Text = $"Olá, {Session.FuncionarioNome}!";
-                lblSaudacao.Visible = true;
-            }
-            else
-            {
-                lblSaudacao.Text = "Olá estranho!";
-                lblSaudacao.Visible = true;
-            }
+            lblTitle.Text = "HOME";
+            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
+            OpenChildForm(new HomeForm(), btnHome, "Home");
         }
 
         // MÉTODOS
@@ -71,8 +64,6 @@ namespace projetoPadariaApp.Forms
                 }
             }
         }
-
-
         private void DisableButton()
         {
             foreach (Control control in panelMenu.Controls)
@@ -119,16 +110,9 @@ namespace projetoPadariaApp.Forms
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            if (activeForm != null)
-                activeForm.Close();
-
-            DisableButton();
-            currentButton = null;
-
-            panelTitle.BackColor = Color.FromArgb(51, 51, 76);
-            panelLogo.BackColor = Color.FromArgb(39, 39, 58);
             lblTitle.Text = "HOME";
-            panelDesktop.Visible = true;
+            lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
+            OpenChildForm(new HomeForm(), sender, "Home");
         }
 
         private void btnEncomendas_Click(object sender, EventArgs e)
@@ -196,13 +180,6 @@ namespace projetoPadariaApp.Forms
                 Application.Exit();
             }
         }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            lblHora.Text = DateTime.Now.ToString("HH:mm");
-            lblData.Text = DateTime.Now.ToLongDateString();
-        }
-
         
     }
 }

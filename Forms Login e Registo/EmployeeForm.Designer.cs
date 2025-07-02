@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -50,16 +49,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panelMenu = new Guna.UI2.WinForms.Guna2Panel();
             btnFornecedores = new Guna.UI2.WinForms.Guna2Button();
             btnStock = new Guna.UI2.WinForms.Guna2Button();
@@ -74,20 +65,14 @@
             panelTitle = new Guna.UI2.WinForms.Guna2Panel();
             lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             panelDesktop = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            lblSaudacao = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblData = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblHora = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            timer1 = new System.Windows.Forms.Timer(components);
+            lblEntregas = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblNumEntregaHoje = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblNumEntregaAmanha = new Guna.UI2.WinForms.Guna2HtmlLabel();
             panelMenu.SuspendLayout();
             panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panelTitle.SuspendLayout();
-            panelDesktop.SuspendLayout();
-            guna2Panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
@@ -343,108 +328,65 @@
             // panelDesktop
             // 
             panelDesktop.BorderColor = Color.FromArgb(0, 0, 192);
-            panelDesktop.Controls.Add(guna2Panel1);
-            panelDesktop.Controls.Add(lblSaudacao);
-            panelDesktop.Controls.Add(lblData);
-            panelDesktop.Controls.Add(lblHora);
-            panelDesktop.CustomizableEdges = customizableEdges29;
+            panelDesktop.CustomizableEdges = customizableEdges21;
             panelDesktop.Dock = DockStyle.Fill;
             panelDesktop.Location = new Point(210, 94);
             panelDesktop.Name = "panelDesktop";
-            panelDesktop.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            panelDesktop.ShadowDecoration.CustomizableEdges = customizableEdges22;
             panelDesktop.Size = new Size(1003, 656);
             panelDesktop.TabIndex = 6;
             // 
-            // guna2Panel1
+            // lblEntregas
             // 
-            guna2Panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            guna2Panel1.AutoSize = true;
-            guna2Panel1.Controls.Add(guna2Panel4);
-            guna2Panel1.Controls.Add(guna2Panel3);
-            guna2Panel1.Controls.Add(guna2Panel2);
-            guna2Panel1.CustomizableEdges = customizableEdges27;
-            guna2Panel1.Location = new Point(0, 320);
-            guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges28;
-            guna2Panel1.Size = new Size(1003, 336);
-            guna2Panel1.TabIndex = 3;
+            lblEntregas.AutoSize = false;
+            lblEntregas.BackColor = Color.Transparent;
+            lblEntregas.Dock = DockStyle.Top;
+            lblEntregas.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEntregas.ForeColor = Color.FromArgb(64, 64, 64);
+            lblEntregas.Location = new Point(0, 0);
+            lblEntregas.Name = "lblEntregas";
+            lblEntregas.Size = new Size(429, 35);
+            lblEntregas.TabIndex = 0;
+            lblEntregas.Text = "Entregas Agendadas para Hoje";
+            lblEntregas.TextAlignment = ContentAlignment.MiddleCenter;
             // 
-            // guna2Panel4
+            // lblNumEntregaHoje
             // 
-            guna2Panel4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            guna2Panel4.AutoSize = true;
-            guna2Panel4.BackColor = SystemColors.ControlDark;
-            guna2Panel4.CustomizableEdges = customizableEdges21;
-            guna2Panel4.Location = new Point(522, 65);
-            guna2Panel4.Name = "guna2Panel4";
-            guna2Panel4.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            guna2Panel4.Size = new Size(433, 256);
-            guna2Panel4.TabIndex = 2;
+            lblNumEntregaHoje.Anchor = AnchorStyles.None;
+            lblNumEntregaHoje.BackColor = Color.Transparent;
+            lblNumEntregaHoje.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNumEntregaHoje.ForeColor = Color.Red;
+            lblNumEntregaHoje.Location = new Point(189, 35);
+            lblNumEntregaHoje.Name = "lblNumEntregaHoje";
+            lblNumEntregaHoje.Size = new Size(51, 52);
+            lblNumEntregaHoje.TabIndex = 1;
+            lblNumEntregaHoje.Text = "XX";
             // 
-            // guna2Panel3
+            // guna2HtmlLabel2
             // 
-            guna2Panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            guna2Panel3.AutoSize = true;
-            guna2Panel3.BackColor = SystemColors.ControlDark;
-            guna2Panel3.CustomizableEdges = customizableEdges23;
-            guna2Panel3.Location = new Point(48, 65);
-            guna2Panel3.Name = "guna2Panel3";
-            guna2Panel3.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            guna2Panel3.Size = new Size(433, 256);
-            guna2Panel3.TabIndex = 1;
+            guna2HtmlLabel2.Anchor = AnchorStyles.None;
+            guna2HtmlLabel2.AutoSize = false;
+            guna2HtmlLabel2.BackColor = Color.Transparent;
+            guna2HtmlLabel2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel2.ForeColor = Color.FromArgb(64, 64, 64);
+            guna2HtmlLabel2.Location = new Point(0, 105);
+            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            guna2HtmlLabel2.Size = new Size(429, 35);
+            guna2HtmlLabel2.TabIndex = 2;
+            guna2HtmlLabel2.Text = "Entregas Agendadas para Amanhã";
+            guna2HtmlLabel2.TextAlignment = ContentAlignment.MiddleCenter;
             // 
-            // guna2Panel2
+            // lblNumEntregaAmanha
             // 
-            guna2Panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            guna2Panel2.AutoSize = true;
-            guna2Panel2.BackColor = Color.FromArgb(224, 224, 224);
-            guna2Panel2.CustomizableEdges = customizableEdges25;
-            guna2Panel2.Location = new Point(48, 9);
-            guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            guna2Panel2.Size = new Size(907, 48);
-            guna2Panel2.TabIndex = 0;
-            // 
-            // lblSaudacao
-            // 
-            lblSaudacao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblSaudacao.AutoSize = false;
-            lblSaudacao.BackColor = Color.Transparent;
-            lblSaudacao.Font = new Font("Segoe UI", 30F, FontStyle.Bold);
-            lblSaudacao.ForeColor = Color.FromArgb(64, 64, 64);
-            lblSaudacao.Location = new Point(-3, 194);
-            lblSaudacao.Name = "lblSaudacao";
-            lblSaudacao.Size = new Size(1003, 71);
-            lblSaudacao.TabIndex = 2;
-            lblSaudacao.Text = "Saudação!";
-            lblSaudacao.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
-            // lblData
-            // 
-            lblData.BackColor = Color.Transparent;
-            lblData.Font = new Font("Segoe UI Semibold", 28F, FontStyle.Bold);
-            lblData.ForeColor = Color.Teal;
-            lblData.Location = new Point(48, 124);
-            lblData.Name = "lblData";
-            lblData.Size = new Size(127, 64);
-            lblData.TabIndex = 1;
-            lblData.Text = "DATA";
-            // 
-            // lblHora
-            // 
-            lblHora.BackColor = Color.Transparent;
-            lblHora.Font = new Font("Segoe UI", 42.2F, FontStyle.Bold);
-            lblHora.ForeColor = Color.SteelBlue;
-            lblHora.Location = new Point(48, 23);
-            lblHora.Name = "lblHora";
-            lblHora.Size = new Size(205, 95);
-            lblHora.TabIndex = 0;
-            lblHora.Text = "HORA";
-            // 
-            // timer1
-            // 
-            timer1.Enabled = true;
-            timer1.Tick += timer1_Tick;
+            lblNumEntregaAmanha.Anchor = AnchorStyles.None;
+            lblNumEntregaAmanha.BackColor = Color.Transparent;
+            lblNumEntregaAmanha.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNumEntregaAmanha.ForeColor = Color.Red;
+            lblNumEntregaAmanha.Location = new Point(189, 138);
+            lblNumEntregaAmanha.Name = "lblNumEntregaAmanha";
+            lblNumEntregaAmanha.Size = new Size(51, 52);
+            lblNumEntregaAmanha.TabIndex = 3;
+            lblNumEntregaAmanha.Text = "XX";
             // 
             // EmployeeForm
             // 
@@ -462,10 +404,6 @@
             panelLogo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             panelTitle.ResumeLayout(false);
-            panelDesktop.ResumeLayout(false);
-            panelDesktop.PerformLayout();
-            guna2Panel1.ResumeLayout(false);
-            guna2Panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -484,13 +422,9 @@
         private Guna.UI2.WinForms.Guna2Button btnHome;
         private Guna.UI2.WinForms.Guna2PictureBox picLogo;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private System.Windows.Forms.Timer timer1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblData;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblHora;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblSaudacao;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblEntregas;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblNumEntregaHoje;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblNumEntregaAmanha;
     }
 }

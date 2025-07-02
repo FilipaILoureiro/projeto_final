@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -72,18 +71,13 @@
             picLogo = new Guna.UI2.WinForms.Guna2PictureBox();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblLogo = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            timer1 = new System.Windows.Forms.Timer(components);
             panelTitle = new Guna.UI2.WinForms.Guna2Panel();
             lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             panelDesktop = new Guna.UI2.WinForms.Guna2Panel();
-            lblSaudacao = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblData = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblHora = new Guna.UI2.WinForms.Guna2HtmlLabel();
             panelMenu.SuspendLayout();
             panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             panelTitle.SuspendLayout();
-            panelDesktop.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
@@ -390,11 +384,6 @@
             lblLogo.TabIndex = 3;
             lblLogo.Text = "PADARIA";
             // 
-            // timer1
-            // 
-            timer1.Enabled = true;
-            timer1.Tick += timer1_Tick;
-            // 
             // panelTitle
             // 
             panelTitle.BackColor = Color.FromArgb(50, 52, 76);
@@ -423,9 +412,6 @@
             // 
             // panelDesktop
             // 
-            panelDesktop.Controls.Add(lblSaudacao);
-            panelDesktop.Controls.Add(lblData);
-            panelDesktop.Controls.Add(lblHora);
             panelDesktop.CustomizableEdges = customizableEdges27;
             panelDesktop.Dock = DockStyle.Fill;
             panelDesktop.Location = new Point(210, 94);
@@ -433,42 +419,6 @@
             panelDesktop.ShadowDecoration.CustomizableEdges = customizableEdges28;
             panelDesktop.Size = new Size(1001, 713);
             panelDesktop.TabIndex = 7;
-            // 
-            // lblSaudacao
-            // 
-            lblSaudacao.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblSaudacao.AutoSize = false;
-            lblSaudacao.BackColor = Color.Transparent;
-            lblSaudacao.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSaudacao.ForeColor = Color.FromArgb(64, 64, 64);
-            lblSaudacao.Location = new Point(0, 287);
-            lblSaudacao.Name = "lblSaudacao";
-            lblSaudacao.Size = new Size(1001, 140);
-            lblSaudacao.TabIndex = 3;
-            lblSaudacao.Text = "Saudação!";
-            lblSaudacao.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
-            // lblData
-            // 
-            lblData.BackColor = Color.Transparent;
-            lblData.Font = new Font("Segoe UI Semibold", 28F, FontStyle.Bold);
-            lblData.ForeColor = Color.Teal;
-            lblData.Location = new Point(48, 141);
-            lblData.Name = "lblData";
-            lblData.Size = new Size(127, 64);
-            lblData.TabIndex = 1;
-            lblData.Text = "DATA";
-            // 
-            // lblHora
-            // 
-            lblHora.BackColor = Color.Transparent;
-            lblHora.Font = new Font("Segoe UI", 42.2F, FontStyle.Bold);
-            lblHora.ForeColor = Color.SteelBlue;
-            lblHora.Location = new Point(48, 40);
-            lblHora.Name = "lblHora";
-            lblHora.Size = new Size(205, 95);
-            lblHora.TabIndex = 0;
-            lblHora.Text = "HORA";
             // 
             // AdminForm
             // 
@@ -486,8 +436,6 @@
             panelLogo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             panelTitle.ResumeLayout(false);
-            panelDesktop.ResumeLayout(false);
-            panelDesktop.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -506,13 +454,9 @@
         private Guna.UI2.WinForms.Guna2Button btnEncomendas;
         private Guna.UI2.WinForms.Guna2Button btnHome;
         private Guna.UI2.WinForms.Guna2Button btnSair;
-        private System.Windows.Forms.Timer timer1;
         private Guna.UI2.WinForms.Guna2Panel panelTitle;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
         private Guna.UI2.WinForms.Guna2Panel panelDesktop;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblData;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblHora;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblSaudacao;
         private Guna.UI2.WinForms.Guna2Button btnDocumentos;
     }
 }

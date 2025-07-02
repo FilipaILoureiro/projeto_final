@@ -189,7 +189,7 @@
             // 
             // lblDataFim
             // 
-            lblDataFim.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblDataFim.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             lblDataFim.BackColor = Color.Transparent;
             lblDataFim.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDataFim.ForeColor = Color.FromArgb(64, 64, 64);
@@ -201,7 +201,7 @@
             // 
             // lblDataInicio
             // 
-            lblDataInicio.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblDataInicio.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             lblDataInicio.BackColor = Color.Transparent;
             lblDataInicio.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDataInicio.ForeColor = Color.FromArgb(64, 64, 64);
