@@ -278,7 +278,8 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             dgvOrders.ColumnHeadersHeight = 45;
 
             dgvOrders.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
-            dgvOrders.DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 232, 231);
+            dgvOrders.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#BFFFF6");
+            dgvOrders.ColumnHeadersDefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#005959");
             dgvOrders.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvOrders.RowTemplate.Height = 35;
             dgvOrders.GridColor = Color.LightGray;

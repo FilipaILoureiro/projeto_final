@@ -140,7 +140,8 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
             dgvProducts.ColumnHeadersHeight = 45;
 
             dgvProducts.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
-            dgvProducts.DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 232, 231);
+            dgvProducts.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#FFC8DF");
+            dgvProducts.ColumnHeadersDefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#801331");
             dgvProducts.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvProducts.RowTemplate.Height = 35;
             dgvProducts.GridColor = Color.LightGray;

@@ -82,7 +82,7 @@ namespace projetoPadariaApp.Forms_Login_e_Registo
 
             // Configurações de estilo
             dgvLogs.EnableHeadersVisualStyles = false;
-            dgvLogs.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(97, 135, 44); // #61872C
+            dgvLogs.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(97, 135, 44); 
             dgvLogs.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgvLogs.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 11, FontStyle.Bold);
             dgvLogs.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -90,7 +90,8 @@ namespace projetoPadariaApp.Forms_Login_e_Registo
             dgvLogs.ColumnHeadersHeight = 45;
 
             dgvLogs.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
-            dgvLogs.DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 232, 231);
+            dgvLogs.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#D9FFCC");
+            dgvLogs.ColumnHeadersDefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#44731E");
             dgvLogs.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvLogs.RowTemplate.Height = 35;
             dgvLogs.GridColor = Color.LightGray;

@@ -247,7 +247,8 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
             dgvEmployees.ColumnHeadersHeight = 45;
 
             dgvEmployees.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
-            dgvEmployees.DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 232, 231);
+            dgvEmployees.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#FFBE8F");
+            dgvEmployees.ColumnHeadersDefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#A33223");
             dgvEmployees.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvEmployees.RowTemplate.Height = 35;
             dgvEmployees.GridColor = Color.LightGray;

@@ -153,7 +153,7 @@
             btnPDF.HoverState.FillColor = Color.FromArgb(97, 135, 44);
             btnPDF.Image = (Image)resources.GetObject("btnPDF.Image");
             btnPDF.ImageAlign = HorizontalAlignment.Left;
-            btnPDF.ImageOffset = new Point(-2, 0);
+            btnPDF.ImageOffset = new Point(5, 0);
             btnPDF.ImageSize = new Size(40, 40);
             btnPDF.Location = new Point(940, 73);
             btnPDF.Name = "btnPDF";
@@ -162,7 +162,7 @@
             btnPDF.TabIndex = 2;
             btnPDF.Text = "Gerar PDF";
             btnPDF.TextAlign = HorizontalAlignment.Left;
-            btnPDF.TextOffset = new Point(-4, 0);
+            btnPDF.TextOffset = new Point(2, 0);
             // 
             // guna2Panel2
             // 

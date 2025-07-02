@@ -141,7 +141,8 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
             dgvStock.ColumnHeadersHeight = 45;
 
             dgvStock.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
-            dgvStock.DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 232, 231);
+            dgvStock.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#F5BBFF");
+            dgvStock.ColumnHeadersDefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#6D1B7B");
             dgvStock.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvStock.RowTemplate.Height = 35;
             dgvStock.GridColor = Color.LightGray;
