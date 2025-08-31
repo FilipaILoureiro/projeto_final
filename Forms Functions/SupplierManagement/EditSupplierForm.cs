@@ -323,11 +323,11 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
                         try
                         {
                             string query = @"UPDATE fornecedor 
-                                           SET nome = @nome, 
-                                               contacto = @contacto, 
-                                               email = @email, 
-                                               tempo_de_entrega = @tempo 
-                                           WHERE id = @id";
+                                   SET nome = @nome, 
+                                       contacto = @contacto, 
+                                       email = @email, 
+                                       tempo_de_entrega = @tempo 
+                                   WHERE id = @id";
 
                             using (var cmd = new SQLiteCommand(query, conn, transaction))
                             {
@@ -341,13 +341,23 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
 
                                 if (rowsAffected > 0)
                                 {
-                                    // Registar log
-                                    LogsService.RegistarLog(
-                                        Session.FuncionarioId,
-                                        $"Editou fornecedor #{fornecedorID} → " +
-                                        $"Nome: {nome}, Contacto: {contacto}, Email: {email}, Tempo entrega: {tempodeEntrega} dias");
-
+                                    // Primeiro confirma a transação
                                     transaction.Commit();
+
+                                    // ✅ Só depois regista o log
+                                    try
+                                    {
+                                        LogsService.RegistarLog(
+                                            Session.FuncionarioId,
+                                            $"Editou fornecedor #{fornecedorID} → " +
+                                            $"Nome: {nome}, Contacto: {contacto}, Email: {email}, Tempo entrega: {tempodeEntrega} dias"
+                                        );
+                                    }
+                                    catch (Exception logEx)
+                                    {
+                                        Console.WriteLine($"Erro ao registar log de atualização de fornecedor: {logEx.Message}");
+                                    }
+
                                     return true;
                                 }
                                 else
@@ -372,6 +382,7 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
                 return false;
             }
         }
+
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {

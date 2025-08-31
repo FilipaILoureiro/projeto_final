@@ -363,12 +363,12 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
                         try
                         {
                             string query = @"UPDATE materia 
-                                           SET nome = @nome, 
-                                               preco = @preco, 
-                                               quantidade = @quantidade, 
-                                               id_fornecedor = @id_fornecedor, 
-                                               iva = @iva 
-                                           WHERE id = @id";
+                                   SET nome = @nome, 
+                                       preco = @preco, 
+                                       quantidade = @quantidade, 
+                                       id_fornecedor = @id_fornecedor, 
+                                       iva = @iva 
+                                   WHERE id = @id";
 
                             using (var cmd = new SQLiteCommand(query, conn, transaction))
                             {
@@ -383,13 +383,23 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
 
                                 if (rowsAffected > 0)
                                 {
-                                    // Registar log
-                                    LogsService.RegistarLog(
-                                        Session.FuncionarioId,
-                                        $"Editou matéria-prima #{stockId} → " +
-                                        $"Nome: {nome}, Preço: {preco:F2}€, Qtd: {quantidade}, IVA: {iva}%, Fornecedor #{id_fornecedor}");
-
+                                    // Primeiro confirma a transação
                                     transaction.Commit();
+
+                                    // ✅ Só depois regista o log
+                                    try
+                                    {
+                                        LogsService.RegistarLog(
+                                            Session.FuncionarioId,
+                                            $"Editou matéria-prima #{stockId} → " +
+                                            $"Nome: {nome}, Preço: {preco:F2}€, Qtd: {quantidade}, IVA: {iva}%, Fornecedor #{id_fornecedor}"
+                                        );
+                                    }
+                                    catch (Exception logEx)
+                                    {
+                                        Console.WriteLine($"Erro ao registar log de edição de stock: {logEx.Message}");
+                                    }
+
                                     return true;
                                 }
                                 else
@@ -414,6 +424,7 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
                 return false;
             }
         }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing && this.DialogResult != DialogResult.OK)

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using projetoPadariaApp.Models;
+using projetoPadariaApp.Services;
 
 namespace projetoPadariaApp.Forms_Functions.ProductManagement
 {
@@ -234,7 +235,7 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
                     try
                     {
                         string query = @"INSERT INTO produtos (nome, quantidade, preco, iva, imagem) 
-                                       VALUES (@nome, @quantidade, @preco, @iva, @imagem)";
+                               VALUES (@nome, @quantidade, @preco, @iva, @imagem)";
 
                         using var cmd = new SQLiteCommand(query, conn, transaction);
                         cmd.Parameters.AddWithValue("@nome", nome);
@@ -252,10 +253,26 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
                             GuardarImagem(novoId);
                         }
 
+                        // ✅ Primeiro commit
                         transaction.Commit();
 
-                        DialogResult result = MessageBox.Show($"Produto '{nome}' (ID: {novoId}) adicionado com sucesso!\nPreço: {preco:C2}\n\nDeseja adicionar outro produto?",
-                                                                "Sucesso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        // ✅ Só depois registar o log
+                        try
+                        {
+                            LogsService.RegistarLog(
+                                Session.FuncionarioId,
+                                $"Adicionou novo produto #{novoId} → " +
+                                $"Nome: {nome}, Qtd: {quantidade}, Preço: {preco:F2}€, IVA: {iva}%, Imagem: {nomeFicheiroImagem}"
+                            );
+                        }
+                        catch (Exception logEx)
+                        {
+                            Console.WriteLine($"Erro ao registar log de produto: {logEx.Message}");
+                        }
+
+                        DialogResult result = MessageBox.Show(
+                            $"Produto '{nome}' (ID: {novoId}) adicionado com sucesso!\nPreço: {preco:C2}\n\nDeseja adicionar outro produto?",
+                            "Sucesso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (result == DialogResult.No)
                         {
@@ -289,6 +306,7 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void GuardarImagem(int produtoId)
         {

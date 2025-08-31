@@ -446,6 +446,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     {
                         try
                         {
+                            // Remover associações de produtos da encomenda
                             string deleteAssoc = "DELETE FROM enc_prod WHERE id_enc = @id";
                             using (var cmd = new SQLiteCommand(deleteAssoc, connection, transaction))
                             {
@@ -453,6 +454,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                                 cmd.ExecuteNonQuery();
                             }
 
+                            // Remover a encomenda
                             string deleteEnc = "DELETE FROM enc WHERE id = @id";
                             using (var cmd = new SQLiteCommand(deleteEnc, connection, transaction))
                             {
@@ -461,7 +463,22 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 
                                 if (rowsAffected > 0)
                                 {
+                                    // ✅ Commit da transação
                                     transaction.Commit();
+
+                                    // ✅ Registar log após commit
+                                    try
+                                    {
+                                        LogsService.RegistarLog(
+                                            Session.FuncionarioId,
+                                            $"Removeu encomenda #{id}"
+                                        );
+                                    }
+                                    catch (Exception logEx)
+                                    {
+                                        Console.WriteLine($"Erro ao registar log de encomenda removida: {logEx.Message}");
+                                    }
+
                                     MessageBox.Show("Encomenda removida com sucesso!", "Sucesso",
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     LoadOrders();
@@ -488,6 +505,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         #region Botões de Ação
         // para adicionar nova encomenda e corrigir o fundo
@@ -837,6 +855,20 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                                     if (rowsAffected > 0)
                                     {
                                         transaction.Commit();
+
+                                        // ✅ Registar log
+                                        try
+                                        {
+                                            LogsService.RegistarLog(
+                                                Session.FuncionarioId,
+                                                $"Encomenda #{id} marcada como paga"
+                                            );
+                                        }
+                                        catch (Exception logEx)
+                                        {
+                                            Console.WriteLine($"Erro ao registar log de pagamento: {logEx.Message}");
+                                        }
+
                                         MessageBox.Show("Encomenda marcada como paga!", "Sucesso",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         LoadOrders();
@@ -870,6 +902,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
             }
         }
 
+
         private void btnCheckEntrega_Click(object sender, EventArgs e)
         {
             if (dgvOrders.SelectedRows.Count > 0)
@@ -888,7 +921,6 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                             checkCmd.Parameters.AddWithValue("@id", id);
                             var currentStatus = checkCmd.ExecuteScalar()?.ToString();
 
-                            // Verificar se já está entregue
                             if (currentStatus == "S")
                             {
                                 MessageBox.Show("Encomenda já se encontra entregue!", "Informação",
@@ -910,6 +942,20 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                                     if (rowsAffected > 0)
                                     {
                                         transaction.Commit();
+
+                                        // ✅ Registar log
+                                        try
+                                        {
+                                            LogsService.RegistarLog(
+                                                Session.FuncionarioId,
+                                                $"Encomenda #{id} marcada como entregue"
+                                            );
+                                        }
+                                        catch (Exception logEx)
+                                        {
+                                            Console.WriteLine($"Erro ao registar log de entrega: {logEx.Message}");
+                                        }
+
                                         MessageBox.Show("Encomenda marcada como entregue!", "Sucesso",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         LoadOrders();
@@ -942,6 +988,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         #endregion
     }
 }

@@ -226,12 +226,22 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
 
                                     if (rows > 0)
                                     {
-                                        // Registrar a remoção no log
-                                        LogsService.RegistarLog(
-                                            Session.FuncionarioId,
-                                            $"Removeu fornecedor #{id} '{nome}'");
-
+                                        // Primeiro confirma a transação
                                         transaction.Commit();
+
+                                        // ✅ Só depois regista o log
+                                        try
+                                        {
+                                            LogsService.RegistarLog(
+                                                Session.FuncionarioId,
+                                                $"Removeu fornecedor #{id} → Nome: {nome}"
+                                            );
+                                        }
+                                        catch (Exception logEx)
+                                        {
+                                            Console.WriteLine($"Erro ao registar log de remoção de fornecedor: {logEx.Message}");
+                                        }
+
                                         MessageBox.Show("Fornecedor removido com sucesso!", "Sucesso",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         LoadFornecedores();
@@ -259,6 +269,7 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         #region Modal Container Methods
         private void CreateModalContainer()

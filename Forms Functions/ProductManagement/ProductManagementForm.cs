@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using projetoPadariaApp.Models;
+using projetoPadariaApp.Services;
 
 namespace projetoPadariaApp.Forms_Functions.ProductManagement
 {
@@ -264,7 +265,22 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
 
                                 if (rowsAffected > 0)
                                 {
+                                    // Primeiro confirma a transação
                                     transaction.Commit();
+
+                                    // ✅ Registar log após commit
+                                    try
+                                    {
+                                        LogsService.RegistarLog(
+                                            Session.FuncionarioId,
+                                            $"Removeu produto #{produtoId}"
+                                        );
+                                    }
+                                    catch (Exception logEx)
+                                    {
+                                        Console.WriteLine($"Erro ao registar log de remoção de produto: {logEx.Message}");
+                                    }
+
                                     MessageBox.Show("Produto removido com sucesso!", "Sucesso",
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     LoadProducts();
@@ -291,6 +307,7 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         #region Botões de Ação
         private Panel modalContainer;

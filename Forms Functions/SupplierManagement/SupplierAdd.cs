@@ -232,15 +232,25 @@ namespace projetoPadariaApp.Forms_Functions.SupplierManagement
 
                                 if (rowsAffected > 0)
                                 {
-                                    // Registar log
-                                    LogsService.RegistarLog(
-                                        Session.FuncionarioId,
-                                        $"Registou novo fornecedor → " +
-                                        $"Nome: {nome}, Contacto: {contacto}, Email: {email}, Tempo entrega: {tempoDeEntrega} dias");
-
                                     transaction.Commit();
+
+                                    // Registar log fora da transaction do fornecedor
+                                    try
+                                    {
+                                        LogsService.RegistarLog(
+                                            Session.FuncionarioId,
+                                            $"Registou novo fornecedor → " +
+                                            $"Nome: {nome}, Contacto: {contacto}, Email: {email}, Tempo entrega: {tempoDeEntrega} dias"
+                                        );
+                                    }
+                                    catch (Exception logEx)
+                                    {
+                                        Console.WriteLine($"Erro ao registar log de fornecedor: {logEx.Message}");
+                                    }
+
                                     return true;
                                 }
+
                                 else
                                 {
                                     transaction.Rollback();

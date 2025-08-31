@@ -227,12 +227,22 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
 
                                     if (rows > 0)
                                     {
-                                        // LOGS AQUI
-                                        LogsService.RegistarLog(
-                                            Session.FuncionarioId,
-                                            $"Removeu matéria-prima #{id} '{nomeMaterial}' (Fornecedor «{fornecedorNome}»)");
-
+                                        // Primeiro confirma a transação
                                         transaction.Commit();
+
+                                        // ✅ Só depois regista o log
+                                        try
+                                        {
+                                            LogsService.RegistarLog(
+                                                Session.FuncionarioId,
+                                                $"Removeu matéria-prima #{id} '{nomeMaterial}' (Fornecedor «{fornecedorNome}»)"
+                                            );
+                                        }
+                                        catch (Exception logEx)
+                                        {
+                                            Console.WriteLine($"Erro ao registar log de remoção de matéria-prima: {logEx.Message}");
+                                        }
+
                                         MessageBox.Show("Matéria-prima removida com sucesso!", "Sucesso",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         LoadMaterias();
@@ -260,6 +270,11 @@ namespace projetoPadariaApp.Forms_Functions.StockManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+
+
 
         #region Modal Container Methods
         private void CreateModalContainer()

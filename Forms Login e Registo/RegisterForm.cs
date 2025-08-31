@@ -449,6 +449,19 @@ namespace projetoPadariaApp.Forms
                     bool success = AuthService.RegisterUser(nome, contacto, username, password, funcaoID, isAdmin);
                     if (success)
                     {
+                        // Registar log da criação do novo utilizador
+                        try
+                        {
+                            LogsService.RegistarLog(
+                                Session.FuncionarioId,
+                                $"Registou novo funcionário → Nome: '{nome}', Username: '{username}', Email: '{contacto}', Função: '{selectedItem.Name}', Admin: {(isAdmin ? "Sim" : "Não")}"
+                            );
+                        }
+                        catch (Exception logEx)
+                        {
+                            Console.WriteLine($"Erro ao registar log de criação: {logEx.Message}");
+                        }
+
                         DialogResult continueResult = MessageBox.Show(
                             "Utilizador registado com sucesso!\n\nDeseja adicionar outro utilizador?",
                             "Sucesso",
@@ -465,6 +478,7 @@ namespace projetoPadariaApp.Forms
                             ClearForm();
                         }
                     }
+
                     else
                     {
                         MessageBox.Show("Erro ao registar utilizador. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);

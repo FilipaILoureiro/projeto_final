@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using projetoPadariaApp.Forms_Functions.ProductManagement;
+using projetoPadariaApp.Services;
 
 namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 {
@@ -154,7 +155,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                 try
                 {
                     string query = @"INSERT INTO enc (nif_clientes, preco, data_recolha, pago, entregue) 
-                                   VALUES (@nif, @preco, @dataRecolha, @pago, @entregue)";
+                           VALUES (@nif, @preco, @dataRecolha, @pago, @entregue)";
 
                     using var cmd = new SQLiteCommand(query, conn, transaction);
                     cmd.Parameters.AddWithValue("@nif", txtNIF.Text.Trim());
@@ -174,12 +175,28 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 
                     InserirProdutosEncomenda(conn, transaction, lastId);
 
+                    // ✅ Commit da transação
                     transaction.Commit();
 
-                    DialogResult result = MessageBox.Show($"Encomenda #{lastId} adicionada com sucesso!\nTotal: {total:C2}\n\nDeseja adicionar outra encomenda?",
-                                            "Sucesso",
-                                            MessageBoxButtons.YesNo,
-                                            MessageBoxIcon.Question);
+                    // ✅ Registar log após commit
+                    try
+                    {
+                        LogsService.RegistarLog(
+                            Session.FuncionarioId,
+                            $"Criou encomenda #{lastId} → NIF Cliente: {txtNIF.Text.Trim()}, Total: {total:C2}, " +
+                            $"Data Recolha: {dtpDataRecolha.Value:yyyy-MM-dd}, Pago: {valorPago}, Entregue: {valorEntregue}"
+                        );
+                    }
+                    catch (Exception logEx)
+                    {
+                        Console.WriteLine($"Erro ao registar log de encomenda: {logEx.Message}");
+                    }
+
+                    DialogResult result = MessageBox.Show(
+                        $"Encomenda #{lastId} adicionada com sucesso!\nTotal: {total:C2}\n\nDeseja adicionar outra encomenda?",
+                        "Sucesso",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
 
                     if (result == DialogResult.No)
                     {
@@ -208,6 +225,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private double CalcularTotalProdutos(SQLiteConnection conn, SQLiteTransaction transaction)
         {

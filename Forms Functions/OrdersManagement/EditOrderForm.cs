@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using projetoPadariaApp.Forms_Functions.ProductManagement;
+using projetoPadariaApp.Services;
 
 namespace projetoPadariaApp.Forms_Functions.OrdersManagement
 {
@@ -328,7 +329,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     double total = CalcularTotalProdutos(conn, transaction);
 
                     string query = @"UPDATE enc SET nif_clientes = @nif, preco = @preco, data_recolha = @dataRecolha, 
-                                   pago = @pago, entregue = @entregue WHERE id = @id";
+                           pago = @pago, entregue = @entregue WHERE id = @id";
 
                     using var cmd = new SQLiteCommand(query, conn, transaction);
                     cmd.Parameters.AddWithValue("@nif", txtNIF.Text.Trim());
@@ -352,7 +353,22 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     // Inserir novos produtos
                     InserirProdutosEncomenda(conn, transaction, encomendaId);
 
+                    // ✅ Commit da transação
                     transaction.Commit();
+
+                    // ✅ Registar log após commit
+                    try
+                    {
+                        LogsService.RegistarLog(
+                            Session.FuncionarioId,
+                            $"Editou encomenda #{encomendaId} → NIF Cliente: {txtNIF.Text.Trim()}, Total: {total:C2}, " +
+                            $"Data Recolha: {dtpDataRecolha.Value:yyyy-MM-dd}, Pago: {valorPago}, Entregue: {valorEntregue}"
+                        );
+                    }
+                    catch (Exception logEx)
+                    {
+                        Console.WriteLine($"Erro ao registar log de encomenda editada: {logEx.Message}");
+                    }
 
                     MessageBox.Show($"Encomenda #{encomendaId} atualizada com sucesso!\nNovo Total: {total:C2}",
                         "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -372,6 +388,7 @@ namespace projetoPadariaApp.Forms_Functions.OrdersManagement
                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing && this.DialogResult != DialogResult.OK)

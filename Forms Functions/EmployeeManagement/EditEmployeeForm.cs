@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BCrypt.Net;
+using iText.StyledXmlParser.Jsoup.Nodes;
 using PadariaApp;
 using projetoPadariaApp.Services;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
 {
@@ -322,7 +325,18 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                         if (rowsAffected > 0)
                         {
                             // Registar log das alterações
-                            RegistarLog();
+                            try
+                            {
+                                LogsService.RegistarLog(
+                                Session.FuncionarioId,
+                                $"Editou funcionário → Nome: {txtNome.Text.Trim()}, Username: {txtUsername.Text.Trim()}, Função: {cbFuncao.Text}"
+                            );
+
+                            }
+                            catch (Exception logEx)
+                            {
+                                Console.WriteLine($"Erro ao registar log de criação: {logEx.Message}");
+                            }
 
                             MessageBox.Show("Funcionário atualizado com sucesso!", "Sucesso",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -360,6 +360,20 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                                 if (rowsAffected > 0)
                                 {
                                     transaction.Commit();
+
+                                    
+                                    try
+                                    {
+                                        LogsService.RegistarLog(
+                                            Session.FuncionarioId,
+                                            $"Desativou funcionário (ID: {employeeId})"
+                                        );
+                                    }
+                                    catch (Exception logEx)
+                                    {
+                                        Console.WriteLine($"Erro ao registar log de desativação: {logEx.Message}");
+                                    }
+
                                     MessageBox.Show("Funcionário desativado com sucesso!", "Sucesso",
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     LoadEmployees();
@@ -386,6 +400,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void ActivateEmployee(int employeeId)
         {
             try
@@ -401,6 +416,18 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
 
                         if (rowsAffected > 0)
                         {
+                            try
+                            {
+                                LogsService.RegistarLog(
+                                    Session.FuncionarioId,
+                                    $"Ativou funcionário (ID: {employeeId})"
+                                );
+                            }
+                            catch (Exception logEx)
+                            {
+                                Console.WriteLine($"Erro ao registar log de ativação: {logEx.Message}");
+                            }
+
                             MessageBox.Show("Funcionário ativado com sucesso!", "Sucesso",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadEmployees();
@@ -638,7 +665,23 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
 
                         if (success)
                         {
+                            // ✅ Log da promoção
+                            try
+                            {
+                                LogsService.RegistarLog(
+                                    Session.FuncionarioId,
+                                    $"Promoveu o funcionário '{nomeEmployee}' (Username: {employeeUsername}) a administrador"
+                                );
+                            }
+                            catch (Exception logEx)
+                            {
+                                Console.WriteLine($"Erro ao registar log de promoção: {logEx.Message}");
+                            }
+
                             LoadEmployees();
+
+                            MessageBox.Show("Funcionário promovido a administrador com sucesso!", "Sucesso",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -654,6 +697,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void btnResetPass_Click(object sender, EventArgs e)
         {
@@ -677,7 +721,25 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                     {
                         bool success = AuthService.ResetPassword(employeeUsername);
 
-                        if (!success)
+                        if (success)
+                        {
+                            // ✅ Log da redefinição de senha
+                            try
+                            {
+                                LogsService.RegistarLog(
+                                    Session.FuncionarioId,
+                                    $"Redefiniu a senha do funcionário '{nomeEmployee}' (Username: {employeeUsername})"
+                                );
+                            }
+                            catch (Exception logEx)
+                            {
+                                Console.WriteLine($"Erro ao registar log de redefinição de senha: {logEx.Message}");
+                            }
+
+                            MessageBox.Show("Senha redefinida com sucesso! Uma nova senha temporária foi gerada.", "Sucesso",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
                         {
                             MessageBox.Show("Erro ao redefinir a senha.", "Erro",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -696,6 +758,7 @@ namespace projetoPadariaApp.Forms_Functions.EmployeeManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {

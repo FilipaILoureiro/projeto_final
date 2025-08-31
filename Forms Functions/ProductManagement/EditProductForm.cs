@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using projetoPadariaApp.Models;
 using System.Data.SQLite;
+using projetoPadariaApp.Services;
 
 namespace projetoPadariaApp.Forms_Functions.ProductManagement
 {
@@ -418,8 +419,10 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
                     {
                         try
                         {
-                            var cmd = new SQLiteCommand(@"UPDATE produtos SET nome = @nome, quantidade = @quantidade, 
-                                                        preco = @preco, iva = @iva, imagem = @imagem WHERE id = @id", conn, transaction);
+                            var cmd = new SQLiteCommand(@"UPDATE produtos 
+                                                 SET nome = @nome, quantidade = @quantidade, 
+                                                     preco = @preco, iva = @iva, imagem = @imagem 
+                                                 WHERE id = @id", conn, transaction);
 
                             cmd.Parameters.AddWithValue("@nome", _produto.Nome);
                             cmd.Parameters.AddWithValue("@quantidade", _produto.Quantidade);
@@ -430,6 +433,20 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
 
                             cmd.ExecuteNonQuery();
                             transaction.Commit();
+
+                            // ✅ Registar log após o commit
+                            try
+                            {
+                                LogsService.RegistarLog(
+                                    Session.FuncionarioId,
+                                    $"Editou produto #{_produto.Id} → Nome: {_produto.Nome}, Qtd: {_produto.Quantidade}, " +
+                                    $"Preço: {_produto.Preco:F2}€, IVA: {_produto.Iva}%, Imagem: {_produto.Imagem}"
+                                );
+                            }
+                            catch (Exception logEx)
+                            {
+                                Console.WriteLine($"Erro ao registar log de edição de produto: {logEx.Message}");
+                            }
 
                             // Remover imagem antiga se foi alterada
                             if (!string.IsNullOrEmpty(_imagemOriginal) && _imagemOriginal != caminhoImagemFinal &&
@@ -465,6 +482,7 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
