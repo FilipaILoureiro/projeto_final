@@ -75,7 +75,7 @@ namespace projetoPadariaApp.Services
                             "Rua das Padarias, 123\n" +
                             "4400-123 Vila Nova de Gaia\n" +
                             "Tel: (+351) 223 456 789\n" +
-                            "Email: geral@padariapãobom.pt\n" +
+                            "Email: geral@padariapaobom.pt\n" +
                             "NIF: 123456789", normalFont);
                         empresaCell.AddElement(infoEmpresa);
 
@@ -259,8 +259,6 @@ namespace projetoPadariaApp.Services
                             StringBuilder funcionarioInfo = new StringBuilder();
                             funcionarioInfo.AppendLine("ATENDIDO POR:");
                             funcionarioInfo.AppendLine($"Funcionário: {Session.FuncionarioNome}");
-                            funcionarioInfo.AppendLine($"Função: {Session.Funcao}");
-                            funcionarioInfo.AppendLine($"Username: {Session.Username}");
 
                             PdfPCell funcionarioCell = new PdfPCell(new Phrase(funcionarioInfo.ToString(), normalFont));
                             funcionarioCell.BackgroundColor = corFundo;
@@ -278,7 +276,7 @@ namespace projetoPadariaApp.Services
 
                         StringBuilder footerText = new StringBuilder();
                         footerText.AppendLine("OBRIGADO PELA SUA PREFERÊNCIA!");
-                        footerText.AppendLine("Padaria Pão Bom - Sempre fresquinho para si!");
+                        footerText.AppendLine("Padaria Pão Bom - Onde o pão é bom!");
                         footerText.AppendLine("────────────────────────────────────");
                         footerText.AppendLine($"Documento gerado automaticamente em {DateTime.Now:dd/MM/yyyy às HH:mm}");
                         footerText.AppendLine("Este documento serve como comprovativo de encomenda e pagamento.");
@@ -295,7 +293,7 @@ namespace projetoPadariaApp.Services
 
                         var resultado = MessageBox.Show(
                             $"Fatura gerada com sucesso!\n\nLocalização: {caminho}\n\nDeseja abrir o documento agora?",
-                            "Fatura Criada com Sucesso! 🎉",
+                            "Fatura Criada com Sucesso!",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Information);
 

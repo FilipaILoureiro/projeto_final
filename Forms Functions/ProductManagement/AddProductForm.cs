@@ -110,7 +110,7 @@ namespace projetoPadariaApp.Forms_Functions.ProductManagement
 
                         using (var stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
                         {
-                            pictureBoxProduto.Image?.Dispose(); // Libertar imagem anterior
+                            pictureBoxProduto.Image?.Dispose(); 
                             pictureBoxProduto.Image = Image.FromStream(stream);
                         }
 
